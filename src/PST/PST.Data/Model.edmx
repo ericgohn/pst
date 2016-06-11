@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PSTPlatformModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FFP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Series" Type="nvarchar" MaxLength="255" />
+          <Property Name="Model Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Business No" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sales Route" Type="nvarchar" MaxLength="255" />
+          <Property Name="PNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sales PNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sub Information" Type="float" />
+          <Property Name="Customer Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Rank" Type="nvarchar" MaxLength="255" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="ACC Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sales Staff" Type="nvarchar" MaxLength="255" />
+          <Property Name="Order Division" Type="float" />
+          <Property Name="Shipped Month" Type="datetime" />
+          <Property Name="Shipped QTY" Type="float" />
+          <Property Name="Shipped Qty2" Type="float" />
+          <Property Name="F/FP PNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="F/FP Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIG Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="CIC Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="WDSResponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sub Family" Type="nvarchar" MaxLength="255" />
+          <Property Name="Series" Type="nvarchar" MaxLength="255" />
+          <Property Name="Brand name" Type="nvarchar" MaxLength="255" />
+          <Property Name="T/R" Type="nvarchar" MaxLength="255" />
+          <Property Name="PM" Type="nvarchar" MaxLength="255" />
+          <Property Name="Category" Type="nvarchar" MaxLength="255" />
+          <Property Name="KUBUN" Type="nvarchar" MaxLength="255" />
+          <Property Name="Area" Type="nvarchar" MaxLength="255" />
+          <Property Name="Supply Route" Type="nvarchar" MaxLength="255" />
+          <Property Name="EURO Country" Type="nvarchar" MaxLength="255" />
+          <Property Name="GSKU" Type="nvarchar" MaxLength="255" />
+          <Property Name="G-Frame" Type="nvarchar" MaxLength="255" />
+          <Property Name="PNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ship Style" Type="nvarchar" MaxLength="255" />
+          <Property Name="InHouse/ODM" Type="nvarchar" MaxLength="255" />
+          <Property Name="Prod" Type="nvarchar" MaxLength="255" />
+          <Property Name="FCS date" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="255" />
+          <Property Name="Status" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cut off" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cut off date" Type="datetime" />
+          <Property Name="Month" Type="nvarchar" MaxLength="255" />
+          <Property Name="Week" Type="nvarchar" MaxLength="255" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Sales Demand Previous" Type="float" />
+          <Property Name="Sales Demand Current(a)" Type="float" />
+          <Property Name="HQ Original Previous" Type="float" />
+          <Property Name="HQ Original Current(g)" Type="float" />
+          <Property Name="HQ Forecast Previous" Type="float" />
+          <Property Name="PSI(0506)(b)" Type="float" />
+          <Property Name="CP Simulation Previous" Type="float" />
+          <Property Name="CP Simulation Current" Type="float" />
+          <Property Name="HQ Simulation Previous" Type="float" />
+          <Property Name="HQ Simulation Current" Type="float" />
+          <Property Name="Sales Response Previous(e)" Type="float" />
+          <Property Name="Sales Response Current(f)" Type="float" />
+          <Property Name="Pullin Response Previous" Type="float" />
+          <Property Name="Pullin Response Current" Type="float" />
+          <Property Name="MFG Response Previous(c)" Type="float" />
+          <Property Name="WDS Response(0509)(d)" Type="float" />
+          <Property Name="d-a" Type="float" />
+          <Property Name="d-b" Type="float" />
+          <Property Name="d-c" Type="float" />
+          <Property Name="f-e" Type="float" />
+          <Property Name="f-g" Type="float" />
+          <Property Name="Segment" Type="nvarchar" MaxLength="255" />
+          <Property Name="CPU" Type="nvarchar" MaxLength="255" />
+          <Property Name="LCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="HDD" Type="nvarchar" MaxLength="255" />
+          <Property Name="Communication" Type="nvarchar" MaxLength="255" />
+          <Property Name="Mini-PCI" Type="nvarchar" MaxLength="255" />
+          <Property Name="Bluetooth" Type="nvarchar" MaxLength="255" />
+          <Property Name="Battery" Type="nvarchar" MaxLength="255" />
+          <Property Name="OS" Type="nvarchar" MaxLength="255" />
+          <Property Name="Pointing Device" Type="nvarchar" MaxLength="255" />
+          <Property Name="Graphics Controller" Type="nvarchar" MaxLength="255" />
+          <Property Name="Indent" Type="nvarchar" MaxLength="255" />
+          <Property Name="Recovery" Type="nvarchar" MaxLength="255" />
+          <Property Name="ODD" Type="nvarchar" MaxLength="255" />
+          <Property Name="Speaker" Type="nvarchar" MaxLength="255" />
+          <Property Name="TV tuner" Type="nvarchar" MaxLength="255" />
+          <Property Name="Warranty" Type="nvarchar" MaxLength="255" />
+          <Property Name="Remote Control" Type="nvarchar" MaxLength="255" />
+          <Property Name="Office" Type="nvarchar" MaxLength="255" />
+          <Property Name="KeyBoard" Type="nvarchar" MaxLength="255" />
+          <Property Name="OS Language" Type="nvarchar" MaxLength="255" />
+          <Property Name="Warranty(Extension)" Type="nvarchar" MaxLength="255" />
+          <Property Name="RecycleLabel" Type="nvarchar" MaxLength="255" />
+          <Property Name="DVD Region Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Energy Star Label" Type="nvarchar" MaxLength="255" />
+          <Property Name="RecoveryCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="Memory Slot1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Memory Slot2" Type="nvarchar" MaxLength="255" />
+          <Property Name="AC-Cable" Type="nvarchar" MaxLength="255" />
+          <Property Name="2nd HDD" Type="nvarchar" MaxLength="255" />
+          <Property Name="LAN" Type="nvarchar" MaxLength="255" />
+          <Property Name="Button" Type="nvarchar" MaxLength="255" />
+          <Property Name="Recovery HDD" Type="nvarchar" MaxLength="255" />
+          <Property Name="Recovery Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="OnSite Service" Type="nvarchar" MaxLength="255" />
+          <Property Name="Color Variation" Type="nvarchar" MaxLength="255" />
+          <Property Name="Mouse" Type="nvarchar" MaxLength="255" />
+          <Property Name="Security" Type="nvarchar" MaxLength="255" />
+          <Property Name="Generation" Type="nvarchar" MaxLength="255" />
+          <Property Name="3G" Type="nvarchar" MaxLength="255" />
+          <Property Name="2nd TV Tuner" Type="nvarchar" MaxLength="255" />
+          <Property Name="Windows Sticker" Type="nvarchar" MaxLength="255" />
+          <Property Name="Connector" Type="nvarchar" MaxLength="255" />
+          <Property Name="Web Camera/Mic" Type="nvarchar" MaxLength="255" />
+          <Property Name="Disk Cache" Type="nvarchar" MaxLength="255" />
+          <Property Name="Card Slot" Type="nvarchar" MaxLength="255" />
+          <Property Name="KeyBoard Color" Type="nvarchar" MaxLength="255" />
+          <Property Name="Target Customer" Type="nvarchar" MaxLength="255" />
+          <Property Name="Pen Device" Type="nvarchar" MaxLength="255" />
+          <Property Name="OS Category" Type="nvarchar" MaxLength="255" />
+          <Property Name="Backend Processor" Type="nvarchar" MaxLength="255" />
+          <Property Name="Anti-Virus SW" Type="nvarchar" MaxLength="255" />
+          <Property Name="Energy Star Label(ODM)" Type="nvarchar" MaxLength="255" />
+          <Property Name="Micro SATA SSD for Dedicated SSD Slot" Type="nvarchar" MaxLength="255" />
+          <Property Name="Flush Screen" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ambient Sensor" Type="nvarchar" MaxLength="255" />
+          <Property Name="PCBA BTO Combination" Type="nvarchar" MaxLength="255" />
+          <Property Name="External IR Transceiver" Type="nvarchar" MaxLength="255" />
+          <Property Name="KeyBoard BTO Combination" Type="nvarchar" MaxLength="255" />
+          <Property Name="Discrete Graphics Controller" Type="nvarchar" MaxLength="255" />
+          <Property Name="Chipset" Type="nvarchar" MaxLength="255" />
+          <Property Name="Wireless Device" Type="nvarchar" MaxLength="255" />
+          <Property Name="Memory Slot3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Brand No" Type="nvarchar" MaxLength="255" />
+          <Property Name="Product Category" Type="nvarchar" MaxLength="255" />
+          <Property Name="Importer" Type="nvarchar" MaxLength="255" />
+          <Property Name="Special Bundle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Wireless Display" Type="nvarchar" MaxLength="255" />
+          <Property Name="LTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="Dock" Type="nvarchar" MaxLength="255" />
+          <Property Name="MAC address sticker" Type="nvarchar" MaxLength="255" />
+          <Property Name="Web Camera/Mic(Back)" Type="nvarchar" MaxLength="255" />
+          <Property Name="Memory Slot4" Type="nvarchar" MaxLength="255" />
+          <Property Name="AC Plug Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Carry Case" Type="nvarchar" MaxLength="255" />
+          <Property Name="Package" Type="nvarchar" MaxLength="255" />
+          <Property Name="SmallParts" Type="nvarchar" MaxLength="255" />
+          <Property Name="MFGInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Antenna" Type="nvarchar" MaxLength="255" />
+          <Property Name="Keyboard TAIS" Type="nvarchar" MaxLength="255" />
+          <Property Name="Warranty(ODM)" Type="nvarchar" MaxLength="255" />
+          <Property Name="Recovery CD(ODM)" Type="nvarchar" MaxLength="255" />
+          <Property Name="LAN(ODM)" Type="nvarchar" MaxLength="255" />
+          <Property Name="PackageL" Type="nvarchar" MaxLength="255" />
+          <Property Name="AC-Adaptor" Type="nvarchar" MaxLength="255" />
+          <Property Name="RatingLabel" Type="nvarchar" MaxLength="255" />
+          <Property Name="Remote Control(STC)" Type="nvarchar" MaxLength="255" />
+          <Property Name="Remote Control TAIS" Type="nvarchar" MaxLength="255" />
+          <Property Name="PCB" Type="nvarchar" MaxLength="255" />
+          <Property Name="Country Pack" Type="nvarchar" MaxLength="255" />
+          <Property Name="KeyBoard Dock" Type="nvarchar" MaxLength="255" />
+          <Property Name="MediaBridgeSlot" Type="nvarchar" MaxLength="255" />
+          <Property Name="Indent1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Indent2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Security Frame" Type="nvarchar" MaxLength="255" />
+          <Property Name="Security PCBA" Type="nvarchar" MaxLength="255" />
+          <Property Name="Security FP" Type="nvarchar" MaxLength="255" />
+          <Property Name="KeyBoard FP" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="PSTPlatformModelStoreContainer">
+          <EntitySet Name="FFP" EntityType="Self.FFP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WDSResponse" EntityType="Self.WDSResponse" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PSTPlatformModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="FFPs" EntityType="PSTPlatformModel.FFP" />
+          <EntitySet Name="WDSResponses" EntityType="PSTPlatformModel.WDSResponse" />
+        </EntityContainer>
+        <EntityType Name="FFP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Series" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Model_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Business_No" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sales_Route" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sales_PNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sub_Information" Type="Double" />
+          <Property Name="Customer_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="ACC_Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sales_Staff" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Order_Division" Type="Double" />
+          <Property Name="Shipped_Month" Type="DateTime" Precision="3" />
+          <Property Name="Shipped_QTY" Type="Double" />
+          <Property Name="Shipped_Qty2" Type="Double" />
+          <Property Name="F_FP_PNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="F_FP_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CIG_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CIC_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WDSResponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Sub_Family" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Series" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Brand_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="T_R" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KUBUN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Supply_Route" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EURO_Country" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GSKU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="G_Frame" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ship_Style" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="InHouse_ODM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Prod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FCS_date" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Cut_off" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Cut_off_date" Type="DateTime" Precision="3" />
+          <Property Name="Month" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Week" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Sales_Demand_Previous" Type="Double" />
+          <Property Name="Sales_Demand_Current_a_" Type="Double" />
+          <Property Name="HQ_Original_Previous" Type="Double" />
+          <Property Name="HQ_Original_Current_g_" Type="Double" />
+          <Property Name="HQ_Forecast_Previous" Type="Double" />
+          <Property Name="PSI_0506__b_" Type="Double" />
+          <Property Name="CP_Simulation_Previous" Type="Double" />
+          <Property Name="CP_Simulation_Current" Type="Double" />
+          <Property Name="HQ_Simulation_Previous" Type="Double" />
+          <Property Name="HQ_Simulation_Current" Type="Double" />
+          <Property Name="Sales_Response_Previous_e_" Type="Double" />
+          <Property Name="Sales_Response_Current_f_" Type="Double" />
+          <Property Name="Pullin_Response_Previous" Type="Double" />
+          <Property Name="Pullin_Response_Current" Type="Double" />
+          <Property Name="MFG_Response_Previous_c_" Type="Double" />
+          <Property Name="WDS_Response_0509__d_" Type="Double" />
+          <Property Name="d_a" Type="Double" />
+          <Property Name="d_b" Type="Double" />
+          <Property Name="d_c" Type="Double" />
+          <Property Name="f_e" Type="Double" />
+          <Property Name="f_g" Type="Double" />
+          <Property Name="Segment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CPU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HDD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Communication" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mini_PCI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Bluetooth" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Battery" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Pointing_Device" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Graphics_Controller" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Indent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Recovery" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ODD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Speaker" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TV_tuner" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Warranty" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Remote_Control" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Office" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KeyBoard" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OS_Language" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Warranty_Extension_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RecycleLabel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DVD_Region_Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Energy_Star_Label" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RecoveryCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Memory_Slot1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Memory_Slot2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AC_Cable" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="C2nd_HDD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Button" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Recovery_HDD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Recovery_Media" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OnSite_Service" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Color_Variation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mouse" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Security" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Generation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="C3G" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="C2nd_TV_Tuner" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Windows_Sticker" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Connector" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Web_Camera_Mic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Disk_Cache" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Card_Slot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KeyBoard_Color" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Target_Customer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Pen_Device" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OS_Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Backend_Processor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Anti_Virus_SW" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Energy_Star_Label_ODM_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Micro_SATA_SSD_for_Dedicated_SSD_Slot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Flush_Screen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ambient_Sensor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PCBA_BTO_Combination" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="External_IR_Transceiver" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KeyBoard_BTO_Combination" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Discrete_Graphics_Controller" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Chipset" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Wireless_Device" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Memory_Slot3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Brand_No" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Importer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Special_Bundle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Wireless_Display" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LTE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Dock" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MAC_address_sticker" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Web_Camera_Mic_Back_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Memory_Slot4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AC_Plug_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Carry_Case" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Package" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SmallParts" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MFGInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Antenna" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Keyboard_TAIS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Warranty_ODM_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Recovery_CD_ODM_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LAN_ODM_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PackageL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AC_Adaptor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RatingLabel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Remote_Control_STC_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Remote_Control_TAIS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PCB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country_Pack" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KeyBoard_Dock" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MediaBridgeSlot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Indent1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Indent2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Security_Frame" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Security_PCBA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Security_FP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KeyBoard_FP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PSTPlatformModelStoreContainer" CdmEntityContainer="Entities" >
+          <EntitySetMapping Name="FFPs">
+            <EntityTypeMapping TypeName="PSTPlatformModel.FFP">
+              <MappingFragment StoreEntitySet="FFP">
+                <ScalarProperty Name="CIC_Name" ColumnName="CIC Name" />
+                <ScalarProperty Name="CIG_Name" ColumnName="CIG Name" />
+                <ScalarProperty Name="F_FP_Type" ColumnName="F/FP Type" />
+                <ScalarProperty Name="F_FP_PNO" ColumnName="F/FP PNO" />
+                <ScalarProperty Name="Shipped_Qty2" ColumnName="Shipped Qty2" />
+                <ScalarProperty Name="Shipped_QTY" ColumnName="Shipped QTY" />
+                <ScalarProperty Name="Shipped_Month" ColumnName="Shipped Month" />
+                <ScalarProperty Name="Order_Division" ColumnName="Order Division" />
+                <ScalarProperty Name="Sales_Staff" ColumnName="Sales Staff" />
+                <ScalarProperty Name="ACC_Code" ColumnName="ACC Code" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer Name" />
+                <ScalarProperty Name="Sub_Information" ColumnName="Sub Information" />
+                <ScalarProperty Name="Sales_PNO" ColumnName="Sales PNO" />
+                <ScalarProperty Name="PNO" ColumnName="PNO" />
+                <ScalarProperty Name="Sales_Route" ColumnName="Sales Route" />
+                <ScalarProperty Name="Business_No" ColumnName="Business No" />
+                <ScalarProperty Name="Model_Name" ColumnName="Model Name" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WDSResponses">
+            <EntityTypeMapping TypeName="PSTPlatformModel.WDSResponse">
+              <MappingFragment StoreEntitySet="WDSResponse">
+                <ScalarProperty Name="KeyBoard_FP" ColumnName="KeyBoard FP" />
+                <ScalarProperty Name="Security_FP" ColumnName="Security FP" />
+                <ScalarProperty Name="Security_PCBA" ColumnName="Security PCBA" />
+                <ScalarProperty Name="Security_Frame" ColumnName="Security Frame" />
+                <ScalarProperty Name="Indent2" ColumnName="Indent2" />
+                <ScalarProperty Name="Indent1" ColumnName="Indent1" />
+                <ScalarProperty Name="MediaBridgeSlot" ColumnName="MediaBridgeSlot" />
+                <ScalarProperty Name="KeyBoard_Dock" ColumnName="KeyBoard Dock" />
+                <ScalarProperty Name="Country_Pack" ColumnName="Country Pack" />
+                <ScalarProperty Name="PCB" ColumnName="PCB" />
+                <ScalarProperty Name="Remote_Control_TAIS" ColumnName="Remote Control TAIS" />
+                <ScalarProperty Name="Remote_Control_STC_" ColumnName="Remote Control(STC)" />
+                <ScalarProperty Name="RatingLabel" ColumnName="RatingLabel" />
+                <ScalarProperty Name="AC_Adaptor" ColumnName="AC-Adaptor" />
+                <ScalarProperty Name="PackageL" ColumnName="PackageL" />
+                <ScalarProperty Name="LAN_ODM_" ColumnName="LAN(ODM)" />
+                <ScalarProperty Name="Recovery_CD_ODM_" ColumnName="Recovery CD(ODM)" />
+                <ScalarProperty Name="Warranty_ODM_" ColumnName="Warranty(ODM)" />
+                <ScalarProperty Name="Keyboard_TAIS" ColumnName="Keyboard TAIS" />
+                <ScalarProperty Name="Antenna" ColumnName="Antenna" />
+                <ScalarProperty Name="MFGInfo" ColumnName="MFGInfo" />
+                <ScalarProperty Name="SmallParts" ColumnName="SmallParts" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="Carry_Case" ColumnName="Carry Case" />
+                <ScalarProperty Name="AC_Plug_Type" ColumnName="AC Plug Type" />
+                <ScalarProperty Name="Memory_Slot4" ColumnName="Memory Slot4" />
+                <ScalarProperty Name="Web_Camera_Mic_Back_" ColumnName="Web Camera/Mic(Back)" />
+                <ScalarProperty Name="MAC_address_sticker" ColumnName="MAC address sticker" />
+                <ScalarProperty Name="Dock" ColumnName="Dock" />
+                <ScalarProperty Name="LTE" ColumnName="LTE" />
+                <ScalarProperty Name="Wireless_Display" ColumnName="Wireless Display" />
+                <ScalarProperty Name="Special_Bundle" ColumnName="Special Bundle" />
+                <ScalarProperty Name="Importer" ColumnName="Importer" />
+                <ScalarProperty Name="Product_Category" ColumnName="Product Category" />
+                <ScalarProperty Name="Brand_No" ColumnName="Brand No" />
+                <ScalarProperty Name="Memory_Slot3" ColumnName="Memory Slot3" />
+                <ScalarProperty Name="Wireless_Device" ColumnName="Wireless Device" />
+                <ScalarProperty Name="Chipset" ColumnName="Chipset" />
+                <ScalarProperty Name="Discrete_Graphics_Controller" ColumnName="Discrete Graphics Controller" />
+                <ScalarProperty Name="KeyBoard_BTO_Combination" ColumnName="KeyBoard BTO Combination" />
+                <ScalarProperty Name="External_IR_Transceiver" ColumnName="External IR Transceiver" />
+                <ScalarProperty Name="PCBA_BTO_Combination" ColumnName="PCBA BTO Combination" />
+                <ScalarProperty Name="Ambient_Sensor" ColumnName="Ambient Sensor" />
+                <ScalarProperty Name="Flush_Screen" ColumnName="Flush Screen" />
+                <ScalarProperty Name="Micro_SATA_SSD_for_Dedicated_SSD_Slot" ColumnName="Micro SATA SSD for Dedicated SSD Slot" />
+                <ScalarProperty Name="Energy_Star_Label_ODM_" ColumnName="Energy Star Label(ODM)" />
+                <ScalarProperty Name="Anti_Virus_SW" ColumnName="Anti-Virus SW" />
+                <ScalarProperty Name="Backend_Processor" ColumnName="Backend Processor" />
+                <ScalarProperty Name="OS_Category" ColumnName="OS Category" />
+                <ScalarProperty Name="Pen_Device" ColumnName="Pen Device" />
+                <ScalarProperty Name="Target_Customer" ColumnName="Target Customer" />
+                <ScalarProperty Name="KeyBoard_Color" ColumnName="KeyBoard Color" />
+                <ScalarProperty Name="Card_Slot" ColumnName="Card Slot" />
+                <ScalarProperty Name="Disk_Cache" ColumnName="Disk Cache" />
+                <ScalarProperty Name="Web_Camera_Mic" ColumnName="Web Camera/Mic" />
+                <ScalarProperty Name="Connector" ColumnName="Connector" />
+                <ScalarProperty Name="Windows_Sticker" ColumnName="Windows Sticker" />
+                <ScalarProperty Name="C2nd_TV_Tuner" ColumnName="2nd TV Tuner" />
+                <ScalarProperty Name="C3G" ColumnName="3G" />
+                <ScalarProperty Name="Generation" ColumnName="Generation" />
+                <ScalarProperty Name="Security" ColumnName="Security" />
+                <ScalarProperty Name="Mouse" ColumnName="Mouse" />
+                <ScalarProperty Name="Color_Variation" ColumnName="Color Variation" />
+                <ScalarProperty Name="OnSite_Service" ColumnName="OnSite Service" />
+                <ScalarProperty Name="Recovery_Media" ColumnName="Recovery Media" />
+                <ScalarProperty Name="Recovery_HDD" ColumnName="Recovery HDD" />
+                <ScalarProperty Name="Button" ColumnName="Button" />
+                <ScalarProperty Name="LAN" ColumnName="LAN" />
+                <ScalarProperty Name="C2nd_HDD" ColumnName="2nd HDD" />
+                <ScalarProperty Name="AC_Cable" ColumnName="AC-Cable" />
+                <ScalarProperty Name="Memory_Slot2" ColumnName="Memory Slot2" />
+                <ScalarProperty Name="Memory_Slot1" ColumnName="Memory Slot1" />
+                <ScalarProperty Name="RecoveryCD" ColumnName="RecoveryCD" />
+                <ScalarProperty Name="Energy_Star_Label" ColumnName="Energy Star Label" />
+                <ScalarProperty Name="DVD_Region_Code" ColumnName="DVD Region Code" />
+                <ScalarProperty Name="RecycleLabel" ColumnName="RecycleLabel" />
+                <ScalarProperty Name="Warranty_Extension_" ColumnName="Warranty(Extension)" />
+                <ScalarProperty Name="OS_Language" ColumnName="OS Language" />
+                <ScalarProperty Name="KeyBoard" ColumnName="KeyBoard" />
+                <ScalarProperty Name="Office" ColumnName="Office" />
+                <ScalarProperty Name="Remote_Control" ColumnName="Remote Control" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="TV_tuner" ColumnName="TV tuner" />
+                <ScalarProperty Name="Speaker" ColumnName="Speaker" />
+                <ScalarProperty Name="ODD" ColumnName="ODD" />
+                <ScalarProperty Name="Recovery" ColumnName="Recovery" />
+                <ScalarProperty Name="Indent" ColumnName="Indent" />
+                <ScalarProperty Name="Graphics_Controller" ColumnName="Graphics Controller" />
+                <ScalarProperty Name="Pointing_Device" ColumnName="Pointing Device" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="Battery" ColumnName="Battery" />
+                <ScalarProperty Name="Bluetooth" ColumnName="Bluetooth" />
+                <ScalarProperty Name="Mini_PCI" ColumnName="Mini-PCI" />
+                <ScalarProperty Name="Communication" ColumnName="Communication" />
+                <ScalarProperty Name="HDD" ColumnName="HDD" />
+                <ScalarProperty Name="LCD" ColumnName="LCD" />
+                <ScalarProperty Name="CPU" ColumnName="CPU" />
+                <ScalarProperty Name="Segment" ColumnName="Segment" />
+                <ScalarProperty Name="f_g" ColumnName="f-g" />
+                <ScalarProperty Name="f_e" ColumnName="f-e" />
+                <ScalarProperty Name="d_c" ColumnName="d-c" />
+                <ScalarProperty Name="d_b" ColumnName="d-b" />
+                <ScalarProperty Name="d_a" ColumnName="d-a" />
+                <ScalarProperty Name="WDS_Response_0509__d_" ColumnName="WDS Response(0509)(d)" />
+                <ScalarProperty Name="MFG_Response_Previous_c_" ColumnName="MFG Response Previous(c)" />
+                <ScalarProperty Name="Pullin_Response_Current" ColumnName="Pullin Response Current" />
+                <ScalarProperty Name="Pullin_Response_Previous" ColumnName="Pullin Response Previous" />
+                <ScalarProperty Name="Sales_Response_Current_f_" ColumnName="Sales Response Current(f)" />
+                <ScalarProperty Name="Sales_Response_Previous_e_" ColumnName="Sales Response Previous(e)" />
+                <ScalarProperty Name="HQ_Simulation_Current" ColumnName="HQ Simulation Current" />
+                <ScalarProperty Name="HQ_Simulation_Previous" ColumnName="HQ Simulation Previous" />
+                <ScalarProperty Name="CP_Simulation_Current" ColumnName="CP Simulation Current" />
+                <ScalarProperty Name="CP_Simulation_Previous" ColumnName="CP Simulation Previous" />
+                <ScalarProperty Name="PSI_0506__b_" ColumnName="PSI(0506)(b)" />
+                <ScalarProperty Name="HQ_Forecast_Previous" ColumnName="HQ Forecast Previous" />
+                <ScalarProperty Name="HQ_Original_Current_g_" ColumnName="HQ Original Current(g)" />
+                <ScalarProperty Name="HQ_Original_Previous" ColumnName="HQ Original Previous" />
+                <ScalarProperty Name="Sales_Demand_Current_a_" ColumnName="Sales Demand Current(a)" />
+                <ScalarProperty Name="Sales_Demand_Previous" ColumnName="Sales Demand Previous" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Cut_off_date" ColumnName="Cut off date" />
+                <ScalarProperty Name="Cut_off" ColumnName="Cut off" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="FCS_date" ColumnName="FCS date" />
+                <ScalarProperty Name="Prod" ColumnName="Prod" />
+                <ScalarProperty Name="InHouse_ODM" ColumnName="InHouse/ODM" />
+                <ScalarProperty Name="Ship_Style" ColumnName="Ship Style" />
+                <ScalarProperty Name="PNO" ColumnName="PNO" />
+                <ScalarProperty Name="G_Frame" ColumnName="G-Frame" />
+                <ScalarProperty Name="GSKU" ColumnName="GSKU" />
+                <ScalarProperty Name="EURO_Country" ColumnName="EURO Country" />
+                <ScalarProperty Name="Supply_Route" ColumnName="Supply Route" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="KUBUN" ColumnName="KUBUN" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="PM" ColumnName="PM" />
+                <ScalarProperty Name="T_R" ColumnName="T/R" />
+                <ScalarProperty Name="Brand_name" ColumnName="Brand name" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="Sub_Family" ColumnName="Sub Family" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

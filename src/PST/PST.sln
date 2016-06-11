@@ -3,8 +3,47 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PST.Data", "PST.Data\PST.Data.csproj", "{821C6172-D20C-4A98-8DE7-FCBC392FC107}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA106544-4562-4FAD-954A-B1E6457F2E0C}"
+	ProjectSection(SolutionItems) = preProject
+		Infrastructure.csp = Infrastructure.csp
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PST.Domain", "PST.Domain\PST.Domain.csproj", "{DD765E4A-4230-44CA-ADB4-E8A49E253747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PST.Business", "PST.Business\PST.Business.csproj", "{8050EDCE-28B9-419F-A045-C88CFD386923}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalDlls", "ExternalDlls", "{C7DD581E-A989-4A02-8311-B767EB69E3B7}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\ExternalDlls\Zeexone.Framework.Core.dll = ..\..\ExternalDlls\Zeexone.Framework.Core.dll
+		..\..\ExternalDlls\Zeexone.Framework.Windows.dll = ..\..\ExternalDlls\Zeexone.Framework.Windows.dll
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{821C6172-D20C-4A98-8DE7-FCBC392FC107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{821C6172-D20C-4A98-8DE7-FCBC392FC107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{821C6172-D20C-4A98-8DE7-FCBC392FC107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{821C6172-D20C-4A98-8DE7-FCBC392FC107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD765E4A-4230-44CA-ADB4-E8A49E253747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD765E4A-4230-44CA-ADB4-E8A49E253747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD765E4A-4230-44CA-ADB4-E8A49E253747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD765E4A-4230-44CA-ADB4-E8A49E253747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8050EDCE-28B9-419F-A045-C88CFD386923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8050EDCE-28B9-419F-A045-C88CFD386923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8050EDCE-28B9-419F-A045-C88CFD386923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8050EDCE-28B9-419F-A045-C88CFD386923}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C7DD581E-A989-4A02-8311-B767EB69E3B7} = {FA106544-4562-4FAD-954A-B1E6457F2E0C}
 	EndGlobalSection
 EndGlobal

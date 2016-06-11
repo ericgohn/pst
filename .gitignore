@@ -1,1 +1,8 @@
 /src/PST/*.suo
+/src/PST/PST.Data/bin
+/src/PST/PST.Data/obj
+/src/PST/PST.Business/bin
+/src/PST/PST.Business/obj
+/src/PST/PST.Domain/bin
+/src/PST/PST.Domain/obj
+/src/PST/packages
