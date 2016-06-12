@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PST.Data", "PST.Data\PST.Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA106544-4562-4FAD-954A-B1E6457F2E0C}"
 	ProjectSection(SolutionItems) = preProject
+		DomainInfoForm.csp = DomainInfoForm.csp
 		Infrastructure.csp = Infrastructure.csp
+		plugin.csp = plugin.csp
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
