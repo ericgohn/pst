@@ -1,24 +1,14 @@
-﻿//  ==============================================================
-//   Copyright (c) 上海梓迅信息技术有限公司. All rights reserved.   
-//  
-//   File: AssemblyInfo.cs
-//   Author: Eric Gohn
-//   Email: eric.gohn@outlook.com
-//     
-//  ==============================================================
-
-using System.Reflection;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-
-[assembly: AssemblyTitle("PST.UI")]
+[assembly: AssemblyTitle("PST.Plugins.WDSDispatcher")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-
-[assembly: Guid("1e125827-493a-4d9d-ba3a-817beee28c6a")]
+[assembly: Guid("5f116b19-43b9-4069-be74-794257c4322a")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -30,5 +20,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyFileVersion("1.0.8.6007")]
+[assembly: AssemblyFileVersion("1.0.3.6007")]
