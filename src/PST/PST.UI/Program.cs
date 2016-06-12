@@ -1,0 +1,28 @@
+﻿//  ==============================================================
+//   Copyright (c) 上海梓迅信息技术有限公司. All rights reserved.   
+//  
+//   File: Program.cs
+//   Author: Eric Gohn
+//   Email: eric.gohn@outlook.com
+//     
+//  ==============================================================
+
+using System;
+using System.Windows.Forms;
+
+namespace PST.UI
+{
+    internal static class Program
+    {
+        /// <summary>
+        ///     The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        private static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+        }
+    }
+}
