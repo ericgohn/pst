@@ -28,12 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.wdsResponseDispatcherControl1 = new PST.Plugins.WDSDispatcher.Children.WDSResponseDispatcherControl();
+            this.SuspendLayout();
+            // 
+            // wdsResponseDispatcherControl1
+            // 
+            this.wdsResponseDispatcherControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wdsResponseDispatcherControl1.Location = new System.Drawing.Point(0, 0);
+            this.wdsResponseDispatcherControl1.Name = "wdsResponseDispatcherControl1";
+            this.wdsResponseDispatcherControl1.Size = new System.Drawing.Size(844, 414);
+            this.wdsResponseDispatcherControl1.TabIndex = 0;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "MainForm";
+            this.ClientSize = new System.Drawing.Size(844, 414);
+            this.Controls.Add(this.wdsResponseDispatcherControl1);
+            this.Name = "MainForm";
+            this.Text = "WDS Response Dispatcher";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Children.WDSResponseDispatcherControl wdsResponseDispatcherControl1;
     }
 }
 
