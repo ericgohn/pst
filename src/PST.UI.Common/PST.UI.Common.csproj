@@ -35,6 +35,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -58,8 +59,55 @@
     </Compile>
     <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Helpers\TaskHelper.cs" />
+    <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FFPService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ServiceFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\PST.Domain.Response.datasource" />
+    <None Include="Service References\FFPService\FFPService.wsdl" />
+    <None Include="Service References\FFPService\FFPService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFPService\FFPService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFPService\FFPService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FFPService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPService\FFPService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PST.Domain\PST.Domain.csproj">
+      <Project>{dd765e4a-4230-44ca-adb4-e8a49e253747}</Project>
+      <Name>PST.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

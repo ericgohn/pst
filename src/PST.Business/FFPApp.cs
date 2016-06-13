@@ -7,6 +7,10 @@
 //     
 //  ==============================================================
 
+using System.Collections.Generic;
+using PST.Data;
+using PST.Domain;
+using FFP = PST.Domain.FFP;
 
 namespace PST.Business
 {
@@ -14,17 +18,33 @@ namespace PST.Business
     {
         #region public Methods
 
+        public Response AddRange(List<FFP> list)
+        {
+            using (var context = new Entities())
+            using (IUnitOfWork uow = new UnitOfWork(context))
+            {
+                foreach (var item in list)
+                {
+                    var entity = AutoMapperBootstrap.M.Map<FFP, Data.FFP>(item);
+                    uow.FFPRepository.Add(entity);
+                }
+                uow.Commit();
+                return Response.Succeed();
+            }
+        }
 
         #endregion
-        
+
         #region Private Methods
-        
-        private void AddAssignment(PST.Domain.FFP src, PST.Data.FFP dest){
+
+        private void AddAssignment(FFP src, Data.FFP dest)
+        {
         }
-        
-        private void UpdateAssignment(PST.Domain.FFP src, PST.Data.FFP dest){
+
+        private void UpdateAssignment(FFP src, Data.FFP dest)
+        {
         }
-        
+
         #endregion
     }
 }

@@ -37,6 +37,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{27D14D8B-78FD-4F9C-844E-69F4984D4B23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PST.UI.Common", "PST.UI.Common\PST.UI.Common.csproj", "{61B017F5-E68C-4DB6-B072-79A7D099A956}"
+	ProjectSection(ProjectDependencies) = postProject
+		{31AAEF8B-F9A0-4034-B776-A3F3DD39800C} = {31AAEF8B-F9A0-4034-B776-A3F3DD39800C}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationService", "ApplicationService", "{16C9306E-BD1D-4B81-B767-9EBF825A6C55}"
 EndProject

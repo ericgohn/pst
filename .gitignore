@@ -16,3 +16,4 @@
 /src/PST.UI.Common/*.user
 /src/PST.Service/*.user
 /src/PST.UI/*.user
+/src/PST.UI.Common/Properties/DataSources

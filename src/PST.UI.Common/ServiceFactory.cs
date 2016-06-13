@@ -9,6 +9,7 @@
 
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using PST.UI.Common.FFPService;
 using Zeexone.Framework.Core.WCF;
 
 namespace PST.UI.Common
@@ -32,6 +33,16 @@ namespace PST.UI.Common
             _behavior = new ClientInterceptorBehaviorExtension(token);
         }
 
+        public IFFPService GetFFPService()
+        {
+            var endPoint = GetServerEndPoint("FFPService.svc");
+            var service = endPoint == null
+                ? new FFPServiceClient()
+                : new FFPServiceClient("FFPService", endPoint);
+            if (_behavior != null)
+                service.ChannelFactory.Endpoint.Behaviors.Add(_behavior);
+            return service;
+        }
 
         private static EndpointAddress GetServerEndPoint(string serviceName)
         {

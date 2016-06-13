@@ -68,12 +68,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FFPService.svc" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="FFPService.svc.cs">
+      <DependentUpon>FFPService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IFFPService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +101,10 @@
     <ProjectReference Include="..\PST.Business\PST.Business.csproj">
       <Project>{8050edce-28b9-419f-a045-c88cfd386923}</Project>
       <Name>PST.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PST.Domain\PST.Domain.csproj">
+      <Project>{dd765e4a-4230-44ca-adb4-e8a49e253747}</Project>
+      <Name>PST.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

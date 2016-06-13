@@ -63,6 +63,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -115,6 +116,10 @@
     <ProjectReference Include="..\PST.Business\PST.Business.csproj">
       <Project>{8050edce-28b9-419f-a045-c88cfd386923}</Project>
       <Name>PST.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PST.Domain\PST.Domain.csproj">
+      <Project>{dd765e4a-4230-44ca-adb4-e8a49e253747}</Project>
+      <Name>PST.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\PST.UI.Common\PST.UI.Common.csproj">
       <Project>{61b017f5-e68c-4db6-b072-79a7d099a956}</Project>
