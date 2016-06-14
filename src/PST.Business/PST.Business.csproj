@@ -69,6 +69,10 @@
     </Compile>
     <Compile Include="AutoMapperBootstrap.cs" />
     <Compile Include="AutoMapperBootstrap.partial.cs" />
+    <Compile Include="FFPSetApp.cs" />
+    <Compile Include="FFPSetApp.Generated.cs">
+      <DependentUpon>FFPSetApp.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PST.Data\PST.Data.csproj">

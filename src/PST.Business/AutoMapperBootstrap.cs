@@ -34,6 +34,9 @@ namespace PST.Business
                 cfg.CreateMap<PST.Data.WDSResponse, PST.Domain.WDSResponse>();
                 cfg.CreateMap<PST.Domain.WDSResponse, PST.Data.WDSResponse>();
                 
+                cfg.CreateMap<PST.Data.FFPSet, PST.Domain.FFPSet>();
+                cfg.CreateMap<PST.Domain.FFPSet, PST.Data.FFPSet>().ForMember(o => o.Id, opt => opt.Ignore());
+                
                 CustomConfiguration(cfg);
             });
         }

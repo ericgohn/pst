@@ -18,6 +18,7 @@ namespace PST.Data
         private DbContext _context;
         private IFFPRepository _fFPRepository;
         private IWDSResponseRepository _wDSResponseRepository;
+        private IFFPSetRepository _fFPSetRepository;
         
         public UnitOfWork(DbContext context)
         {
@@ -32,6 +33,11 @@ namespace PST.Data
         public IWDSResponseRepository WDSResponseRepository
         {
             get { return _wDSResponseRepository ?? (_wDSResponseRepository = new WDSResponseRepository(_context)); }
+        }
+        
+        public IFFPSetRepository FFPSetRepository
+        {
+            get { return _fFPSetRepository ?? (_fFPSetRepository = new FFPSetRepository(_context)); }
         }
         
         

@@ -53,6 +53,10 @@
     <Compile Include="WDSResponse.Generated.cs">
       <DependentUpon>WDSResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="FFPSet.cs" />
+    <Compile Include="FFPSet.Generated.cs">
+      <DependentUpon>FFPSet.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -78,5 +78,11 @@ namespace PST.Domain
         [DataMember]
         public string CIC_Name { get; set; }
     
+        [DataMember]
+        public int FFPSetId { get; set; }
+    
+        [DataMember]
+        public int Seq { get; set; }
+    
     }
 }

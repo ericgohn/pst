@@ -27,5 +27,6 @@ namespace PST.Data
     
         public virtual DbSet<FFP> FFPs { get; set; }
         public virtual DbSet<WDSResponse> WDSResponses { get; set; }
+        public virtual DbSet<FFPSet> FFPSets { get; set; }
     }
 }

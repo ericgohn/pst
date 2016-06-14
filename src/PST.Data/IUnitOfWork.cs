@@ -16,6 +16,7 @@ namespace PST.Data
     {   
         IFFPRepository FFPRepository {get;}
         IWDSResponseRepository WDSResponseRepository {get;}
+        IFFPSetRepository FFPSetRepository {get;}
         
 
         /// <summary>

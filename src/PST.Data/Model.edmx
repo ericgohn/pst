@@ -10,6 +10,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FFPSetId" Type="int" Nullable="false" />
+          <Property Name="Seq" Type="int" Nullable="false" />
           <Property Name="Series" Type="nvarchar" MaxLength="255" />
           <Property Name="Model Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Business No" Type="nvarchar" MaxLength="255" />
@@ -30,6 +32,13 @@
           <Property Name="F/FP Type" Type="nvarchar" MaxLength="255" />
           <Property Name="CIG Name" Type="nvarchar" MaxLength="255" />
           <Property Name="CIC Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FFPSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="WDSResponse">
           <Key>
@@ -180,9 +189,26 @@
           <Property Name="Security FP" Type="nvarchar" MaxLength="255" />
           <Property Name="KeyBoard FP" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <Association Name="FK_FFP_FFPSet">
+          <End Role="FFPSet" Type="Self.FFPSet" Multiplicity="1" />
+          <End Role="FFP" Type="Self.FFP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FFPSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FFP">
+              <PropertyRef Name="FFPSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PSTPlatformModelStoreContainer">
           <EntitySet Name="FFP" EntityType="Self.FFP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FFPSet" EntityType="Self.FFPSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WDSResponse" EntityType="Self.WDSResponse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FFP_FFPSet" Association="Self.FK_FFP_FFPSet">
+            <End Role="FFPSet" EntitySet="FFPSet" />
+            <End Role="FFP" EntitySet="FFP" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -191,6 +217,11 @@
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="FFPs" EntityType="PSTPlatformModel.FFP" />
           <EntitySet Name="WDSResponses" EntityType="PSTPlatformModel.WDSResponse" />
+          <EntitySet Name="FFPSets" EntityType="PSTPlatformModel.FFPSet" />
+          <AssociationSet Name="FK_FFP_FFPSet" Association="PSTPlatformModel.FK_FFP_FFPSet">
+            <End Role="FFPSet" EntitySet="FFPSets" />
+            <End Role="FFP" EntitySet="FFPs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FFP">
           <Key>
@@ -217,6 +248,9 @@
           <Property Name="F_FP_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CIG_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CIC_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FFPSetId" Type="Int32" Nullable="false" />
+          <Property Name="Seq" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FFPSet" Relationship="PSTPlatformModel.FK_FFP_FFPSet" FromRole="FFP" ToRole="FFPSet" />
         </EntityType>
         <EntityType Name="WDSResponse">
           <Key>
@@ -367,6 +401,26 @@
           <Property Name="Security_FP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="KeyBoard_FP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="FFPSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FFPs" Relationship="PSTPlatformModel.FK_FFP_FFPSet" FromRole="FFPSet" ToRole="FFP" />
+        </EntityType>
+        <Association Name="FK_FFP_FFPSet">
+          <End Type="PSTPlatformModel.FFPSet" Role="FFPSet" Multiplicity="1" />
+          <End Type="PSTPlatformModel.FFP" Role="FFP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FFPSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FFP">
+              <PropertyRef Name="FFPSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -376,6 +430,8 @@
           <EntitySetMapping Name="FFPs">
             <EntityTypeMapping TypeName="PSTPlatformModel.FFP">
               <MappingFragment StoreEntitySet="FFP">
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
+                <ScalarProperty Name="FFPSetId" ColumnName="FFPSetId" />
                 <ScalarProperty Name="CIC_Name" ColumnName="CIC Name" />
                 <ScalarProperty Name="CIG_Name" ColumnName="CIG Name" />
                 <ScalarProperty Name="F_FP_Type" ColumnName="F/FP Type" />
@@ -546,6 +602,14 @@
                 <ScalarProperty Name="Brand_name" ColumnName="Brand name" />
                 <ScalarProperty Name="Series" ColumnName="Series" />
                 <ScalarProperty Name="Sub_Family" ColumnName="Sub Family" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FFPSets">
+            <EntityTypeMapping TypeName="PSTPlatformModel.FFPSet">
+              <MappingFragment StoreEntitySet="FFPSet">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

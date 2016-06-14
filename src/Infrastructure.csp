@@ -2,8 +2,9 @@
 <codeSmith xmlns="http://www.codesmithtools.com/schema/csp.xsd">
   <propertySets>
     <propertySet name="edmstart" template="C:\Users\Eric\Documents\CodeSmith Generator\Templates\SOA Template\edmstart.cst">
-      <property name="EdmxFile">D:\MyProject\pst\src\PST\PST.Data\Model.edmx</property>
-      <property name="SolutionPath">D:\MyProject\pst\src\PST</property>
+      <property name="EdmxFile">D:\MyProject\pst\src\PST.Data\Model.edmx</property>
+      <property name="SolutionPath">D:\MyProject\pst\src\</property>
+      <property name="SolutionName">PST</property>
     </propertySet>
   </propertySets>
 </codeSmith>

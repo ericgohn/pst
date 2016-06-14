@@ -60,6 +60,9 @@
     <Compile Include="FFP.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="FFPSet.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,6 +88,7 @@
     <Compile Include="Repositories\WDSResponseRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Repositories\FFPSetRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

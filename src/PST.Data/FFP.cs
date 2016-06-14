@@ -35,5 +35,9 @@ namespace PST.Data
         public string F_FP_Type { get; set; }
         public string CIG_Name { get; set; }
         public string CIC_Name { get; set; }
+        public int FFPSetId { get; set; }
+        public int Seq { get; set; }
+    
+        public virtual FFPSet FFPSet { get; set; }
     }
 }
