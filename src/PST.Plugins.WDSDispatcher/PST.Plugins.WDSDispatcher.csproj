@@ -93,6 +93,12 @@
     <Compile Include="Controls\FFPImportControl.Designer.cs">
       <DependentUpon>FFPImportControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WDSImportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WDSImportControl.Designer.cs">
+      <DependentUpon>WDSImportControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FFPImportControl.resx">
       <DependentUpon>FFPImportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WDSImportControl.resx">
+      <DependentUpon>WDSImportControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
