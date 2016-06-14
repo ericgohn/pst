@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Controls;
-using Ganss.Excel;
+using Npoi.Mapper;
 using NPOI.SS.UserModel;
 using PST.Domain;
 using PST.UI.Common;
@@ -62,44 +62,58 @@ namespace PST.Plugins.WDSDispatcher.Controls
                 i++;
             }
             cbSheets.SelectedIndex = selectedIndex;
+            AnalyzeFile(workbook);
+        }
+
+        private void AnalyzeFile(IWorkbook workbook)
+        {
+            var msg = "文件：{0}\r\n工作簿：{1}\r\n记录总数：{2}";
+            var filePath = tbFile.Text.Trim();
+            var fileName = Path.GetFileName(filePath);
+            var sheetName = this.cbSheets.SelectedItem as string;
+            var mapper = new Mapper(workbook);
+            
+            
+            var rows = mapper.Take<FFP>(sheetName);
+            int count = 0;
+            int errorCount = 0;
+            StringBuilder sb = new StringBuilder();
+            foreach (var row in rows)
+            {
+                count++;
+                if (!string.IsNullOrEmpty(row.ErrorMessage))
+                {
+                    errorCount++;
+                    sb.Append(string.Format("\r\n{0}，错误位置：第{1}行第{2}列",row.ErrorMessage,row.RowNumber,row.ErrorColumnIndex));
+                }
+            }
+            var m = string.Format(msg, fileName, sheetName, count);
+            if (sb.Length > 0)
+            {
+                var errorMsg = string.Format("总计{0}个错误：",errorCount);
+                errorMsg = errorMsg + sb;
+                m += errorMsg;
+            }
+
+            UIHelper.AsyncSetControlText(tbAnalyzeResult, m);
         }
 
         private void cmdImport_Executed(object sender, EventArgs e)
         {
+            if (!superValidator.Validate())
+            {
+                return;
+            }
             var filePath = tbFile.Text.Trim();
-            if (string.IsNullOrEmpty(filePath))
-            {
-                DialogHelper.ShowError("请选择FFP文件", "请选择FFP文件");
-                return;
-            }
             var identity = tbIdentity.Text.ToUpper().Trim();
-            if (string.IsNullOrEmpty(identity))
-            {
-                DialogHelper.ShowError("请输入FFP期次", "请输入FFP期次");
-                return;
-            }
             var sheetName = cbSheets.SelectedItem as string;
-            if (string.IsNullOrEmpty(sheetName))
-            {
-                DialogHelper.ShowError("请选择Excel工作薄", "请选择要导入的Excel工作薄");
-                return;
-            }
             var confirmMsg = string.Format("您确定要导入工作簿\"{0}\"中的所有数据吗？", sheetName);
             if (DialogHelper.ShowConfirm("FFP数据导入", confirmMsg) != eTaskDialogResult.Yes)
                 return;
-            var mapper = new ExcelMapper(filePath);
             
-            mapper.AddMapping<FFP>("Model Name", o => o.Model_Name);
-            mapper.AddMapping<FFP>("Business No", o => o.Business_No);
-            mapper.AddMapping<FFP>("Sales Route", o => o.Sales_Route);
-            mapper.AddMapping<FFP>("Sales PNO", o => o.Sales_PNO);
-            mapper.AddMapping<FFP>("Sub Information", o => o.Sub_Information);
-            mapper.AddMapping<FFP>("Customer Name", o => o.Customer_Name);
-            mapper.AddMapping<FFP>("ACC Code", o => o.ACC_Code);
-            mapper.AddMapping<FFP>("Sales Staff", o => o.Sales_Staff);
-            mapper.AddMapping<FFP>("Order Division", o => o.Order_Division);
-            mapper.AddMapping<FFP>("Shipped Month", o => o.Shipped_Month);
-            var items = mapper.Fetch<FFP>(sheetName);
+            var mapper = new Mapper(filePath);
+            var items = mapper.Take<FFP>(sheetName);
+
             if (bwImport.IsBusy)
                 return;
             circularProgress.IsRunning = true;
@@ -111,15 +125,21 @@ namespace PST.Plugins.WDSDispatcher.Controls
         private void bwImport_DoWork(object sender, DoWorkEventArgs e)
         {
             var service = ServiceFactory.S.GetFFPService();
-            var items = (IEnumerable<FFP>)e.Argument;
+            var items = (IEnumerable<RowInfo<FFP>>)e.Argument;
             var count = items.Count();
             int i = 1;
             bool result = true;
             foreach (var item in items)
             {
                 UIHelper.AsyncSetControlText(lblImport, string.Format("正在导入第{0}/{1}条数据...", i, count));
-                item.Id = Guid.NewGuid();
-                var res = service.Add(item);
+                if (item.ErrorColumnIndex > -1)
+                {
+                    UIHelper.AsyncSetControlText(lblImport, item.ErrorMessage);
+                    break;
+                }
+                item.Value.Id = Guid.NewGuid();
+//                item.Value.
+                var res = service.Add(item.Value);
                 i++;
                 if (!res.Success)
                 {

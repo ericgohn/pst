@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationService", "Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PST.Service", "PST.Service\PST.Service.csproj", "{31AAEF8B-F9A0-4034-B776-A3F3DD39800C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Npoi.Mapper", "Npoi.Mapper-master\Npoi.Mapper\src\Npoi.Mapper\Npoi.Mapper.csproj", "{3CA27283-3B8A-4180-97C9-37EC593B72AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{31AAEF8B-F9A0-4034-B776-A3F3DD39800C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31AAEF8B-F9A0-4034-B776-A3F3DD39800C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31AAEF8B-F9A0-4034-B776-A3F3DD39800C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CA27283-3B8A-4180-97C9-37EC593B72AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA27283-3B8A-4180-97C9-37EC593B72AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA27283-3B8A-4180-97C9-37EC593B72AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA27283-3B8A-4180-97C9-37EC593B72AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
