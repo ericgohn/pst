@@ -9,70 +9,83 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.IO;
-using System.Text;
-using Npoi.Mapper;
-using NPOI.SS.UserModel;
-using PST.Domain;
+using System.Linq;
+using Zeexone.Framework.Core.Excels;
 
 namespace PST.Plugins.WDSDispatcher.Controls
 {
     public static class ExcelHelper
     {
-        public static List<ISheet> ReadFileBasicInfo(string filePath)
-        {
-            List<ISheet> list = new List<ISheet>();
-            IWorkbook workbook;
-            try
-            {
-                workbook = WorkbookFactory.Create(filePath);
-                workbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
-            }
-            catch (IOException e)
-            {
-                throw new Exception("Excel文件读取错误，请确保该文件没有被打开。", e);
-            }
-            if (workbook.NumberOfSheets < 1)
-            {
-                throw new Exception("指定的Excel文件中没有找到可用的工作薄。");
-            }
+        private const string CONNECT_STRING_TEMPLATE =
+            "Provider=Microsoft.{0}.OLEDB.{1};Data Source={2};Extended Properties=\"Excel {3};HDR=YES\"";
 
-            foreach (ISheet sheet in workbook)
+        private const string ANALYZE_MSG = "文件： {0}\r\n工作簿： {1}\r\n记录总数： {2}";
+
+        /// <summary>
+        ///     Get OLEDB connection string according to specified excel file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>OLEDB connection string.</returns>
+        /// <exception cref="ExcelException">Excel file format is not supported.</exception>
+        public static string GetConnectString(string filePath)
+        {
+            string extension = Path.GetExtension(filePath);
+            if (string.IsNullOrWhiteSpace(extension))
+                throw new ExcelException("Invalid excel file: file with no extension is not supported.");
+            if (extension.Equals(".xls", StringComparison.OrdinalIgnoreCase))
             {
-                list.Add(sheet);
+                return string.Format(CONNECT_STRING_TEMPLATE, "Ace", "12.0", filePath, "8.0");
             }
-            return list;
+            if (extension.Equals(".xlsx", StringComparison.OrdinalIgnoreCase) ||
+                extension.Equals(".xlsb", StringComparison.OrdinalIgnoreCase))
+            {
+                return string.Format(CONNECT_STRING_TEMPLATE, "Ace", "12.0", filePath, "12.0 XML");
+            }
+            throw new ExcelException(string.Format("Invalid excel file: file with extension \"{0}\" is not supported.",
+                extension));
         }
 
-        public static string AnalyzeFile<T>(string filePath, int sheetIndex, string sheetName)
+        public static List<string> ReadFileBasicInfo(string filePath)
         {
-            var msg = "文件： {0}\r\n工作簿： {1}\r\n记录总数： {2}";
+            List<string> list = new List<string>();
+            var connectionString = GetConnectString(filePath);
+            using (var conn = new OleDbConnection(connectionString))
+            {
+                conn.Open();
+                var table = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                if (table == null)
+                    return list;
+                list.AddRange(
+                    table.Rows.Cast<DataRow>()
+                        .Select(dr => dr["TABLE_NAME"].ToString())
+                        .Where(sheetName => sheetName.Contains("$")));
+                return list;
+            }
+        }
+
+        public static string AnalyzeFile(string filePath, string sheetName)
+        {
             var fileName = Path.GetFileName(filePath);
-            var mapper = new Mapper(filePath);
-
-
-            var rows = mapper.Take<T>(sheetIndex);
-            int count = 0;
-            int errorCount = 0;
-            StringBuilder sb = new StringBuilder();
-            foreach (var row in rows)
+            var connectionString = GetConnectString(filePath);
+            using (var conn = new OleDbConnection(connectionString))
             {
-                count++;
-                if (!string.IsNullOrEmpty(row.ErrorMessage))
+                var cmd = new OleDbCommand("select * from [" + sheetName + "]", conn);
+                conn.Open();
+                OleDbDataReader reader = cmd.ExecuteReader();
+                if (reader == null)
+                    return string.Empty;
+                int count = 0;
+                while (reader.Read())
                 {
-                    errorCount++;
-                    sb.Append(string.Format("\r\n{0}，错误位置：第{1}行第{2}列", row.ErrorMessage, row.RowNumber,
-                        row.ErrorColumnIndex));
+                    count++;
                 }
+                reader.Close();
+                var m = string.Format(ANALYZE_MSG, fileName, sheetName, count);
+                return m;
             }
-            var m = string.Format(msg, fileName, sheetName, count);
-            if (sb.Length > 0)
-            {
-                var errorMsg = string.Format("\r\n总计{0}个错误：", errorCount);
-                errorMsg = errorMsg + sb;
-                m += errorMsg;
-            }
-            return m;
         }
     }
 }

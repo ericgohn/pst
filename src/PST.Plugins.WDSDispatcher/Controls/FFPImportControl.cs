@@ -10,7 +10,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Data.OleDb;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
@@ -124,16 +128,69 @@ namespace PST.Plugins.WDSDispatcher.Controls
                     int selectedIndex = 0;
                     int i = -1;
                     cbSheets.Items.Clear();
-                    foreach (ISheet sheet in task.Result)
+                    foreach (var sheet in task.Result)
                     {
-                        cbSheets.Items.Add(sheet.SheetName);
-                        if (sheet.SheetName.ToLower().Contains("ffp"))
+                        cbSheets.Items.Add(sheet);
+                        if (sheet.ToLower().Contains("ffp"))
                             selectedIndex = i;
                         i++;
                     }
+                    if (selectedIndex == -1 && cbSheets.Items.Count > 0)
+                        selectedIndex = 0;
                     SetRunningWidgetStatus(false);
                     cbSheets.SelectedIndex = selectedIndex;
                 }, uiTaskScheduler);
+            }
+        }
+
+        private void ImportData(string filePath, string sheetName)
+        {
+            var connectionString = ExcelHelper.GetConnectString(filePath);
+            using (var conn = new OleDbConnection(connectionString))
+            {
+                var cmd = new OleDbCommand();
+                cmd.CommandText = "select * from [" + sheetName + "]";
+                cmd.Connection = conn;
+                conn.Open();
+                OleDbDataReader reader = cmd.ExecuteReader();
+                if (reader == null)
+                    return ;
+                var sql = new StringBuilder("INSERT INTO dbo.[FFP] VALUES ");
+                var sb = new StringBuilder();
+                int seq = 0;
+                int count = 0;
+                while (reader.Read())
+                {
+                    if (reader.FieldCount == 0)
+                        continue;
+                    var row = new StringBuilder("('").Append(Guid.NewGuid())
+                        .Append("',")
+                        .Append(1)
+                        .Append(",")
+                        .Append(seq)
+                        .Append(","); ;
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        var type = reader.GetFieldType(i);
+                        var v = Convert.ChangeType(reader.GetValue(i), type);
+                        var name = reader.GetName(i);
+                        row.Append("'").Append(v).Append("',");
+                    }
+                    var str = row.ToString(0, row.Length - 1);
+                    sb.Append(str).Append("),");
+                    seq++;
+                    count++;
+                    //每次插入100条数据
+                    if (count % 100 == 0)
+                    {
+
+                    }
+                }
+                reader.Close();
+                if (sb.Length == 0)
+                    return ;
+                var dataSql = sb.ToString(0, sb.Length - 1);
+                sql.Append(dataSql);
             }
         }
 
@@ -145,7 +202,7 @@ namespace PST.Plugins.WDSDispatcher.Controls
             var filePath = tbFile.Text.Trim();
             var sheetName = cbSheets.SelectedItem as string;
             SetRunningWidgetStatus(true, "正在分析文件...");
-            await Task.Run(() => ExcelHelper.AnalyzeFile<FFP>(filePath, index, sheetName)).ContinueWith(task =>
+            await Task.Run(() => ExcelHelper.AnalyzeFile(filePath, sheetName)).ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {
