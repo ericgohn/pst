@@ -35,10 +35,6 @@
             this.bwImport = new System.ComponentModel.BackgroundWorker();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cbSheets = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.tbFile = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.btnOpenFile = new DevComponents.DotNetBar.ButtonX();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbIdentity = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.lblImport = new DevComponents.DotNetBar.LabelX();
@@ -46,17 +42,21 @@
             this.circularProgress = new DevComponents.DotNetBar.Controls.CircularProgress();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tbAnalyzeResult = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbSheets = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.tbFile = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.btnOpenFile = new DevComponents.DotNetBar.ButtonX();
             this.superValidator = new DevComponents.DotNetBar.Validator.SuperValidator();
+            this.requiredFieldValidator2 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择要导入的Excel工作薄");
+            this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择FFP文件");
+            this.requiredFieldValidator3 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入FFP期次");
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.highlighter = new DevComponents.DotNetBar.Validator.Highlighter();
-            this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择FFP文件");
-            this.requiredFieldValidator2 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择要导入的Excel工作薄");
-            this.requiredFieldValidator3 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入FFP期次");
             this.panelEx1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,58 +105,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FFP导入";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.cbSheets);
-            this.panel1.Controls.Add(this.tbFile);
-            this.panel1.Controls.Add(this.btnOpenFile);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 18);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(462, 30);
-            this.panel1.TabIndex = 8;
-            // 
-            // cbSheets
-            // 
-            this.cbSheets.DisplayMember = "Text";
-            this.cbSheets.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbSheets.FormattingEnabled = true;
-            this.cbSheets.ItemHeight = 16;
-            this.cbSheets.Location = new System.Drawing.Point(290, 3);
-            this.cbSheets.Name = "cbSheets";
-            this.cbSheets.Size = new System.Drawing.Size(121, 22);
-            this.cbSheets.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cbSheets.TabIndex = 2;
-            this.superValidator.SetValidator1(this.cbSheets, this.requiredFieldValidator2);
-            // 
-            // tbFile
-            // 
-            // 
-            // 
-            // 
-            this.tbFile.Border.Class = "TextBoxBorder";
-            this.tbFile.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbFile.Location = new System.Drawing.Point(3, 3);
-            this.tbFile.Name = "tbFile";
-            this.tbFile.PreventEnterBeep = true;
-            this.tbFile.ReadOnly = true;
-            this.tbFile.Size = new System.Drawing.Size(200, 22);
-            this.tbFile.TabIndex = 0;
-            this.superValidator.SetValidator1(this.tbFile, this.requiredFieldValidator1);
-            this.tbFile.WatermarkText = "请选择FFP文件";
-            // 
-            // btnOpenFile
-            // 
-            this.btnOpenFile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnOpenFile.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnOpenFile.Location = new System.Drawing.Point(209, 3);
-            this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenFile.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnOpenFile.TabIndex = 1;
-            this.btnOpenFile.Text = "选择";
-            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
             // panel2
             // 
@@ -250,11 +198,79 @@
             this.tbAnalyzeResult.Size = new System.Drawing.Size(462, 60);
             this.tbAnalyzeResult.TabIndex = 0;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cbSheets);
+            this.panel1.Controls.Add(this.tbFile);
+            this.panel1.Controls.Add(this.btnOpenFile);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 18);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(462, 30);
+            this.panel1.TabIndex = 8;
+            // 
+            // cbSheets
+            // 
+            this.cbSheets.DisplayMember = "Text";
+            this.cbSheets.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbSheets.FormattingEnabled = true;
+            this.cbSheets.ItemHeight = 16;
+            this.cbSheets.Location = new System.Drawing.Point(290, 3);
+            this.cbSheets.Name = "cbSheets";
+            this.cbSheets.Size = new System.Drawing.Size(121, 22);
+            this.cbSheets.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbSheets.TabIndex = 2;
+            this.superValidator.SetValidator1(this.cbSheets, this.requiredFieldValidator2);
+            this.cbSheets.SelectedIndexChanged += new System.EventHandler(this.cbSheets_SelectedIndexChanged);
+            // 
+            // tbFile
+            // 
+            // 
+            // 
+            // 
+            this.tbFile.Border.Class = "TextBoxBorder";
+            this.tbFile.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbFile.Location = new System.Drawing.Point(3, 3);
+            this.tbFile.Name = "tbFile";
+            this.tbFile.PreventEnterBeep = true;
+            this.tbFile.ReadOnly = true;
+            this.tbFile.Size = new System.Drawing.Size(200, 22);
+            this.tbFile.TabIndex = 0;
+            this.superValidator.SetValidator1(this.tbFile, this.requiredFieldValidator1);
+            this.tbFile.WatermarkText = "请选择FFP文件";
+            // 
+            // btnOpenFile
+            // 
+            this.btnOpenFile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOpenFile.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnOpenFile.Location = new System.Drawing.Point(209, 3);
+            this.btnOpenFile.Name = "btnOpenFile";
+            this.btnOpenFile.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenFile.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnOpenFile.TabIndex = 1;
+            this.btnOpenFile.Text = "选择";
+            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
+            // 
             // superValidator
             // 
             this.superValidator.ContainerControl = this;
             this.superValidator.ErrorProvider = this.errorProvider;
             this.superValidator.Highlighter = this.highlighter;
+            // 
+            // requiredFieldValidator2
+            // 
+            this.requiredFieldValidator2.ErrorMessage = "请选择要导入的Excel工作薄";
+            this.requiredFieldValidator2.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
+            // 
+            // requiredFieldValidator1
+            // 
+            this.requiredFieldValidator1.ErrorMessage = "请选择FFP文件";
+            this.requiredFieldValidator1.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
+            // 
+            // requiredFieldValidator3
+            // 
+            this.requiredFieldValidator3.ErrorMessage = "请输入FFP期次";
+            this.requiredFieldValidator3.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
             // 
             // errorProvider
             // 
@@ -265,34 +281,19 @@
             // 
             this.highlighter.ContainerControl = this;
             // 
-            // requiredFieldValidator1
-            // 
-            this.requiredFieldValidator1.ErrorMessage = "请选择FFP文件";
-            this.requiredFieldValidator1.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
-            // 
-            // requiredFieldValidator2
-            // 
-            this.requiredFieldValidator2.ErrorMessage = "请选择要导入的Excel工作薄";
-            this.requiredFieldValidator2.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
-            // 
-            // requiredFieldValidator3
-            // 
-            this.requiredFieldValidator3.ErrorMessage = "请输入FFP期次";
-            this.requiredFieldValidator3.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
-            // 
             // FFPImportControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelEx1);
-            this.Name = "WDSImportControl";
+            this.Name = "FFPImportControl";
             this.Size = new System.Drawing.Size(468, 211);
             this.panelEx1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 

@@ -87,11 +87,15 @@
     <Compile Include="Children\WDSResponseDispatcherControl.Designer.cs">
       <DependentUpon>WDSResponseDispatcherControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ExcelHelper.cs" />
     <Compile Include="Controls\FFPImportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\FFPImportControl.Designer.cs">
       <DependentUpon>FFPImportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControlBase.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\WDSImportControl.cs">
       <SubType>UserControl</SubType>

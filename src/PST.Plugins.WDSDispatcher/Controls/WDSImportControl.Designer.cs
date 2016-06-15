@@ -47,9 +47,9 @@
             this.tbFile = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btnOpenFile = new DevComponents.DotNetBar.ButtonX();
             this.superValidator = new DevComponents.DotNetBar.Validator.SuperValidator();
+            this.requiredFieldValidator3 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入FFP期次");
             this.requiredFieldValidator2 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择要导入的Excel工作薄");
             this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择WDS Response文件");
-            this.requiredFieldValidator3 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入FFP期次");
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.highlighter = new DevComponents.DotNetBar.Validator.Highlighter();
             this.panelEx1.SuspendLayout();
@@ -68,7 +68,7 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
-            this.openFileDialog.Filter = "Excel 2007|*.xlsx|Excel 97-2003|*.xls";
+            this.openFileDialog.Filter = "Excel 2007|*.xlsx|Excel 97-2003|*.xls|Excel Macro|*.xlsb";
             // 
             // bwImport
             // 
@@ -221,6 +221,7 @@
             this.cbSheets.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbSheets.TabIndex = 2;
             this.superValidator.SetValidator1(this.cbSheets, this.requiredFieldValidator2);
+            this.cbSheets.SelectedIndexChanged += new System.EventHandler(this.cbSheets_SelectedIndexChanged);
             // 
             // tbFile
             // 
@@ -256,6 +257,11 @@
             this.superValidator.ErrorProvider = this.errorProvider;
             this.superValidator.Highlighter = this.highlighter;
             // 
+            // requiredFieldValidator3
+            // 
+            this.requiredFieldValidator3.ErrorMessage = "请输入FFP期次";
+            this.requiredFieldValidator3.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
+            // 
             // requiredFieldValidator2
             // 
             this.requiredFieldValidator2.ErrorMessage = "请选择要导入的Excel工作薄";
@@ -265,11 +271,6 @@
             // 
             this.requiredFieldValidator1.ErrorMessage = "请选择WDS Response文件";
             this.requiredFieldValidator1.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
-            // 
-            // requiredFieldValidator3
-            // 
-            this.requiredFieldValidator3.ErrorMessage = "请输入FFP期次";
-            this.requiredFieldValidator3.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
             // 
             // errorProvider
             // 
