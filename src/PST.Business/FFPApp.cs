@@ -46,5 +46,14 @@ namespace PST.Business
         }
 
         #endregion
+
+        public Response Import(string sql)
+        {
+            using (var context = new Entities())
+            {
+                context.Database.ExecuteSqlCommand(sql);
+                return Response.Succeed();
+            }
+        }
     }
 }

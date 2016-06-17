@@ -8,6 +8,7 @@
       <xs:element minOccurs="0" name="CIC_Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CIG_Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Customer_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FFPSetId" type="xs:int" />
       <xs:element minOccurs="0" name="F_FP_PNO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="F_FP_Type" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="ser:guid" />
@@ -19,6 +20,7 @@
       <xs:element minOccurs="0" name="Sales_PNO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Sales_Route" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Sales_Staff" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seq" type="xs:int" />
       <xs:element minOccurs="0" name="Series" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Shipped_Month" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Shipped_QTY" nillable="true" type="xs:double" />

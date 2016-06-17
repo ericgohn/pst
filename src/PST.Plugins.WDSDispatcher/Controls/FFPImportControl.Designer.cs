@@ -30,28 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FFPImportControl));
-            this.cmdImport = new DevComponents.DotNetBar.Command(this.components);
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.bwImport = new System.ComponentModel.BackgroundWorker();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tbIdentity = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.lblImport = new DevComponents.DotNetBar.LabelX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.lblMessage = new DevComponents.DotNetBar.LabelX();
             this.circularProgress = new DevComponents.DotNetBar.Controls.CircularProgress();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.tbAnalyzeResult = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbAnalyzeResult = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbSheets = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.tbFile = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btnOpenFile = new DevComponents.DotNetBar.ButtonX();
             this.superValidator = new DevComponents.DotNetBar.Validator.SuperValidator();
-            this.requiredFieldValidator3 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入FFP期次");
             this.requiredFieldValidator2 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择要导入的Excel工作薄");
             this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请选择FFP文件");
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.highlighter = new DevComponents.DotNetBar.Validator.Highlighter();
+            this.requiredFieldValidator3 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入FFP期次");
             this.panelEx1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -60,20 +56,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // cmdImport
-            // 
-            this.cmdImport.Name = "cmdImport";
-            this.cmdImport.Executed += new System.EventHandler(this.cmdImport_Executed);
-            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             this.openFileDialog.Filter = "Excel 2007|*.xlsx|Excle Macro|*.xlsb|Excel 97-2003|*.xls";
-            // 
-            // bwImport
-            // 
-            this.bwImport.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwImport_DoWork);
-            this.bwImport.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwImport_RunWorkerCompleted);
             // 
             // panelEx1
             // 
@@ -84,7 +70,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 0);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(468, 211);
+            this.panelEx1.Size = new System.Drawing.Size(468, 149);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -101,63 +87,34 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(468, 211);
+            this.groupBox1.Size = new System.Drawing.Size(468, 149);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FFP导入";
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.tbIdentity);
-            this.panel2.Controls.Add(this.lblImport);
-            this.panel2.Controls.Add(this.buttonX1);
+            this.panel2.Controls.Add(this.lblMessage);
             this.panel2.Controls.Add(this.circularProgress);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 108);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(462, 100);
+            this.panel2.Size = new System.Drawing.Size(462, 38);
             this.panel2.TabIndex = 14;
             // 
-            // tbIdentity
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
             // 
             // 
             // 
-            // 
-            this.tbIdentity.Border.Class = "TextBoxBorder";
-            this.tbIdentity.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbIdentity.Location = new System.Drawing.Point(3, 6);
-            this.tbIdentity.Name = "tbIdentity";
-            this.tbIdentity.PreventEnterBeep = true;
-            this.tbIdentity.Size = new System.Drawing.Size(200, 22);
-            this.tbIdentity.TabIndex = 9;
-            this.superValidator.SetValidator1(this.tbIdentity, this.requiredFieldValidator3);
-            this.tbIdentity.WatermarkText = "请输入FFP期次";
-            // 
-            // lblImport
-            // 
-            this.lblImport.AutoSize = true;
-            // 
-            // 
-            // 
-            this.lblImport.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblImport.Location = new System.Drawing.Point(52, 37);
-            this.lblImport.Name = "lblImport";
-            this.lblImport.Size = new System.Drawing.Size(172, 19);
-            this.lblImport.TabIndex = 11;
-            this.lblImport.Text = "正在导入第{0}/{1}条数据...";
-            this.lblImport.Visible = false;
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Command = this.cmdImport;
-            this.buttonX1.Location = new System.Drawing.Point(208, 6);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(75, 23);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 8;
-            this.buttonX1.Text = "导入";
+            this.lblMessage.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblMessage.Location = new System.Drawing.Point(61, 8);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(172, 19);
+            this.lblMessage.TabIndex = 11;
+            this.lblMessage.Text = "正在导入第{0}/{1}条数据...";
+            this.lblMessage.Visible = false;
             // 
             // circularProgress
             // 
@@ -166,7 +123,7 @@
             // 
             this.circularProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.circularProgress.FocusCuesEnabled = false;
-            this.circularProgress.Location = new System.Drawing.Point(3, 35);
+            this.circularProgress.Location = new System.Drawing.Point(12, 6);
             this.circularProgress.Name = "circularProgress";
             this.circularProgress.Size = new System.Drawing.Size(42, 23);
             this.circularProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
@@ -186,17 +143,15 @@
             // 
             // 
             // 
-            this.tbAnalyzeResult.Border.Class = "TextBoxBorder";
-            this.tbAnalyzeResult.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbAnalyzeResult.BackgroundStyle.Class = "RichTextBoxBorder";
+            this.tbAnalyzeResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tbAnalyzeResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbAnalyzeResult.Location = new System.Drawing.Point(0, 0);
-            this.tbAnalyzeResult.Multiline = true;
             this.tbAnalyzeResult.Name = "tbAnalyzeResult";
-            this.tbAnalyzeResult.PreventEnterBeep = true;
-            this.tbAnalyzeResult.ReadOnly = true;
-            this.tbAnalyzeResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbAnalyzeResult.Rtf = "{\\rtf1\\ansi\\ansicpg936\\deff0\\deflang1033\\deflangfe2052{\\fonttbl{\\f0\\fnil\\fcharset" +
+    "0 Microsoft Sans Serif;}}\r\n\\viewkind4\\uc1\\pard\\lang2052\\f0\\fs16\\par\r\n}\r\n";
             this.tbAnalyzeResult.Size = new System.Drawing.Size(462, 60);
-            this.tbAnalyzeResult.TabIndex = 0;
+            this.tbAnalyzeResult.TabIndex = 1;
             // 
             // panel1
             // 
@@ -257,11 +212,6 @@
             this.superValidator.ErrorProvider = this.errorProvider;
             this.superValidator.Highlighter = this.highlighter;
             // 
-            // requiredFieldValidator3
-            // 
-            this.requiredFieldValidator3.ErrorMessage = "请输入FFP期次";
-            this.requiredFieldValidator3.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
-            // 
             // requiredFieldValidator2
             // 
             this.requiredFieldValidator2.ErrorMessage = "请选择要导入的Excel工作薄";
@@ -281,13 +231,18 @@
             // 
             this.highlighter.ContainerControl = this;
             // 
+            // requiredFieldValidator3
+            // 
+            this.requiredFieldValidator3.ErrorMessage = "请输入FFP期次";
+            this.requiredFieldValidator3.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
+            // 
             // FFPImportControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelEx1);
             this.Name = "FFPImportControl";
-            this.Size = new System.Drawing.Size(468, 211);
+            this.Size = new System.Drawing.Size(468, 149);
             this.panelEx1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -302,26 +257,22 @@
         #endregion
 
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private DevComponents.DotNetBar.Command cmdImport;
-        private System.ComponentModel.BackgroundWorker bwImport;
         private DevComponents.DotNetBar.PanelEx panelEx1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel2;
-        private DevComponents.DotNetBar.Controls.TextBoxX tbIdentity;
-        private DevComponents.DotNetBar.LabelX lblImport;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.LabelX lblMessage;
         private DevComponents.DotNetBar.Controls.CircularProgress circularProgress;
         private System.Windows.Forms.Panel panel1;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbSheets;
         private DevComponents.DotNetBar.Controls.TextBoxX tbFile;
         private DevComponents.DotNetBar.ButtonX btnOpenFile;
         private System.Windows.Forms.Panel panel3;
-        private DevComponents.DotNetBar.Controls.TextBoxX tbAnalyzeResult;
         private DevComponents.DotNetBar.Validator.SuperValidator superValidator;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private DevComponents.DotNetBar.Validator.Highlighter highlighter;
         private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator1;
         private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator2;
         private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator3;
+        private DevComponents.DotNetBar.Controls.RichTextBoxEx tbAnalyzeResult;
     }
 }

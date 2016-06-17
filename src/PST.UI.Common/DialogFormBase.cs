@@ -15,7 +15,7 @@ using DevComponents.DotNetBar.Validator;
 using Zeexone.Framework.Windows.Mementos;
 using Padding = System.Windows.Forms.Padding;
 
-namespace StockAssistant.UI.Common
+namespace PST.UI.Common
 {
     public class DialogFormBase : Office2007Form
     {

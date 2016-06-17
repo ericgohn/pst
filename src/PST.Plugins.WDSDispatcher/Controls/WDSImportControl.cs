@@ -14,7 +14,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using Npoi.Mapper;
 using PST.Domain;
 using PST.UI.Common;
 using PST.UI.Common.Helpers;
@@ -62,14 +61,14 @@ namespace PST.Plugins.WDSDispatcher.Controls
             if (DialogHelper.ShowConfirm("FFP数据导入", confirmMsg) != eTaskDialogResult.Yes)
                 return;
 
-            var mapper = new Mapper(filePath);
-            var items = mapper.Take<FFP>(sheetName);
-
-            if (bwImport.IsBusy)
-                return;
-            circularProgress.IsRunning = true;
-            lblImport.Visible = true;
-            bwImport.RunWorkerAsync(items);
+//            var mapper = new Mapper(filePath);
+//            var items = mapper.Take<FFP>(sheetName);
+//
+//            if (bwImport.IsBusy)
+//                return;
+//            circularProgress.IsRunning = true;
+//            lblImport.Visible = true;
+//            bwImport.RunWorkerAsync(items);
         }
 
         #region Control Events
@@ -133,30 +132,30 @@ namespace PST.Plugins.WDSDispatcher.Controls
 
         private void bwImport_DoWork(object sender, DoWorkEventArgs e)
         {
-            var service = ServiceFactory.S.GetFFPService();
-            var items = (IEnumerable<RowInfo<FFP>>) e.Argument;
-            var count = items.Count();
-            int i = 1;
-            bool result = true;
-            foreach (var item in items)
-            {
-                UIHelper.AsyncSetControlText(lblImport, string.Format("正在导入第{0}/{1}条数据...", i, count));
-                if (item.ErrorColumnIndex > -1)
-                {
-                    UIHelper.AsyncSetControlText(lblImport, item.ErrorMessage);
-                    break;
-                }
-                item.Value.Id = Guid.NewGuid();
-                //                item.Value.
-                var res = service.Add(item.Value);
-                i++;
-                if (!res.Success)
-                {
-                    result = false;
-                    break;
-                }
-            }
-            e.Result = result;
+//            var service = ServiceFactory.S.GetFFPService();
+//            var items = (IEnumerable<RowInfo<FFP>>) e.Argument;
+//            var count = items.Count();
+//            int i = 1;
+//            bool result = true;
+//            foreach (var item in items)
+//            {
+//                UIHelper.AsyncSetControlText(lblImport, string.Format("正在导入第{0}/{1}条数据...", i, count));
+//                if (item.ErrorColumnIndex > -1)
+//                {
+//                    UIHelper.AsyncSetControlText(lblImport, item.ErrorMessage);
+//                    break;
+//                }
+//                item.Value.Id = Guid.NewGuid();
+//                //                item.Value.
+//                var res = service.Add(item.Value);
+//                i++;
+//                if (!res.Success)
+//                {
+//                    result = false;
+//                    break;
+//                }
+//            }
+//            e.Result = result;
         }
 
         private void bwImport_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

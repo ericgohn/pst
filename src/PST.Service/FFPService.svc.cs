@@ -24,5 +24,10 @@ namespace PST.Service
         {
             return _app.Add(item);
         }
+
+        public Response AddFfp(string sql)
+        {
+            return _app.Import(sql);
+        }
     }
 }

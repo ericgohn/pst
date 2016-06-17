@@ -119,10 +119,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Npoi.Mapper-master\Npoi.Mapper\src\Npoi.Mapper\Npoi.Mapper.csproj">
-      <Project>{3ca27283-3b8a-4180-97c9-37ec593b72ab}</Project>
-      <Name>Npoi.Mapper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PST.Business\PST.Business.csproj">
       <Project>{8050edce-28b9-419f-a045-c88cfd386923}</Project>
       <Name>PST.Business</Name>

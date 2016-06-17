@@ -8,7 +8,6 @@
 //  ==============================================================
 
 using System;
-using System.Collections.Generic;
 using System.ServiceModel;
 using PST.Domain;
 
@@ -19,5 +18,8 @@ namespace PST.Service
     {
         [OperationContract]
         Response<Guid> Add(FFP item);
+
+        [OperationContract]
+        Response AddFfp(string sql);
     }
 }

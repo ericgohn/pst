@@ -20,6 +20,13 @@ namespace PST.UI.Common.FFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/Add", ReplyAction="http://tempuri.org/IFFPService/AddResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response<System.Guid>> AddAsync(PST.Domain.FFP item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddFfp", ReplyAction="http://tempuri.org/IFFPService/AddFfpResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<System.Guid>))]
+        PST.Domain.Response AddFfp(string sql);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddFfp", ReplyAction="http://tempuri.org/IFFPService/AddFfpResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response> AddFfpAsync(string sql);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +62,14 @@ namespace PST.UI.Common.FFPService {
         
         public System.Threading.Tasks.Task<PST.Domain.Response<System.Guid>> AddAsync(PST.Domain.FFP item) {
             return base.Channel.AddAsync(item);
+        }
+        
+        public PST.Domain.Response AddFfp(string sql) {
+            return base.Channel.AddFfp(sql);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response> AddFfpAsync(string sql) {
+            return base.Channel.AddFfpAsync(sql);
         }
     }
 }

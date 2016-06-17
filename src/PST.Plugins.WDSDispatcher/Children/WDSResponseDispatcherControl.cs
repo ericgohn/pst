@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//  ==============================================================
+//   Copyright (c) 上海梓迅信息技术有限公司. All rights reserved.   
+//  
+//   File: WDSResponseDispatcherControl.cs
+//   Author: Eric Gohn
+//   Email: eric.gohn@outlook.com
+//     
+//  ==============================================================
+
 using System.Windows.Forms;
 
 namespace PST.Plugins.WDSDispatcher.Children
@@ -15,6 +16,15 @@ namespace PST.Plugins.WDSDispatcher.Children
         public WDSResponseDispatcherControl()
         {
             InitializeComponent();
+        }
+
+        private void ImportFFP()
+        {
+        }
+
+        private async void cmdDispatch_Executed(object sender, System.EventArgs e)
+        {
+            ffpImportControl.ImportData("1");
         }
     }
 }

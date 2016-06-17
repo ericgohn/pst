@@ -8,26 +8,21 @@
 //  ==============================================================
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.OleDb;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using Npoi.Mapper;
-using NPOI.SS.UserModel;
-using PST.Domain;
 using PST.UI.Common;
+using PST.UI.Common.FFPService;
 using PST.UI.Common.Helpers;
 
 namespace PST.Plugins.WDSDispatcher.Controls
 {
     public partial class FFPImportControl : UserControlBase
     {
+        private const string INSERT_SQL = "INSERT INTO dbo.[FFP] VALUES ";
+
         public FFPImportControl()
         {
             InitializeComponent();
@@ -37,76 +32,37 @@ namespace PST.Plugins.WDSDispatcher.Controls
 
         private void SetRunningWidgetStatus(bool isRunning, string text = "")
         {
-            btnOpenFile.Enabled = cbSheets.Enabled = cmdImport.Enabled = !isRunning;
+            btnOpenFile.Enabled = cbSheets.Enabled = !isRunning;
 
             if (isRunning)
             {
                 circularProgress.IsRunning = true;
-                lblImport.Text = text;
-                lblImport.Visible = true;
+                lblMessage.Text = text;
+                lblMessage.Visible = true;
             }
             else
             {
                 circularProgress.IsRunning = false;
-                lblImport.Visible = false;
+                lblMessage.Visible = false;
             }
         }
 
         #endregion
 
-        private void cmdImport_Executed(object sender, EventArgs e)
+        public async void ImportData(string fftSetName)
         {
             if (!superValidator.Validate())
             {
                 return;
             }
             var filePath = tbFile.Text.Trim();
-            var identity = tbIdentity.Text.ToUpper().Trim();
             var sheetName = cbSheets.SelectedItem as string;
             var confirmMsg = string.Format("您确定要导入工作簿\"{0}\"中的所有数据吗？", sheetName);
             if (DialogHelper.ShowConfirm("FFP数据导入", confirmMsg) != eTaskDialogResult.Yes)
                 return;
-
-            var mapper = new Mapper(filePath);
-            var items = mapper.Take<FFP>(sheetName);
-
-            if (bwImport.IsBusy)
-                return;
-            circularProgress.IsRunning = true;
-            lblImport.Visible = true;
-            bwImport.RunWorkerAsync(items);
-        }
-
-        private void bwImport_DoWork(object sender, DoWorkEventArgs e)
-        {
-            var service = ServiceFactory.S.GetFFPService();
-            var items = (IEnumerable<RowInfo<FFP>>) e.Argument;
-            var count = items.Count();
-            int i = 1;
-            bool result = true;
-            foreach (var item in items)
-            {
-                UIHelper.AsyncSetControlText(lblImport, string.Format("正在导入第{0}/{1}条数据...", i, count));
-                if (item.ErrorColumnIndex > -1)
-                {
-                    UIHelper.AsyncSetControlText(lblImport, item.ErrorMessage);
-                    break;
-                }
-                item.Value.Id = Guid.NewGuid();
-//                item.Value.
-                var res = service.Add(item.Value);
-                i++;
-                if (!res.Success)
-                {
-                    result = false;
-                    break;
-                }
-            }
-            e.Result = result;
-        }
-
-        private void bwImport_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
+            SetRunningWidgetStatus(true, "正在导入数据...");
+            await Task.Run(() => ImportData(filePath, sheetName));
+            SetRunningWidgetStatus(false);
         }
 
         #region Control Events
@@ -148,17 +104,16 @@ namespace PST.Plugins.WDSDispatcher.Controls
             var connectionString = ExcelHelper.GetConnectString(filePath);
             using (var conn = new OleDbConnection(connectionString))
             {
-                var cmd = new OleDbCommand();
-                cmd.CommandText = "select * from [" + sheetName + "]";
-                cmd.Connection = conn;
+                var cmd = new OleDbCommand("select * from [" + sheetName + "]", conn);
                 conn.Open();
                 OleDbDataReader reader = cmd.ExecuteReader();
                 if (reader == null)
-                    return ;
-                var sql = new StringBuilder("INSERT INTO dbo.[FFP] VALUES ");
+                    return;
+                var service = ServiceFactory.S.GetFFPService();
                 var sb = new StringBuilder();
                 int seq = 0;
-                int count = 0;
+                int index = 0;
+                int lastIndex = 0;
                 while (reader.Read())
                 {
                     if (reader.FieldCount == 0)
@@ -168,29 +123,73 @@ namespace PST.Plugins.WDSDispatcher.Controls
                         .Append(1)
                         .Append(",")
                         .Append(seq)
-                        .Append(","); ;
+                        .Append(",");
+                    ;
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        var type = reader.GetFieldType(i);
-                        var v = Convert.ChangeType(reader.GetValue(i), type);
-                        var name = reader.GetName(i);
-                        row.Append("'").Append(v).Append("',");
+                        if (reader.IsDBNull(i))
+                        {
+                            row.Append("'',");
+                        }
+                        else
+                        {
+                            var type = reader.GetFieldType(i);
+                            var v = Convert.ChangeType(reader.GetValue(i), type);
+                            row.Append("'").Append(v).Append("',");
+                        }
                     }
                     var str = row.ToString(0, row.Length - 1);
                     sb.Append(str).Append("),");
                     seq++;
-                    count++;
+                    index++;
                     //每次插入100条数据
-                    if (count % 100 == 0)
+                    if (index%100 == 0)
                     {
-
+                        if (sb.Length != 0)
+                        {
+                            lastIndex = ProcessData(service, sb, index, lastIndex);
+                        }
                     }
                 }
                 reader.Close();
-                if (sb.Length == 0)
-                    return ;
-                var dataSql = sb.ToString(0, sb.Length - 1);
-                sql.Append(dataSql);
+                ProcessData(service, sb, index, lastIndex);
+                SetImportMessage("导入完成");
+            }
+        }
+
+        private string GenerateSql(StringBuilder stringBuilder)
+        {
+            if (stringBuilder.Length == 0)
+            {
+                return string.Empty;
+            }
+            var dataSql = stringBuilder.ToString(0, stringBuilder.Length - 1);
+            stringBuilder.Clear();
+            return INSERT_SQL + dataSql;
+        }
+
+        private int ProcessData(IFFPService service, StringBuilder sb, int index, int lastIndex)
+        {
+            var sql = GenerateSql(sb);
+            var msg = string.Format("正在导入第{0} - {1}条数据...", lastIndex + 1, index);
+            SetImportMessage(msg);
+            var res = service.AddFfp(sql);
+            return index;
+        }
+
+        private void SetImportMessage(string text)
+        {
+            if (InvokeRequired)
+            {
+                Action<string> callback = SetImportMessage;
+                Invoke(callback, text);
+            }
+            else
+            {
+                tbAnalyzeResult.Focus();
+                tbAnalyzeResult.AppendText("\r\n"+text);
+                tbAnalyzeResult.SelectionStart = tbAnalyzeResult.TextLength;
+                lblMessage.Text = text;
             }
         }
 
