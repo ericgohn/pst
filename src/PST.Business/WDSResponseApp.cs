@@ -7,6 +7,9 @@
 //     
 //  ==============================================================
 
+using PST.Data;
+using PST.Domain;
+using WDSResponse = PST.Domain.WDSResponse;
 
 namespace PST.Business
 {
@@ -14,17 +17,27 @@ namespace PST.Business
     {
         #region public Methods
 
+        public Response Import(string sql)
+        {
+            using (var context = new Entities())
+            {
+                context.Database.ExecuteSqlCommand(sql);
+                return Response.Succeed();
+            }
+        }
 
         #endregion
-        
+
         #region Private Methods
-        
-        private void AddAssignment(PST.Domain.WDSResponse src, PST.Data.WDSResponse dest){
+
+        private void AddAssignment(WDSResponse src, Data.WDSResponse dest)
+        {
         }
-        
-        private void UpdateAssignment(PST.Domain.WDSResponse src, PST.Data.WDSResponse dest){
+
+        private void UpdateAssignment(WDSResponse src, Data.WDSResponse dest)
+        {
         }
-        
+
         #endregion
     }
 }

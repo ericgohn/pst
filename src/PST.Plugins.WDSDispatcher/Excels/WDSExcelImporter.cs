@@ -1,24 +1,24 @@
 ﻿//  ==============================================================
 //   Copyright (c) 上海梓迅信息技术有限公司. All rights reserved.   
 //  
-//   File: FFPExcelImporter.cs
+//   File: WDSExcelImporter.cs
 //   Author: Eric Gohn
 //   Email: eric.gohn@outlook.com
 //     
 //  ==============================================================
 
 using PST.UI.Common;
-using PST.UI.Common.FFPService;
+using PST.UI.Common.WDResponseService;
 
 namespace PST.Plugins.WDSDispatcher.Excels
 {
-    public class FFPExcelImporter : ExcelImporter
+    public class WDSExcelImporter : ExcelImporter
     {
-        private readonly IFFPService _service;
+        private readonly IWDResponseService _service;
 
-        public FFPExcelImporter(string filePath, string sheetName) : base(filePath, sheetName, "FFP")
+        public WDSExcelImporter(string filePath, string sheetName) : base(filePath, sheetName, "WDSResponse")
         {
-            _service = ServiceFactory.S.GetFFPService();
+            _service = ServiceFactory.S.GetWDResponseService();
         }
 
         protected override void DoProcessData(string sql)

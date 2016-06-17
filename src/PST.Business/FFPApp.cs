@@ -7,7 +7,6 @@
 //     
 //  ==============================================================
 
-using System.Collections.Generic;
 using PST.Data;
 using PST.Domain;
 using FFP = PST.Domain.FFP;
@@ -18,17 +17,11 @@ namespace PST.Business
     {
         #region public Methods
 
-        public Response AddRange(List<FFP> list)
+        public Response Import(string sql)
         {
             using (var context = new Entities())
-            using (IUnitOfWork uow = new UnitOfWork(context))
             {
-                foreach (var item in list)
-                {
-                    var entity = AutoMapperBootstrap.M.Map<FFP, Data.FFP>(item);
-                    uow.FFPRepository.Add(entity);
-                }
-                uow.Commit();
+                context.Database.ExecuteSqlCommand(sql);
                 return Response.Succeed();
             }
         }
@@ -46,14 +39,5 @@ namespace PST.Business
         }
 
         #endregion
-
-        public Response Import(string sql)
-        {
-            using (var context = new Entities())
-            {
-                context.Database.ExecuteSqlCommand(sql);
-                return Response.Succeed();
-            }
-        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿//  ==============================================================
 //   Copyright (c) 上海梓迅信息技术有限公司. All rights reserved.   
 //  
-//   File: FFPService.svc.cs
+//   File: WDResponseService.svc.cs
 //   Author: Eric Gohn
 //   Email: eric.gohn@outlook.com
 //     
@@ -14,9 +14,9 @@ using Zeexone.Framework.Core.WCF;
 namespace PST.Service
 {
     [GlobalExceptionBehavior(typeof (GlobalExceptionHandler))]
-    public class FFPService : IFFPService
+    public class WDResponseService : IWDResponseService
     {
-        private readonly FFPApp _app = new FFPApp();
+        private readonly WDSResponseApp _app = new WDSResponseApp();
 
         public Response AddItems(string sql)
         {

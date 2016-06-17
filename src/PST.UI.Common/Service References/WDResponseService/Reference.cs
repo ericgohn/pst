@@ -8,44 +8,44 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PST.UI.Common.FFPService {
+namespace PST.UI.Common.WDResponseService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FFPService.IFFPService")]
-    public interface IFFPService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WDResponseService.IWDResponseService")]
+    public interface IWDResponseService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/AddItems", ReplyAction="http://tempuri.org/IWDResponseService/AddItemsResponse")]
         PST.Domain.Response AddItems(string sql);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/AddItems", ReplyAction="http://tempuri.org/IWDResponseService/AddItemsResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> AddItemsAsync(string sql);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IFFPServiceChannel : PST.UI.Common.FFPService.IFFPService, System.ServiceModel.IClientChannel {
+    public interface IWDResponseServiceChannel : PST.UI.Common.WDResponseService.IWDResponseService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class FFPServiceClient : System.ServiceModel.ClientBase<PST.UI.Common.FFPService.IFFPService>, PST.UI.Common.FFPService.IFFPService {
+    public partial class WDResponseServiceClient : System.ServiceModel.ClientBase<PST.UI.Common.WDResponseService.IWDResponseService>, PST.UI.Common.WDResponseService.IWDResponseService {
         
-        public FFPServiceClient() {
+        public WDResponseServiceClient() {
         }
         
-        public FFPServiceClient(string endpointConfigurationName) : 
+        public WDResponseServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public FFPServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public WDResponseServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public FFPServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public WDResponseServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public FFPServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public WDResponseServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

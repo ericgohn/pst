@@ -8,15 +8,10 @@
 //  ==============================================================
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using PST.Domain;
 using PST.Plugins.WDSDispatcher.Excels;
-using PST.UI.Common;
 using PST.UI.Common.Helpers;
 
 namespace PST.Plugins.WDSDispatcher.Controls
@@ -28,49 +23,62 @@ namespace PST.Plugins.WDSDispatcher.Controls
             InitializeComponent();
         }
 
-        #region Private Methods
-
-        private void SetRunningWidgetStatus(bool isRunning, string text = "")
-        {
-            btnOpenFile.Enabled = cbSheets.Enabled = cmdImport.Enabled = !isRunning;
-
-            if (isRunning)
-            {
-                circularProgress.IsRunning = true;
-                lblImport.Text = text;
-                lblImport.Visible = true;
-            }
-            else
-            {
-                circularProgress.IsRunning = false;
-                lblImport.Visible = false;
-            }
-        }
-
-        #endregion
-
-        private void cmdImport_Executed(object sender, EventArgs e)
+        public async void ImportData(string fftSetName)
         {
             if (!superValidator.Validate())
             {
                 return;
             }
             var filePath = tbFile.Text.Trim();
-            var identity = tbIdentity.Text.ToUpper().Trim();
             var sheetName = cbSheets.SelectedItem as string;
             var confirmMsg = string.Format("您确定要导入工作簿\"{0}\"中的所有数据吗？", sheetName);
-            if (DialogHelper.ShowConfirm("FFP数据导入", confirmMsg) != eTaskDialogResult.Yes)
+            if (DialogHelper.ShowConfirm("WDS Response数据导入", confirmMsg) != eTaskDialogResult.Yes)
                 return;
-
-//            var mapper = new Mapper(filePath);
-//            var items = mapper.Take<FFP>(sheetName);
-//
-//            if (bwImport.IsBusy)
-//                return;
-//            circularProgress.IsRunning = true;
-//            lblImport.Visible = true;
-//            bwImport.RunWorkerAsync(items);
+            SetRunningWidgetStatus(true, "正在导入数据...");
+            var importer = new WDSExcelImporter(filePath, sheetName);
+            importer.PreProcess += importer_PreProcess;
+            importer.PostProcess += importer_PostProcess;
+            await
+                Task.Run(() => importer.Process())
+                    .ContinueWith(t => { SetRunningWidgetStatus(false); }, uiTaskScheduler);
         }
+
+        #region Private Methods
+
+        private void SetRunningWidgetStatus(bool isRunning, string text = "")
+        {
+            btnOpenFile.Enabled = cbSheets.Enabled = !isRunning;
+
+            if (isRunning)
+            {
+                circularProgress.IsRunning = true;
+                lblMessage.Text = text;
+                lblMessage.Visible = true;
+            }
+            else
+            {
+                circularProgress.IsRunning = false;
+                lblMessage.Visible = false;
+            }
+        }
+
+        private void SetImportMessage(string text)
+        {
+            if (InvokeRequired)
+            {
+                Action<string> callback = SetImportMessage;
+                Invoke(callback, text);
+            }
+            else
+            {
+                tbAnalyzeResult.Focus();
+                tbAnalyzeResult.AppendText("\r\n" + text);
+                tbAnalyzeResult.SelectionStart = tbAnalyzeResult.TextLength;
+                lblMessage.Text = text;
+            }
+        }
+
+        #endregion
 
         #region Control Events
 
@@ -127,40 +135,14 @@ namespace PST.Plugins.WDSDispatcher.Controls
             }, uiTaskScheduler);
         }
 
-        #endregion
-
-        #region bwImport
-
-        private void bwImport_DoWork(object sender, DoWorkEventArgs e)
+        private void importer_PostProcess(object sender, string e)
         {
-//            var service = ServiceFactory.S.GetFFPService();
-//            var items = (IEnumerable<RowInfo<FFP>>) e.Argument;
-//            var count = items.Count();
-//            int i = 1;
-//            bool result = true;
-//            foreach (var item in items)
-//            {
-//                UIHelper.AsyncSetControlText(lblImport, string.Format("正在导入第{0}/{1}条数据...", i, count));
-//                if (item.ErrorColumnIndex > -1)
-//                {
-//                    UIHelper.AsyncSetControlText(lblImport, item.ErrorMessage);
-//                    break;
-//                }
-//                item.Value.Id = Guid.NewGuid();
-//                //                item.Value.
-//                var res = service.Add(item.Value);
-//                i++;
-//                if (!res.Success)
-//                {
-//                    result = false;
-//                    break;
-//                }
-//            }
-//            e.Result = result;
+            SetImportMessage(e);
         }
 
-        private void bwImport_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void importer_PreProcess(object sender, string e)
         {
+            SetImportMessage(e);
         }
 
         #endregion

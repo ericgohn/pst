@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ffpImportControl = new PST.Plugins.WDSDispatcher.Controls.FFPImportControl();
+            this.wdsImportControl = new PST.Plugins.WDSDispatcher.Controls.WDSImportControl();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.lblMessage = new DevComponents.DotNetBar.LabelX();
             this.circularProgress1 = new DevComponents.DotNetBar.Controls.CircularProgress();
@@ -37,8 +39,6 @@
             this.cmdDispatch = new DevComponents.DotNetBar.Command(this.components);
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.ffpImportControl = new PST.Plugins.WDSDispatcher.Controls.FFPImportControl();
-            this.wdsImportControl1 = new PST.Plugins.WDSDispatcher.Controls.WDSImportControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelEx1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +49,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.ffpImportControl, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.wdsImportControl1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.wdsImportControl, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -57,6 +57,22 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 173);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // ffpImportControl
+            // 
+            this.ffpImportControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ffpImportControl.Location = new System.Drawing.Point(3, 3);
+            this.ffpImportControl.Name = "ffpImportControl";
+            this.ffpImportControl.Size = new System.Drawing.Size(484, 167);
+            this.ffpImportControl.TabIndex = 0;
+            // 
+            // wdsImportControl
+            // 
+            this.wdsImportControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wdsImportControl.Location = new System.Drawing.Point(493, 3);
+            this.wdsImportControl.Name = "wdsImportControl";
+            this.wdsImportControl.Size = new System.Drawing.Size(484, 167);
+            this.wdsImportControl.TabIndex = 1;
             // 
             // panelEx1
             // 
@@ -150,22 +166,6 @@
             this.textBoxX1.TabIndex = 0;
             this.textBoxX1.WatermarkText = "请输入期次";
             // 
-            // ffpImportControl
-            // 
-            this.ffpImportControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ffpImportControl.Location = new System.Drawing.Point(3, 3);
-            this.ffpImportControl.Name = "ffpImportControl";
-            this.ffpImportControl.Size = new System.Drawing.Size(484, 167);
-            this.ffpImportControl.TabIndex = 0;
-            // 
-            // wdsImportControl1
-            // 
-            this.wdsImportControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wdsImportControl1.Location = new System.Drawing.Point(493, 3);
-            this.wdsImportControl1.Name = "wdsImportControl1";
-            this.wdsImportControl1.Size = new System.Drawing.Size(484, 167);
-            this.wdsImportControl1.TabIndex = 1;
-            // 
             // WDSResponseDispatcherControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -184,7 +184,7 @@
         #endregion
 
         private Controls.FFPImportControl ffpImportControl;
-        private Controls.WDSImportControl wdsImportControl1;
+        private Controls.WDSImportControl wdsImportControl;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevComponents.DotNetBar.PanelEx panelEx1;
         private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;

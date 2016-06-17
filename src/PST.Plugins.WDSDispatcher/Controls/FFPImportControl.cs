@@ -23,7 +23,7 @@ namespace PST.Plugins.WDSDispatcher.Controls
             InitializeComponent();
         }
 
-        public async void ImportData(string fftSetName)
+        public async Task ImportData(string fftSetName)
         {
             if (!superValidator.Validate())
             {
@@ -35,8 +35,11 @@ namespace PST.Plugins.WDSDispatcher.Controls
             if (DialogHelper.ShowConfirm("FFP数据导入", confirmMsg) != eTaskDialogResult.Yes)
                 return;
             SetRunningWidgetStatus(true, "正在导入数据...");
-            await Task.Run(() => ImportData(filePath, sheetName));
-            SetRunningWidgetStatus(false);
+            var importer = new FFPExcelImporter(filePath, sheetName);
+            importer.PreProcess += importer_PreProcess;
+            importer.PostProcess += importer_PostProcess;
+            await Task.Run(() => { importer.Process(); })
+                .ContinueWith(t => { SetRunningWidgetStatus(false); }, uiTaskScheduler);
         }
 
         #region Private Methods
@@ -56,14 +59,6 @@ namespace PST.Plugins.WDSDispatcher.Controls
                 circularProgress.IsRunning = false;
                 lblMessage.Visible = false;
             }
-        }
-
-        private void ImportData(string filePath, string sheetName)
-        {
-            var importer = new FFPExcelImporter(filePath, sheetName);
-            importer.PreProcess += importer_PreProcess;
-            importer.PostProcess += importer_PostProcess;
-            importer.Process();
         }
 
         private void SetImportMessage(string text)

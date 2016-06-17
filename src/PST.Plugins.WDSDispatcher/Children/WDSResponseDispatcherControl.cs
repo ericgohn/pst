@@ -7,6 +7,7 @@
 //     
 //  ==============================================================
 
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PST.Plugins.WDSDispatcher.Children
@@ -24,7 +25,8 @@ namespace PST.Plugins.WDSDispatcher.Children
 
         private async void cmdDispatch_Executed(object sender, System.EventArgs e)
         {
-            ffpImportControl.ImportData("1");
+            await ffpImportControl.ImportData("1");
+            wdsImportControl.ImportData("1");
         }
     }
 }

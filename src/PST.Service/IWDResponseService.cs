@@ -1,20 +1,19 @@
 ﻿//  ==============================================================
 //   Copyright (c) 上海梓迅信息技术有限公司. All rights reserved.   
 //  
-//   File: IFFPService.cs
+//   File: IWDResponseService.cs
 //   Author: Eric Gohn
 //   Email: eric.gohn@outlook.com
 //     
 //  ==============================================================
 
-using System;
 using System.ServiceModel;
 using PST.Domain;
 
 namespace PST.Service
 {
     [ServiceContract]
-    public interface IFFPService
+    public interface IWDResponseService
     {
         [OperationContract]
         Response AddItems(string sql);

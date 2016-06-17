@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f7f6d648-a4bf-4603-a13d-c5a52cc0c6c1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2764/WDResponseService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WDResponseService.disco" MetadataType="Disco" ID="6c276af0-6280-4469-a46b-9c05fb1988cc" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?disco" />
+    <MetadataFile FileName="WDResponseService1.xsd" MetadataType="Schema" ID="e522b276-0f35-4d33-8637-8f2e7eb234c5" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WDResponseService11.xsd" MetadataType="Schema" ID="0de121be-1516-4c90-85e7-d2defe2cf421" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WDResponseService.wsdl" MetadataType="Wsdl" ID="89e9234a-8bc7-451e-ae12-734f358aaeaa" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?wsdl" />
+    <MetadataFile FileName="WDResponseService.xsd" MetadataType="Schema" ID="0e96a5d4-a84e-4525-a061-215ddaba4b5a" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

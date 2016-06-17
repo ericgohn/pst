@@ -70,6 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WDResponseService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +94,16 @@
     <None Include="Service References\FFPService\FFPService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WDResponseService\WDResponseService.wsdl" />
+    <None Include="Service References\WDResponseService\WDResponseService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WDResponseService\WDResponseService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WDResponseService\WDResponseService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PST.Domain\PST.Domain.csproj">
@@ -98,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\FFPService\" />
+    <WCFMetadataStorage Include="Service References\WDResponseService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FFPService\FFPService.disco" />
@@ -110,6 +126,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FFPService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WDResponseService\WDResponseService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WDResponseService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WDResponseService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WDResponseService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
