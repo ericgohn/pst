@@ -87,7 +87,7 @@
     <Compile Include="Children\WDSResponseDispatcherControl.Designer.cs">
       <DependentUpon>WDSResponseDispatcherControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ExcelHelper.cs" />
+    <Compile Include="Excels\ExcelHelper.cs" />
     <Compile Include="Controls\FFPImportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,6 +103,8 @@
     <Compile Include="Controls\WDSImportControl.Designer.cs">
       <DependentUpon>WDSImportControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Excels\ExcelImporter.cs" />
+    <Compile Include="Excels\FFPExcelImporter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

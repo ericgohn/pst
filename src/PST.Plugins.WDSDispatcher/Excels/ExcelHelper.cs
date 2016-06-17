@@ -15,7 +15,7 @@ using System.IO;
 using System.Linq;
 using Zeexone.Framework.Core.Excels;
 
-namespace PST.Plugins.WDSDispatcher.Controls
+namespace PST.Plugins.WDSDispatcher.Excels
 {
     public static class ExcelHelper
     {
