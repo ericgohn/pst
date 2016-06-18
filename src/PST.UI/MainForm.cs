@@ -25,7 +25,7 @@ namespace PST.UI
         public MainForm()
         {
             InitializeComponent();
-            _defaultFontSize = Font.Size;
+//            _defaultFontSize = Font.Size;
         }
 
         #region Command Events
@@ -57,6 +57,7 @@ namespace PST.UI
             ((IPluginWindow) form).PluginContext.User = AppContext.S.User;
             ((IPluginWindow) form).BackgroundRunning += PluginForm_BackgroundRunning;
             ((IPluginWindow) form).Argument = ribbonControl1;
+            form.WindowState = FormWindowState.Maximized;
             SuperTabItem tabItem = stcMain.CreateTab(form.Text);
             tabItem.Name = plugin.Key;
             tabItem.AttachedControl.Controls.Add(form);
@@ -75,7 +76,7 @@ namespace PST.UI
         {
             var value = statusBarSlider.Value;
             float multiple = 1f + ((float) value)/10;
-            Font = new Font(Font.FontFamily, _defaultFontSize*multiple);
+//            Font = new Font(Font.FontFamily, _defaultFontSize*multiple);
         }
 
         #endregion

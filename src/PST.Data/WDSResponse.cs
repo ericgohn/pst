@@ -158,5 +158,9 @@ namespace PST.Data
         public string Security_PCBA { get; set; }
         public string Security_FP { get; set; }
         public string KeyBoard_FP { get; set; }
+        public int FFPSetId { get; set; }
+        public int Seq { get; set; }
+    
+        public virtual FFPSet FFPSet { get; set; }
     }
 }

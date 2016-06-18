@@ -447,5 +447,11 @@ namespace PST.Domain
         [DataMember]
         public string KeyBoard_FP { get; set; }
     
+        [DataMember]
+        public int FFPSetId { get; set; }
+    
+        [DataMember]
+        public int Seq { get; set; }
+    
     }
 }

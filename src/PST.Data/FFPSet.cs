@@ -18,6 +18,7 @@ namespace PST.Data
         public FFPSet()
         {
             this.FFPs = new HashSet<FFP>();
+            this.WDSResponses = new HashSet<WDSResponse>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace PST.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FFP> FFPs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WDSResponse> WDSResponses { get; set; }
     }
 }

@@ -97,6 +97,7 @@ namespace PST.Business
         private bool HasRelatedData(PST.Data.FFPSet entity){
             bool result = false;
             result = result || entity.FFPs.Any(o => o.FFPSetId == entity.Id);
+            result = result || entity.WDSResponses.Any(o => o.FFPSetId == entity.Id);
             return result;
         }
     }

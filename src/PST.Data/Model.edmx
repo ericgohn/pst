@@ -45,6 +45,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FFPSetId" Type="int" Nullable="false" />
+          <Property Name="Seq" Type="int" Nullable="false" />
           <Property Name="Sub Family" Type="nvarchar" MaxLength="255" />
           <Property Name="Series" Type="nvarchar" MaxLength="255" />
           <Property Name="Brand name" Type="nvarchar" MaxLength="255" />
@@ -201,6 +203,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WDSResponse_FFPSet">
+          <End Role="FFPSet" Type="Self.FFPSet" Multiplicity="1" />
+          <End Role="WDSResponse" Type="Self.WDSResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FFPSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WDSResponse">
+              <PropertyRef Name="FFPSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PSTPlatformModelStoreContainer">
           <EntitySet Name="FFP" EntityType="Self.FFP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FFPSet" EntityType="Self.FFPSet" Schema="dbo" store:Type="Tables" />
@@ -208,6 +222,10 @@
           <AssociationSet Name="FK_FFP_FFPSet" Association="Self.FK_FFP_FFPSet">
             <End Role="FFPSet" EntitySet="FFPSet" />
             <End Role="FFP" EntitySet="FFP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WDSResponse_FFPSet" Association="Self.FK_WDSResponse_FFPSet">
+            <End Role="FFPSet" EntitySet="FFPSet" />
+            <End Role="WDSResponse" EntitySet="WDSResponse" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -221,6 +239,10 @@
           <AssociationSet Name="FK_FFP_FFPSet" Association="PSTPlatformModel.FK_FFP_FFPSet">
             <End Role="FFPSet" EntitySet="FFPSets" />
             <End Role="FFP" EntitySet="FFPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WDSResponse_FFPSet" Association="PSTPlatformModel.FK_WDSResponse_FFPSet">
+            <End Role="FFPSet" EntitySet="FFPSets" />
+            <End Role="WDSResponse" EntitySet="WDSResponses" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FFP">
@@ -400,6 +422,9 @@
           <Property Name="Security_PCBA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Security_FP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="KeyBoard_FP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FFPSetId" Type="Int32" Nullable="false" />
+          <Property Name="Seq" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FFPSet" Relationship="PSTPlatformModel.FK_WDSResponse_FFPSet" FromRole="WDSResponse" ToRole="FFPSet" />
         </EntityType>
         <EntityType Name="FFPSet">
           <Key>
@@ -408,6 +433,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FFPs" Relationship="PSTPlatformModel.FK_FFP_FFPSet" FromRole="FFPSet" ToRole="FFP" />
+          <NavigationProperty Name="WDSResponses" Relationship="PSTPlatformModel.FK_WDSResponse_FFPSet" FromRole="FFPSet" ToRole="WDSResponse" />
         </EntityType>
         <Association Name="FK_FFP_FFPSet">
           <End Type="PSTPlatformModel.FFPSet" Role="FFPSet" Multiplicity="1" />
@@ -417,6 +443,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="FFP">
+              <PropertyRef Name="FFPSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WDSResponse_FFPSet">
+          <End Type="PSTPlatformModel.FFPSet" Role="FFPSet" Multiplicity="1" />
+          <End Type="PSTPlatformModel.WDSResponse" Role="WDSResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FFPSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WDSResponse">
               <PropertyRef Name="FFPSetId" />
             </Dependent>
           </ReferentialConstraint>
@@ -459,6 +497,8 @@
           <EntitySetMapping Name="WDSResponses">
             <EntityTypeMapping TypeName="PSTPlatformModel.WDSResponse">
               <MappingFragment StoreEntitySet="WDSResponse">
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
+                <ScalarProperty Name="FFPSetId" ColumnName="FFPSetId" />
                 <ScalarProperty Name="KeyBoard_FP" ColumnName="KeyBoard FP" />
                 <ScalarProperty Name="Security_FP" ColumnName="Security FP" />
                 <ScalarProperty Name="Security_PCBA" ColumnName="Security PCBA" />

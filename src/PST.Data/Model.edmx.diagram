@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="PSTPlatformModel.WDSResponse" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="PSTPlatformModel.FFPSet" Width="1.5" PointX="0.75" PointY="30.75" />
         <AssociationConnector Association="PSTPlatformModel.FK_FFP_FFPSet" />
+        <AssociationConnector Association="PSTPlatformModel.FK_WDSResponse_FFPSet" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

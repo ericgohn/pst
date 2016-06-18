@@ -25,8 +25,8 @@ namespace PST.Plugins.WDSDispatcher.Children
 
         private async void cmdDispatch_Executed(object sender, System.EventArgs e)
         {
-            await ffpImportControl.ImportData("1");
-            wdsImportControl.ImportData("1");
+//            await ffpImportControl.ImportData("1");
+            await wdsImportControl.ImportData("1");
         }
     }
 }

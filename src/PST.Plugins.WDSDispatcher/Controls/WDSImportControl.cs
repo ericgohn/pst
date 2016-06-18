@@ -23,7 +23,7 @@ namespace PST.Plugins.WDSDispatcher.Controls
             InitializeComponent();
         }
 
-        public async void ImportData(string fftSetName)
+        public async Task ImportData(string fftSetName)
         {
             if (!superValidator.Validate())
             {
