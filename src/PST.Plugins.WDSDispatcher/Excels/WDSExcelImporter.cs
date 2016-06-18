@@ -24,6 +24,12 @@ namespace PST.Plugins.WDSDispatcher.Excels
         protected override void DoProcessData(string sql)
         {
             _service.AddItems(sql);
+            
+        }
+
+        protected override void RemoveExists(int setId)
+        {
+            _service.RemoveBySetId(setId);
         }
     }
 }

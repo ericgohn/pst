@@ -29,14 +29,8 @@ namespace PST.Business
         public Response RemoveBySetId(int setId)
         {
             using (var context = new Entities())
-            using(var uow = new UnitOfWork(context))
             {
-                var entities = uow.FFPRepository.Get(o => o.FFPSetId == setId);
-                foreach (var entity in entities)
-                {
-                    uow.FFPRepository.Remove(entity);
-                }
-                uow.Commit();
+                context.Database.ExecuteSqlCommand("DELETE FROM [dbo].[FFP] WHERE [FFPSetId] = @p0", setId);
                 return Response.Succeed();
             }
         }

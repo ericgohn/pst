@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WDSResponseDispatcherControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.importWDSExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
-            this.importFFPExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.lblMessage = new DevComponents.DotNetBar.LabelX();
             this.circularProgress = new DevComponents.DotNetBar.Controls.CircularProgress();
@@ -45,6 +43,15 @@
             this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入期次");
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.highlighter = new DevComponents.DotNetBar.Validator.Highlighter();
+            this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
+            this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
+            this.importWDSExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
+            this.importFFPExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
+            this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
+            this.cmdImport = new DevComponents.DotNetBar.Command(this.components);
+            this.command2 = new DevComponents.DotNetBar.Command(this.components);
+            this.command3 = new DevComponents.DotNetBar.Command(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -61,39 +68,16 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 253);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // importWDSExcelControl
-            // 
-            this.importWDSExcelControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importWDSExcelControl.Location = new System.Drawing.Point(493, 3);
-            this.importWDSExcelControl.Name = "importWDSExcelControl";
-            this.importWDSExcelControl.Size = new System.Drawing.Size(484, 247);
-            this.importWDSExcelControl.TabIndex = 7;
-            this.importWDSExcelControl.Title = "WDS Response导入";
-            this.importWDSExcelControl.WartermarkText = "请选择WDS Response文件";
-            this.importWDSExcelControl.AsyncRun += new System.EventHandler<string>(this.importExcelControl_AsyncRun);
-            this.importWDSExcelControl.AsyncRunComplete += new System.EventHandler<System.EventArgs>(this.importExcelControl_AsyncRunComplete);
-            // 
-            // importFFPExcelControl
-            // 
-            this.importFFPExcelControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importFFPExcelControl.Location = new System.Drawing.Point(3, 3);
-            this.importFFPExcelControl.Name = "importFFPExcelControl";
-            this.importFFPExcelControl.Size = new System.Drawing.Size(484, 247);
-            this.importFFPExcelControl.TabIndex = 8;
-            this.importFFPExcelControl.Title = "FFP导入";
-            this.importFFPExcelControl.WartermarkText = "请选择FFP文件";
-            this.importFFPExcelControl.AsyncRun += new System.EventHandler<string>(this.importExcelControl_AsyncRun);
-            this.importFFPExcelControl.AsyncRunComplete += new System.EventHandler<System.EventArgs>(this.importExcelControl_AsyncRunComplete);
             // 
             // panelEx1
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.buttonX3);
             this.panelEx1.Controls.Add(this.lblMessage);
             this.panelEx1.Controls.Add(this.circularProgress);
             this.panelEx1.Controls.Add(this.buttonX2);
@@ -211,6 +195,83 @@
             // 
             this.highlighter.ContainerControl = this;
             // 
+            // buttonX3
+            // 
+            this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX3.AutoExpandOnClick = true;
+            this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX3.Location = new System.Drawing.Point(203, 17);
+            this.buttonX3.Name = "buttonX3";
+            this.buttonX3.Size = new System.Drawing.Size(75, 23);
+            this.buttonX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX3.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItem1,
+            this.buttonItem2,
+            this.buttonItem3});
+            this.buttonX3.TabIndex = 5;
+            this.buttonX3.Text = "导入";
+            // 
+            // buttonItem1
+            // 
+            this.buttonItem1.Command = this.cmdImport;
+            this.buttonItem1.CommandParameter = "1";
+            this.buttonItem1.GlobalItem = false;
+            this.buttonItem1.Name = "buttonItem1";
+            this.buttonItem1.Text = "FFP及WDS Response";
+            // 
+            // buttonItem2
+            // 
+            this.buttonItem2.Command = this.cmdImport;
+            this.buttonItem2.CommandParameter = "2";
+            this.buttonItem2.GlobalItem = false;
+            this.buttonItem2.Name = "buttonItem2";
+            this.buttonItem2.Text = "FFP Only";
+            // 
+            // importWDSExcelControl
+            // 
+            this.importWDSExcelControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.importWDSExcelControl.Location = new System.Drawing.Point(493, 3);
+            this.importWDSExcelControl.Name = "importWDSExcelControl";
+            this.importWDSExcelControl.Size = new System.Drawing.Size(484, 247);
+            this.importWDSExcelControl.TabIndex = 7;
+            this.importWDSExcelControl.Title = "WDS Response导入";
+            this.importWDSExcelControl.WartermarkText = "请选择WDS Response文件";
+            this.importWDSExcelControl.AsyncRun += new System.EventHandler<string>(this.importExcelControl_AsyncRun);
+            this.importWDSExcelControl.AsyncRunComplete += new System.EventHandler<System.EventArgs>(this.importExcelControl_AsyncRunComplete);
+            // 
+            // importFFPExcelControl
+            // 
+            this.importFFPExcelControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.importFFPExcelControl.Location = new System.Drawing.Point(3, 3);
+            this.importFFPExcelControl.Name = "importFFPExcelControl";
+            this.importFFPExcelControl.Size = new System.Drawing.Size(484, 247);
+            this.importFFPExcelControl.TabIndex = 8;
+            this.importFFPExcelControl.Title = "FFP导入";
+            this.importFFPExcelControl.WartermarkText = "请选择FFP文件";
+            this.importFFPExcelControl.AsyncRun += new System.EventHandler<string>(this.importExcelControl_AsyncRun);
+            this.importFFPExcelControl.AsyncRunComplete += new System.EventHandler<System.EventArgs>(this.importExcelControl_AsyncRunComplete);
+            // 
+            // buttonItem3
+            // 
+            this.buttonItem3.Command = this.cmdImport;
+            this.buttonItem3.CommandParameter = "3";
+            this.buttonItem3.GlobalItem = false;
+            this.buttonItem3.Name = "buttonItem3";
+            this.buttonItem3.Text = "WDS Response Only";
+            // 
+            // cmdImport
+            // 
+            this.cmdImport.Name = "cmdImport";
+            this.cmdImport.Executed += new System.EventHandler(this.cmdImport_Executed);
+            // 
+            // command2
+            // 
+            this.command2.Name = "command2";
+            // 
+            // command3
+            // 
+            this.command3.Name = "command3";
+            // 
             // WDSResponseDispatcherControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -244,5 +305,12 @@
         private DevComponents.DotNetBar.Validator.Highlighter highlighter;
         private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator1;
         private DevComponents.DotNetBar.Command cmdGenerateIdentity;
+        private DevComponents.DotNetBar.ButtonX buttonX3;
+        private DevComponents.DotNetBar.ButtonItem buttonItem1;
+        private DevComponents.DotNetBar.ButtonItem buttonItem2;
+        private DevComponents.DotNetBar.ButtonItem buttonItem3;
+        private DevComponents.DotNetBar.Command cmdImport;
+        private DevComponents.DotNetBar.Command command2;
+        private DevComponents.DotNetBar.Command command3;
     }
 }

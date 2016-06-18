@@ -31,8 +31,15 @@ namespace PST.Plugins.WDSDispatcher.Excels
         public event EventHandler<string> InProcess;
         public event EventHandler<string> PostProcess;
 
-        public void Process(int setId)
+        public void Process(int setId, bool removeExists)
         {
+            if (removeExists)
+            {
+                OnInProcess("正在清除已有数据...");
+                RemoveExists(setId);
+                OnInProcess("已有数据清除完毕。");
+            }
+                
             var connectionString = ExcelHelper.GetConnectString(_filePath);
             using (var conn = new OleDbConnection(connectionString))
             {
@@ -92,7 +99,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
         private int ProcessData(StringBuilder sbDataSql, int index, int lastIndex)
         {
             var msg = string.Format("正在导入第{0} - {1}条数据...", lastIndex + 1, index);
-            OnPreProcess(msg);
+            OnInProcess(msg);
             string sql = GenerateSql(sbDataSql);
             if (!string.IsNullOrEmpty(sql))
                 DoProcessData(sql);
@@ -116,8 +123,12 @@ namespace PST.Plugins.WDSDispatcher.Excels
 
         protected abstract void DoProcessData(string sql);
 
+        protected virtual void RemoveExists(int setId)
+        {
+        }
 
-        protected void OnPreProcess(string message)
+
+        protected void OnInProcess(string message)
         {
             if (InProcess == null)
                 return;

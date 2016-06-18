@@ -8,6 +8,7 @@
 //  ==============================================================
 
 using PST.Data;
+using PST.Data.Repositories;
 using PST.Domain;
 using WDSResponse = PST.Domain.WDSResponse;
 
@@ -29,14 +30,8 @@ namespace PST.Business
         public Response RemoveBySetId(int setId)
         {
             using (var context = new Entities())
-            using (var uow = new UnitOfWork(context))
             {
-                var entities = uow.WDSResponseRepository.Get(o => o.FFPSetId == setId);
-                foreach (var entity in entities)
-                {
-                    uow.WDSResponseRepository.Remove(entity);
-                }
-                uow.Commit();
+                context.Database.ExecuteSqlCommand("DELETE FROM [dbo].[WDSResponse] WHERE [FFPSetId] = @p0", setId);
                 return Response.Succeed();
             }
         }
