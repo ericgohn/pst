@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FFPService.svc" />
+    <Content Include="FFPSetService.svc" />
     <Content Include="Global.asax" />
     <Content Include="WDResponseService.svc" />
     <Content Include="Web.config" />
@@ -80,10 +81,14 @@
     <Compile Include="FFPService.svc.cs">
       <DependentUpon>FFPService.svc</DependentUpon>
     </Compile>
+    <Compile Include="FFPSetService.svc.cs">
+      <DependentUpon>FFPSetService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IFFPService.cs" />
+    <Compile Include="IFFPSetService.cs" />
     <Compile Include="IWDResponseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WDResponseService.svc.cs">

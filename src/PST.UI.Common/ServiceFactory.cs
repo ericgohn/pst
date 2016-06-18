@@ -10,6 +10,7 @@
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using PST.UI.Common.FFPService;
+using PST.UI.Common.FFPSetService;
 using PST.UI.Common.WDResponseService;
 using Zeexone.Framework.Core.WCF;
 
@@ -51,6 +52,17 @@ namespace PST.UI.Common
             var service = endPoint == null
                 ? new WDResponseServiceClient()
                 : new WDResponseServiceClient("WDResponseService", endPoint);
+            if (_behavior != null)
+                service.ChannelFactory.Endpoint.Behaviors.Add(_behavior);
+            return service;
+        }
+
+        public IFFPSetService GetFFPSetService()
+        {
+            var endPoint = GetServerEndPoint("FFPSetService.svc");
+            var service = endPoint == null
+                ? new FFPSetServiceClient()
+                : new FFPSetServiceClient("FFPSetService", endPoint);
             if (_behavior != null)
                 service.ChannelFactory.Endpoint.Behaviors.Add(_behavior);
             return service;
