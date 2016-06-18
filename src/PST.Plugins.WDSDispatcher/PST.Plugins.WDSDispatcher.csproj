@@ -94,20 +94,8 @@
       <DependentUpon>ImportExcelControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Excels\ExcelHelper.cs" />
-    <Compile Include="Controls\FFPImportControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\FFPImportControl.Designer.cs">
-      <DependentUpon>FFPImportControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\UserControlBase.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\WDSImportControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\WDSImportControl.Designer.cs">
-      <DependentUpon>WDSImportControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Excels\ExcelImporter.cs" />
     <Compile Include="Excels\FFPExcelImporter.cs" />
@@ -145,14 +133,8 @@
     <EmbeddedResource Include="Children\WDSResponseDispatcherControl.resx">
       <DependentUpon>WDSResponseDispatcherControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FFPImportControl.resx">
-      <DependentUpon>FFPImportControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImportExcelControl.resx">
       <DependentUpon>ImportExcelControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\WDSImportControl.resx">
-      <DependentUpon>WDSImportControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

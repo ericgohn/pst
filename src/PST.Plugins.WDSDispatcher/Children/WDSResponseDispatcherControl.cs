@@ -8,11 +8,9 @@
 //  ==============================================================
 
 using System;
-using System.Drawing.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
-using PST.Domain;
 using PST.Plugins.WDSDispatcher.Excels;
 using PST.UI.Common;
 using PST.UI.Common.Helpers;
@@ -27,6 +25,7 @@ namespace PST.Plugins.WDSDispatcher.Children
         }
 
         #region Commands
+
         private async void cmdDispatch_Executed(object sender, EventArgs e)
         {
             bool isValid = importFFPExcelControl.ValidateInput();
@@ -83,10 +82,12 @@ namespace PST.Plugins.WDSDispatcher.Children
         private void cmdGenerateIdentity_Executed(object sender, EventArgs e)
         {
             tbSetName.Text = GenerateSetName();
-        } 
+        }
+
         #endregion
 
         #region Private Methods
+
         private void SetRunningStatus(bool running, string text = "")
         {
             if (InvokeRequired)
@@ -109,7 +110,8 @@ namespace PST.Plugins.WDSDispatcher.Children
         {
             var now = DateTime.Now;
             return now.ToString("yyyyMMdd");
-        } 
+        }
+
         #endregion
 
         #region Control Events
@@ -132,7 +134,7 @@ namespace PST.Plugins.WDSDispatcher.Children
 
         private void ffpImporter_InProcess(object sender, string e)
         {
-            SetRunningStatus(true,e);
+            SetRunningStatus(true, e);
             importFFPExcelControl.AppendMessageAsync(e);
         }
 
@@ -149,7 +151,5 @@ namespace PST.Plugins.WDSDispatcher.Children
         }
 
         #endregion
-
-        
     }
 }

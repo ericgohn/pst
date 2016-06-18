@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WDSResponseDispatcherControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.importWDSExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
-            this.ffpImportControl = new PST.Plugins.WDSDispatcher.Controls.FFPImportControl();
-            this.wdsImportControl = new PST.Plugins.WDSDispatcher.Controls.WDSImportControl();
             this.importFFPExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.lblMessage = new DevComponents.DotNetBar.LabelX();
@@ -57,53 +55,35 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.importWDSExcelControl, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.ffpImportControl, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.wdsImportControl, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.importFFPExcelControl, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.importWDSExcelControl, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.importFFPExcelControl, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 253);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // importWDSExcelControl
             // 
             this.importWDSExcelControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importWDSExcelControl.Location = new System.Drawing.Point(493, 136);
+            this.importWDSExcelControl.Location = new System.Drawing.Point(493, 3);
             this.importWDSExcelControl.Name = "importWDSExcelControl";
-            this.importWDSExcelControl.Size = new System.Drawing.Size(484, 114);
+            this.importWDSExcelControl.Size = new System.Drawing.Size(484, 247);
             this.importWDSExcelControl.TabIndex = 7;
             this.importWDSExcelControl.Title = "WDS Response导入";
             this.importWDSExcelControl.WartermarkText = "请选择WDS Response文件";
             this.importWDSExcelControl.AsyncRun += new System.EventHandler<string>(this.importExcelControl_AsyncRun);
             this.importWDSExcelControl.AsyncRunComplete += new System.EventHandler<System.EventArgs>(this.importExcelControl_AsyncRunComplete);
             // 
-            // ffpImportControl
-            // 
-            this.ffpImportControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ffpImportControl.Location = new System.Drawing.Point(3, 3);
-            this.ffpImportControl.Name = "ffpImportControl";
-            this.ffpImportControl.Size = new System.Drawing.Size(484, 127);
-            this.ffpImportControl.TabIndex = 0;
-            // 
-            // wdsImportControl
-            // 
-            this.wdsImportControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wdsImportControl.Location = new System.Drawing.Point(493, 3);
-            this.wdsImportControl.Name = "wdsImportControl";
-            this.wdsImportControl.Size = new System.Drawing.Size(484, 127);
-            this.wdsImportControl.TabIndex = 1;
-            // 
             // importFFPExcelControl
             // 
             this.importFFPExcelControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importFFPExcelControl.Location = new System.Drawing.Point(3, 136);
+            this.importFFPExcelControl.Location = new System.Drawing.Point(3, 3);
             this.importFFPExcelControl.Name = "importFFPExcelControl";
-            this.importFFPExcelControl.Size = new System.Drawing.Size(484, 114);
+            this.importFFPExcelControl.Size = new System.Drawing.Size(484, 247);
             this.importFFPExcelControl.TabIndex = 8;
             this.importFFPExcelControl.Title = "FFP导入";
             this.importFFPExcelControl.WartermarkText = "请选择FFP文件";
@@ -249,8 +229,6 @@
 
         #endregion
 
-        private Controls.FFPImportControl ffpImportControl;
-        private Controls.WDSImportControl wdsImportControl;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevComponents.DotNetBar.PanelEx panelEx1;
         private DevComponents.DotNetBar.Controls.TextBoxX tbSetName;
