@@ -87,6 +87,12 @@
     <Compile Include="Children\WDSResponseDispatcherControl.Designer.cs">
       <DependentUpon>WDSResponseDispatcherControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ImportExcelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImportExcelControl.Designer.cs">
+      <DependentUpon>ImportExcelControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Excels\ExcelHelper.cs" />
     <Compile Include="Controls\FFPImportControl.cs">
       <SubType>UserControl</SubType>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FFPImportControl.resx">
       <DependentUpon>FFPImportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImportExcelControl.resx">
+      <DependentUpon>ImportExcelControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WDSImportControl.resx">
       <DependentUpon>WDSImportControl.cs</DependentUpon>

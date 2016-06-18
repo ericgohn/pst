@@ -28,7 +28,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
             _insertSql = string.Format(INSERT_SQL, tableName);
         }
 
-        public event EventHandler<string> PreProcess;
+        public event EventHandler<string> InProcess;
         public event EventHandler<string> PostProcess;
 
         public void Process()
@@ -119,9 +119,9 @@ namespace PST.Plugins.WDSDispatcher.Excels
 
         protected void OnPreProcess(string message)
         {
-            if (PreProcess == null)
+            if (InProcess == null)
                 return;
-            var temp = PreProcess;
+            var temp = InProcess;
             temp(this, message);
         }
 

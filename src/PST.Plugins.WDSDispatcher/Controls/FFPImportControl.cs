@@ -36,7 +36,7 @@ namespace PST.Plugins.WDSDispatcher.Controls
                 return;
             SetRunningWidgetStatus(true, "正在导入数据...");
             var importer = new FFPExcelImporter(filePath, sheetName);
-            importer.PreProcess += importer_PreProcess;
+            importer.InProcess += importer_PreProcess;
             importer.PostProcess += importer_PostProcess;
             await Task.Run(() => { importer.Process(); })
                 .ContinueWith(t => { SetRunningWidgetStatus(false); }, uiTaskScheduler);

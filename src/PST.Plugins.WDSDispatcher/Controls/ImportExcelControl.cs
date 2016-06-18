@@ -1,81 +1,72 @@
 ﻿//  ==============================================================
 //   Copyright (c) 上海梓迅信息技术有限公司. All rights reserved.   
 //  
-//   File: WDSImportControl.cs
+//   File: ImportExcelControl.cs
 //   Author: Eric Gohn
 //   Email: eric.gohn@outlook.com
 //     
 //  ==============================================================
 
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using PST.Plugins.WDSDispatcher.Excels;
 using PST.UI.Common.Helpers;
 
 namespace PST.Plugins.WDSDispatcher.Controls
 {
-    public partial class WDSImportControl : UserControlBase
+    public partial class ImportExcelControl : UserControlBase
     {
-        public WDSImportControl()
+        public ImportExcelControl()
         {
             InitializeComponent();
         }
 
-        public async Task ImportData(string fftSetName)
-        {
-            if (!superValidator.Validate())
-            {
-                return;
-            }
-            var filePath = tbFile.Text.Trim();
-            var sheetName = cbSheets.SelectedItem as string;
-            var confirmMsg = string.Format("您确定要导入工作簿\"{0}\"中的所有数据吗？", sheetName);
-            if (DialogHelper.ShowConfirm("WDS Response数据导入", confirmMsg) != eTaskDialogResult.Yes)
-                return;
-            SetRunningWidgetStatus(true, "正在导入数据...");
-            var importer = new WDSExcelImporter(filePath, sheetName);
-            importer.InProcess += ImporterInProcess;
-            importer.PostProcess += importer_PostProcess;
-            await
-                Task.Run(() => importer.Process())
-                    .ContinueWith(t => { SetRunningWidgetStatus(false); }, uiTaskScheduler);
-        }
+        public event EventHandler<string> AsyncRun;
+        public event EventHandler<EventArgs> AsyncRunComplete;
 
-        #region Private Methods
-
-        private void SetRunningWidgetStatus(bool isRunning, string text = "")
-        {
-            btnOpenFile.Enabled = cbSheets.Enabled = !isRunning;
-
-            if (isRunning)
-            {
-                circularProgress.IsRunning = true;
-                lblMessage.Text = text;
-                lblMessage.Visible = true;
-            }
-            else
-            {
-                circularProgress.IsRunning = false;
-                lblMessage.Visible = false;
-            }
-        }
-
-        private void SetImportMessage(string text)
+        public void AppendMessageAsync(string message)
         {
             if (InvokeRequired)
             {
-                Action<string> callback = SetImportMessage;
-                Invoke(callback, text);
+                Action<string> callback = AppendMessageAsync;
+                Invoke(callback, message);
             }
             else
             {
                 tbAnalyzeResult.Focus();
-                tbAnalyzeResult.AppendText("\r\n" + text);
+                tbAnalyzeResult.AppendText("\r\n" + message);
                 tbAnalyzeResult.SelectionStart = tbAnalyzeResult.TextLength;
-                lblMessage.Text = text;
             }
+        }
+
+        public bool ValidateInput()
+        {
+            return superValidator.Validate();
+        }
+
+        public void SetRunningWidgetStatus(bool isRunning)
+        {
+            btnOpenFile.Enabled = cbSheets.Enabled = !isRunning;
+        }
+
+        #region Private Methods
+
+        private void OnAsyncRun(string text)
+        {
+            if (AsyncRun == null)
+                return;
+            var temp = AsyncRun;
+            temp(this, text);
+        }
+
+        private void OnAsyncRunComplete()
+        {
+            if (AsyncRunComplete == null)
+                return;
+            var temp = AsyncRunComplete;
+            temp(this, EventArgs.Empty);
         }
 
         #endregion
@@ -87,7 +78,8 @@ namespace PST.Plugins.WDSDispatcher.Controls
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 tbFile.Text = openFileDialog.FileName;
-                SetRunningWidgetStatus(true, "正在读取文件...");
+                SetRunningWidgetStatus(true);
+                OnAsyncRun("正在读取Excel文件...");
                 await Task.Run(() => ExcelHelper.ReadFileBasicInfo(tbFile.Text)).ContinueWith(task =>
                 {
                     if (task.IsFaulted)
@@ -99,16 +91,17 @@ namespace PST.Plugins.WDSDispatcher.Controls
                     int selectedIndex = 0;
                     int i = -1;
                     cbSheets.Items.Clear();
-                    foreach (string sheet in task.Result)
+                    foreach (var sheet in task.Result)
                     {
                         cbSheets.Items.Add(sheet);
                         if (sheet.ToLower().Contains("ffp"))
                             selectedIndex = i;
                         i++;
                     }
-                    SetRunningWidgetStatus(false);
                     if (selectedIndex == -1 && cbSheets.Items.Count > 0)
                         selectedIndex = 0;
+                    SetRunningWidgetStatus(false);
+                    OnAsyncRunComplete();
                     cbSheets.SelectedIndex = selectedIndex;
                 }, uiTaskScheduler);
             }
@@ -121,7 +114,8 @@ namespace PST.Plugins.WDSDispatcher.Controls
                 return;
             var filePath = tbFile.Text.Trim();
             var sheetName = cbSheets.SelectedItem as string;
-            SetRunningWidgetStatus(true, "正在分析文件...");
+            SetRunningWidgetStatus(true);
+            OnAsyncRun(string.Format("正在分析工作簿\"{0}\"...", sheetName));
             await Task.Run(() => ExcelHelper.AnalyzeFile(filePath, sheetName)).ContinueWith(task =>
             {
                 if (task.IsFaulted)
@@ -132,17 +126,35 @@ namespace PST.Plugins.WDSDispatcher.Controls
                 }
                 tbAnalyzeResult.Text = task.Result;
                 SetRunningWidgetStatus(false);
+                OnAsyncRunComplete();
             }, uiTaskScheduler);
         }
 
-        private void importer_PostProcess(object sender, string e)
+        #endregion
+
+        #region Properties
+
+        public string FilePath
         {
-            SetImportMessage(e);
+            get { return tbFile.Text.Trim(); }
         }
 
-        private void ImporterInProcess(object sender, string e)
+        public string SheetName
         {
-            SetImportMessage(e);
+            get { return cbSheets.SelectedItem as string; }
+        }
+
+        [Browsable(true)]
+        public string Title
+        {
+            get { return groupBox1.Text; }
+            set { groupBox1.Text = value; }
+        }
+
+        public string WartermarkText
+        {
+            get { return tbFile.WatermarkText; }
+            set { tbFile.WatermarkText = value; }
         }
 
         #endregion
