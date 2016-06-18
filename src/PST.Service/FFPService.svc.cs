@@ -27,5 +27,10 @@ namespace PST.Service
         {
             return _app.RemoveBySetId(setId);
         }
+
+        public Response RemoveBySetName(string name)
+        {
+            return _app.RemoveBySetName(name);
+        }
     }
 }

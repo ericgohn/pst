@@ -20,5 +20,8 @@ namespace PST.Service
 
         [OperationContract]
         Response RemoveBySetId(int setId);
+
+        [OperationContract]
+        Response RemoveBySetName(string name);
     }
 }

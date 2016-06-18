@@ -19,6 +19,12 @@
   <wsdl:message name="IWDResponseService_RemoveBySetId_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveBySetIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IWDResponseService_RemoveBySetName_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveBySetName" />
+  </wsdl:message>
+  <wsdl:message name="IWDResponseService_RemoveBySetName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveBySetNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IWDResponseService">
     <wsdl:operation name="AddItems">
       <wsdl:input wsaw:Action="http://tempuri.org/IWDResponseService/AddItems" message="tns:IWDResponseService_AddItems_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="RemoveBySetId">
       <wsdl:input wsaw:Action="http://tempuri.org/IWDResponseService/RemoveBySetId" message="tns:IWDResponseService_RemoveBySetId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWDResponseService/RemoveBySetIdResponse" message="tns:IWDResponseService_RemoveBySetId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBySetName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWDResponseService/RemoveBySetName" message="tns:IWDResponseService_RemoveBySetName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWDResponseService/RemoveBySetNameResponse" message="tns:IWDResponseService_RemoveBySetName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WDResponseService" type="tns:IWDResponseService">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveBySetId">
       <soap:operation soapAction="http://tempuri.org/IWDResponseService/RemoveBySetId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBySetName">
+      <soap:operation soapAction="http://tempuri.org/IWDResponseService/RemoveBySetName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

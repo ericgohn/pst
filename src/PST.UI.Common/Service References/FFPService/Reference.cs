@@ -26,6 +26,12 @@ namespace PST.UI.Common.FFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetId", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetIdResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetIdAsync(int setId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
+        PST.Domain.Response RemoveBySetName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetNameAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace PST.UI.Common.FFPService {
         
         public System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetIdAsync(int setId) {
             return base.Channel.RemoveBySetIdAsync(setId);
+        }
+        
+        public PST.Domain.Response RemoveBySetName(string name) {
+            return base.Channel.RemoveBySetName(name);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetNameAsync(string name) {
+            return base.Channel.RemoveBySetNameAsync(name);
         }
     }
 }

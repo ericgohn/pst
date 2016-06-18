@@ -94,6 +94,26 @@ namespace PST.Plugins.WDSDispatcher.Children
             }
         }
 
+        private async void cmdRemove_Executed(object sender, EventArgs e)
+        {
+            var commandSource = sender as ICommandSource;
+            if (commandSource == null)
+                return;
+            var param = commandSource.CommandParameter as string;
+            if (param == "1")
+            {
+                await RemoveFfpAndWdsResponse();
+            }
+            else if (param == "2")
+            {
+                await RemoveFfp();
+            }
+            else if (param == "3")
+            {
+                await RemoveWdsResponse();
+            }
+        }
+
         private void cmdGenerateIdentity_Executed(object sender, EventArgs e)
         {
             tbSetName.Text = GenerateSetName();
@@ -252,6 +272,42 @@ namespace PST.Plugins.WDSDispatcher.Children
             wdsImporter.PostProcess += wdsImporter_PostProcess;
             await Task.Run(() => { wdsImporter.Process(setId, dataExist); });
 
+            SetRunningStatus(false);
+        }
+
+        private async Task RemoveFfpAndWdsResponse()
+        {
+            if (!superValidator.Validate())
+                return;
+            var setName = tbSetName.Text.Trim().ToUpper();
+            SetRunningStatus(true, "正在清除FFP数据...");
+            var ffpService = ServiceFactory.S.GetFFPService();
+            await ffpService.RemoveBySetNameAsync(setName);
+            SetRunningStatus(true, "正在清除WDS Response数据...");
+            var wdsService = ServiceFactory.S.GetWDResponseService();
+            await wdsService.RemoveBySetNameAsync(setName);
+            SetRunningStatus(false);
+        }
+
+        private async Task RemoveFfp()
+        {
+            if (!superValidator.Validate())
+                return;
+            var setName = tbSetName.Text.Trim().ToUpper();
+            SetRunningStatus(true, "正在清除FFP数据...");
+            var ffpService = ServiceFactory.S.GetFFPService();
+            await ffpService.RemoveBySetNameAsync(setName);
+            SetRunningStatus(false);
+        }
+
+        private async Task RemoveWdsResponse()
+        {
+            if (!superValidator.Validate())
+                return;
+            var setName = tbSetName.Text.Trim().ToUpper();
+            SetRunningStatus(true, "正在清除WDS Response数据...");
+            var wdsService = ServiceFactory.S.GetWDResponseService();
+            await wdsService.RemoveBySetNameAsync(setName);
             SetRunningStatus(false);
         }
 
