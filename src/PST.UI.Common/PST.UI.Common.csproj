@@ -70,6 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\FFPSetService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WDResponseService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +99,16 @@
     <None Include="Service References\FFPService\FFPService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\FFPSetService\FFPSetService.wsdl" />
+    <None Include="Service References\FFPSetService\FFPSetService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFPSetService\FFPSetService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FFPSetService\FFPSetService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\WDResponseService\WDResponseService.wsdl" />
     <None Include="Service References\WDResponseService\WDResponseService.xsd">
       <SubType>Designer</SubType>
@@ -113,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\FFPService\" />
+    <WCFMetadataStorage Include="Service References\FFPSetService\" />
     <WCFMetadataStorage Include="Service References\WDResponseService\" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +157,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WDResponseService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPSetService\FFPSetService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPSetService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPSetService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FFPSetService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

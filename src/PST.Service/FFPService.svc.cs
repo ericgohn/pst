@@ -22,5 +22,10 @@ namespace PST.Service
         {
             return _app.Import(sql);
         }
+
+        public Response RemoveBySetId(int setId)
+        {
+            return _app.RemoveBySetId(setId);
+        }
     }
 }

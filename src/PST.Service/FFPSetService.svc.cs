@@ -7,6 +7,8 @@
 //     
 //  ==============================================================
 
+using PST.Business;
+using PST.Domain;
 using Zeexone.Framework.Core.WCF;
 
 namespace PST.Service
@@ -14,8 +16,16 @@ namespace PST.Service
     [GlobalExceptionBehavior(typeof (GlobalExceptionHandler))]
     public class FFPSetService : IFFPSetService
     {
-        public void DoWork()
+        private readonly FFPSetApp _app = new FFPSetApp();
+
+        public Response<bool> HasData(string setName)
         {
+            return _app.HasData(setName);
+        }
+
+        public Response<int> Upsert(string setName)
+        {
+            return _app.Upsert(setName);
         }
     }
 }

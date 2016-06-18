@@ -7,7 +7,6 @@
 //     
 //  ==============================================================
 
-using System;
 using System.ServiceModel;
 using PST.Domain;
 
@@ -18,5 +17,8 @@ namespace PST.Service
     {
         [OperationContract]
         Response AddItems(string sql);
+
+        [OperationContract]
+        Response RemoveBySetId(int setId);
     }
 }

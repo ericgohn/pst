@@ -25,6 +25,8 @@
     <MetadataFile FileName="FFPSetService.wsdl" MetadataType="Wsdl" ID="a8486ca7-ca2f-4fd7-b3f3-2b051161289f" SourceId="1" SourceUrl="http://localhost:2764/FFPSetService.svc?wsdl" />
     <MetadataFile FileName="FFPSetService.disco" MetadataType="Disco" ID="37425d28-9668-4957-ab1c-cd57992fac38" SourceId="1" SourceUrl="http://localhost:2764/FFPSetService.svc?disco" />
     <MetadataFile FileName="FFPSetService.xsd" MetadataType="Schema" ID="9c2db798-bd5f-4a21-9846-184ccc43cff2" SourceId="1" SourceUrl="http://localhost:2764/FFPSetService.svc?xsd=xsd0" />
+    <MetadataFile FileName="FFPSetService1.xsd" MetadataType="Schema" ID="a2ff594b-9025-43ad-845b-9c3a69218a54" SourceId="1" SourceUrl="http://localhost:2764/FFPSetService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FFPSetService11.xsd" MetadataType="Schema" ID="cdbc6133-92bc-4b5a-9593-37b292b5d89a" SourceId="1" SourceUrl="http://localhost:2764/FFPSetService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

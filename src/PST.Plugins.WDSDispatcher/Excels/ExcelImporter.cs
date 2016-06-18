@@ -31,7 +31,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
         public event EventHandler<string> InProcess;
         public event EventHandler<string> PostProcess;
 
-        public void Process()
+        public void Process(int setId)
         {
             var connectionString = ExcelHelper.GetConnectString(_filePath);
             using (var conn = new OleDbConnection(connectionString))
@@ -51,7 +51,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
                         continue;
                     var row = new StringBuilder("('").Append(Guid.NewGuid())
                         .Append("',")
-                        .Append(1)
+                        .Append(setId)
                         .Append(",")
                         .Append(seq)
                         .Append(",");

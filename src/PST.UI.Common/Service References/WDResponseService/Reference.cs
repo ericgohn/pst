@@ -20,6 +20,12 @@ namespace PST.UI.Common.WDResponseService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/AddItems", ReplyAction="http://tempuri.org/IWDResponseService/AddItemsResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> AddItemsAsync(string sql);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/RemoveBySetId", ReplyAction="http://tempuri.org/IWDResponseService/RemoveBySetIdResponse")]
+        PST.Domain.Response RemoveBySetId(int setId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/RemoveBySetId", ReplyAction="http://tempuri.org/IWDResponseService/RemoveBySetIdResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetIdAsync(int setId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace PST.UI.Common.WDResponseService {
         
         public System.Threading.Tasks.Task<PST.Domain.Response> AddItemsAsync(string sql) {
             return base.Channel.AddItemsAsync(sql);
+        }
+        
+        public PST.Domain.Response RemoveBySetId(int setId) {
+            return base.Channel.RemoveBySetId(setId);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetIdAsync(int setId) {
+            return base.Channel.RemoveBySetIdAsync(setId);
         }
     }
 }

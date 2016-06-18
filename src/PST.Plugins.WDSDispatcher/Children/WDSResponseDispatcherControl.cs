@@ -8,10 +8,13 @@
 //  ==============================================================
 
 using System;
+using System.Drawing.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
+using PST.Domain;
 using PST.Plugins.WDSDispatcher.Excels;
+using PST.UI.Common;
 using PST.UI.Common.Helpers;
 
 namespace PST.Plugins.WDSDispatcher.Children
@@ -23,35 +26,67 @@ namespace PST.Plugins.WDSDispatcher.Children
             InitializeComponent();
         }
 
+        #region Commands
         private async void cmdDispatch_Executed(object sender, EventArgs e)
         {
-            if (!importFFPExcelControl.ValidateInput())
-                return;
-            if (!importWDSExcelControl.ValidateInput())
+            bool isValid = importFFPExcelControl.ValidateInput();
+            isValid = isValid && importWDSExcelControl.ValidateInput();
+            isValid = isValid && superValidator.Validate();
+            if (!isValid)
                 return;
             var ffpFilPath = importFFPExcelControl.FilePath;
             var ffpSheetName = importFFPExcelControl.SheetName;
             var wdsFilePath = importWDSExcelControl.FilePath;
             var wdsSheetName = importWDSExcelControl.SheetName;
+            var setName = tbSetName.Text.Trim().ToUpper();
             var confirmMsg = string.Format("您确定要导入工作簿\"{0}\"及\"{1}\"中的所有数据吗？", ffpSheetName, wdsSheetName);
             if (DialogHelper.ShowConfirm("数据导入", confirmMsg) != eTaskDialogResult.Yes)
                 return;
 
+            var setService = ServiceFactory.S.GetFFPSetService();
+            var res = await setService.HasDataAsync(setName);
+
+            if (!res.Success)
+            {
+                return;
+            }
+
+            if (res.Arg)
+            {
+                if (DialogHelper.ShowConfirm("期次下已存在数据", "您输入的期次下已存在数据， 继续导入将覆盖这些数据，是否继续？") != eTaskDialogResult.Yes)
+                    return;
+            }
+
+            var setIdRes = await setService.UpsertAsync(setName);
+            if (!res.Success)
+            {
+                DialogHelper.ShowAddError(res.Message);
+                return;
+            }
+            var setId = setIdRes.Arg;
             SetRunningStatus(true, "正在准备导入...");
 
+            //todo remove existing data.
             var ffpImporter = new FFPExcelImporter(ffpFilPath, ffpSheetName);
             ffpImporter.InProcess += ffpImporter_InProcess;
             ffpImporter.PostProcess += ffpImporter_PostProcess;
-            await Task.Run(() => { ffpImporter.Process(); });
+            await Task.Run(() => { ffpImporter.Process(setId); });
 
             var wdsImporter = new WDSExcelImporter(wdsFilePath, wdsSheetName);
             wdsImporter.InProcess += wdsImporter_InProcess;
             wdsImporter.PostProcess += wdsImporter_PostProcess;
-            await Task.Run(() => { wdsImporter.Process(); });
+            await Task.Run(() => { wdsImporter.Process(setId); });
 
             SetRunningStatus(false);
         }
 
+        private void cmdGenerateIdentity_Executed(object sender, EventArgs e)
+        {
+            tbSetName.Text = GenerateSetName();
+        } 
+        #endregion
+
+        #region Private Methods
         private void SetRunningStatus(bool running, string text = "")
         {
             if (InvokeRequired)
@@ -69,6 +104,13 @@ namespace PST.Plugins.WDSDispatcher.Children
                 importWDSExcelControl.SetRunningWidgetStatus(running);
             }
         }
+
+        private string GenerateSetName()
+        {
+            var now = DateTime.Now;
+            return now.ToString("yyyyMMdd");
+        } 
+        #endregion
 
         #region Control Events
 
@@ -107,5 +149,7 @@ namespace PST.Plugins.WDSDispatcher.Children
         }
 
         #endregion
+
+        
     }
 }

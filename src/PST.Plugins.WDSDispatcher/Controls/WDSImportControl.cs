@@ -39,7 +39,7 @@ namespace PST.Plugins.WDSDispatcher.Controls
             importer.InProcess += ImporterInProcess;
             importer.PostProcess += importer_PostProcess;
             await
-                Task.Run(() => importer.Process())
+                Task.Run(() => importer.Process(1))
                     .ContinueWith(t => { SetRunningWidgetStatus(false); }, uiTaskScheduler);
         }
 

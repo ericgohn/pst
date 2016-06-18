@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WDSResponseDispatcherControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.importWDSExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
             this.ffpImportControl = new PST.Plugins.WDSDispatcher.Controls.FFPImportControl();
@@ -40,9 +41,15 @@
             this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
             this.cmdDispatch = new DevComponents.DotNetBar.Command(this.components);
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.cmdGenerateIdentity = new DevComponents.DotNetBar.Command(this.components);
+            this.tbSetName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.superValidator = new DevComponents.DotNetBar.Validator.SuperValidator();
+            this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入期次");
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.highlighter = new DevComponents.DotNetBar.Validator.Highlighter();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -111,15 +118,14 @@
             this.panelEx1.Controls.Add(this.circularProgress);
             this.panelEx1.Controls.Add(this.buttonX2);
             this.panelEx1.Controls.Add(this.buttonX1);
-            this.panelEx1.Controls.Add(this.textBoxX1);
+            this.panelEx1.Controls.Add(this.tbSetName);
             this.panelEx1.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(0, 253);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(980, 64);
+            this.panelEx1.Size = new System.Drawing.Size(980, 111);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
             this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.panelEx1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
@@ -133,7 +139,7 @@
             // 
             // 
             this.lblMessage.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblMessage.Location = new System.Drawing.Point(332, 17);
+            this.lblMessage.Location = new System.Drawing.Point(143, 55);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(75, 19);
             this.lblMessage.TabIndex = 4;
@@ -147,7 +153,7 @@
             // 
             this.circularProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.circularProgress.FocusCuesEnabled = false;
-            this.circularProgress.Location = new System.Drawing.Point(286, 15);
+            this.circularProgress.Location = new System.Drawing.Point(97, 53);
             this.circularProgress.Name = "circularProgress";
             this.circularProgress.Size = new System.Drawing.Size(39, 23);
             this.circularProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
@@ -158,7 +164,7 @@
             this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX2.Command = this.cmdDispatch;
-            this.buttonX2.Location = new System.Drawing.Point(204, 16);
+            this.buttonX2.Location = new System.Drawing.Point(15, 54);
             this.buttonX2.Name = "buttonX2";
             this.buttonX2.Size = new System.Drawing.Size(75, 23);
             this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -174,6 +180,7 @@
             // 
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Command = this.cmdGenerateIdentity;
             this.buttonX1.Location = new System.Drawing.Point(122, 17);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(75, 23);
@@ -181,19 +188,48 @@
             this.buttonX1.TabIndex = 1;
             this.buttonX1.Text = "生成";
             // 
-            // textBoxX1
+            // cmdGenerateIdentity
+            // 
+            this.cmdGenerateIdentity.Name = "cmdGenerateIdentity";
+            this.cmdGenerateIdentity.Executed += new System.EventHandler(this.cmdGenerateIdentity_Executed);
+            // 
+            // tbSetName
+            // 
+            this.tbSetName.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
+            this.tbSetName.Border.Class = "TextBoxBorder";
+            this.tbSetName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbSetName.DisabledBackColor = System.Drawing.Color.White;
+            this.tbSetName.ForeColor = System.Drawing.Color.Black;
+            this.tbSetName.Location = new System.Drawing.Point(15, 17);
+            this.tbSetName.Name = "tbSetName";
+            this.tbSetName.PreventEnterBeep = true;
+            this.tbSetName.Size = new System.Drawing.Size(100, 22);
+            this.tbSetName.TabIndex = 0;
+            this.superValidator.SetValidator1(this.tbSetName, this.requiredFieldValidator1);
+            this.tbSetName.WatermarkText = "请输入期次";
             // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.Location = new System.Drawing.Point(15, 17);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.PreventEnterBeep = true;
-            this.textBoxX1.Size = new System.Drawing.Size(100, 22);
-            this.textBoxX1.TabIndex = 0;
-            this.textBoxX1.WatermarkText = "请输入期次";
+            // superValidator
+            // 
+            this.superValidator.ContainerControl = this;
+            this.superValidator.ErrorProvider = this.errorProvider;
+            this.superValidator.Highlighter = this.highlighter;
+            // 
+            // requiredFieldValidator1
+            // 
+            this.requiredFieldValidator1.ErrorMessage = "请输入期次";
+            this.requiredFieldValidator1.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider.Icon")));
+            // 
+            // highlighter
+            // 
+            this.highlighter.ContainerControl = this;
             // 
             // WDSResponseDispatcherControl
             // 
@@ -206,6 +242,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.panelEx1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,7 +253,7 @@
         private Controls.WDSImportControl wdsImportControl;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevComponents.DotNetBar.PanelEx panelEx1;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbSetName;
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.ButtonX buttonX2;
         private DevComponents.DotNetBar.LabelX lblMessage;
@@ -224,5 +261,10 @@
         private DevComponents.DotNetBar.Command cmdDispatch;
         private Controls.ImportExcelControl importWDSExcelControl;
         private Controls.ImportExcelControl importFFPExcelControl;
+        private DevComponents.DotNetBar.Validator.SuperValidator superValidator;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private DevComponents.DotNetBar.Validator.Highlighter highlighter;
+        private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator1;
+        private DevComponents.DotNetBar.Command cmdGenerateIdentity;
     }
 }

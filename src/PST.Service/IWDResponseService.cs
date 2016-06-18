@@ -17,5 +17,8 @@ namespace PST.Service
     {
         [OperationContract]
         Response AddItems(string sql);
+
+        [OperationContract]
+        Response RemoveBySetId(int setId);
     }
 }

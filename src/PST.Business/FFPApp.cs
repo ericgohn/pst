@@ -26,6 +26,21 @@ namespace PST.Business
             }
         }
 
+        public Response RemoveBySetId(int setId)
+        {
+            using (var context = new Entities())
+            using(var uow = new UnitOfWork(context))
+            {
+                var entities = uow.FFPRepository.Get(o => o.FFPSetId == setId);
+                foreach (var entity in entities)
+                {
+                    uow.FFPRepository.Remove(entity);
+                }
+                uow.Commit();
+                return Response.Succeed();
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -39,5 +54,7 @@ namespace PST.Business
         }
 
         #endregion
+
+        
     }
 }

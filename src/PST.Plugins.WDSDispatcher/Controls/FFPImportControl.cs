@@ -38,7 +38,7 @@ namespace PST.Plugins.WDSDispatcher.Controls
             var importer = new FFPExcelImporter(filePath, sheetName);
             importer.InProcess += importer_PreProcess;
             importer.PostProcess += importer_PostProcess;
-            await Task.Run(() => { importer.Process(); })
+            await Task.Run(() => { importer.Process(1); })
                 .ContinueWith(t => { SetRunningWidgetStatus(false); }, uiTaskScheduler);
         }
 

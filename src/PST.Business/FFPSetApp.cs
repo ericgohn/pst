@@ -7,10 +7,10 @@
 //     
 //  ==============================================================
 
-
 using System.Linq;
 using PST.Data;
 using PST.Domain;
+using FFPSet = PST.Domain.FFPSet;
 
 namespace PST.Business
 {
@@ -18,13 +18,13 @@ namespace PST.Business
     {
         #region public Methods
 
-        public Response<int> GetOrAddFFPSet(string name)
+        public Response<int> Upsert(string name)
         {
             name = name.Trim().ToUpper();
             using (var context = new Entities())
             using (IUnitOfWork uow = new UnitOfWork(context))
             {
-                int id = 0;
+                int id;
                 var set = uow.FFPSetRepository.Get(o => o.Name == name).FirstOrDefault();
                 if (set == null)
                 {
@@ -41,16 +41,34 @@ namespace PST.Business
                 return Response<int>.Succeed(id);
             }
         }
+
+        public Response<bool> HasData(string name)
+        {
+            name = name.Trim().ToUpper();
+            using (var context = new Entities())
+            using (IUnitOfWork uow = new UnitOfWork(context))
+            {
+                var set = uow.FFPSetRepository.Get(o => o.Name == name).FirstOrDefault();
+                if (set == null)
+                    return Response<bool>.Succeed(false);
+                if (set.FFPs.Count > 0 || set.WDSResponses.Count > 0)
+                    return Response<bool>.Succeed(true);
+                return Response<bool>.Succeed(false);
+            }
+        }
+
         #endregion
-        
+
         #region Private Methods
-        
-        private void AddAssignment(PST.Domain.FFPSet src, PST.Data.FFPSet dest){
+
+        private void AddAssignment(FFPSet src, Data.FFPSet dest)
+        {
         }
-        
-        private void UpdateAssignment(PST.Domain.FFPSet src, PST.Data.FFPSet dest){
+
+        private void UpdateAssignment(FFPSet src, Data.FFPSet dest)
+        {
         }
-        
+
         #endregion
     }
 }

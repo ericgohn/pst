@@ -15,11 +15,17 @@ namespace PST.UI.Common.FFPSetService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FFPSetService.IFFPSetService")]
     public interface IFFPSetService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPSetService/DoWork", ReplyAction="http://tempuri.org/IFFPSetService/DoWorkResponse")]
-        void DoWork();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPSetService/HasData", ReplyAction="http://tempuri.org/IFFPSetService/HasDataResponse")]
+        PST.Domain.Response<bool> HasData(string setName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPSetService/DoWork", ReplyAction="http://tempuri.org/IFFPSetService/DoWorkResponse")]
-        System.Threading.Tasks.Task DoWorkAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPSetService/HasData", ReplyAction="http://tempuri.org/IFFPSetService/HasDataResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<bool>> HasDataAsync(string setName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPSetService/Upsert", ReplyAction="http://tempuri.org/IFFPSetService/UpsertResponse")]
+        PST.Domain.Response<int> Upsert(string setName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPSetService/Upsert", ReplyAction="http://tempuri.org/IFFPSetService/UpsertResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<int>> UpsertAsync(string setName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +55,20 @@ namespace PST.UI.Common.FFPSetService {
                 base(binding, remoteAddress) {
         }
         
-        public void DoWork() {
-            base.Channel.DoWork();
+        public PST.Domain.Response<bool> HasData(string setName) {
+            return base.Channel.HasData(setName);
         }
         
-        public System.Threading.Tasks.Task DoWorkAsync() {
-            return base.Channel.DoWorkAsync();
+        public System.Threading.Tasks.Task<PST.Domain.Response<bool>> HasDataAsync(string setName) {
+            return base.Channel.HasDataAsync(setName);
+        }
+        
+        public PST.Domain.Response<int> Upsert(string setName) {
+            return base.Channel.Upsert(setName);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response<int>> UpsertAsync(string setName) {
+            return base.Channel.UpsertAsync(setName);
         }
     }
 }
