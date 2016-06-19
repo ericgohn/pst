@@ -453,5 +453,8 @@ namespace PST.Domain
         [DataMember]
         public int Seq { get; set; }
     
+        [DataMember]
+        public bool Dispatched { get; set; }
+    
     }
 }

@@ -47,6 +47,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="FFPSetId" Type="int" Nullable="false" />
           <Property Name="Seq" Type="int" Nullable="false" />
+          <Property Name="Dispatched" Type="bit" Nullable="false" />
           <Property Name="Sub Family" Type="nvarchar" MaxLength="255" />
           <Property Name="Series" Type="nvarchar" MaxLength="255" />
           <Property Name="Brand name" Type="nvarchar" MaxLength="255" />
@@ -271,8 +272,8 @@
           <Property Name="CIG_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CIC_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="FFPSetId" Type="Int32" Nullable="false" />
-          <Property Name="Seq" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FFPSet" Relationship="PSTPlatformModel.FK_FFP_FFPSet" FromRole="FFP" ToRole="FFPSet" />
+          <Property Name="Seq" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="WDSResponse">
           <Key>
@@ -425,6 +426,7 @@
           <Property Name="FFPSetId" Type="Int32" Nullable="false" />
           <Property Name="Seq" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FFPSet" Relationship="PSTPlatformModel.FK_WDSResponse_FFPSet" FromRole="WDSResponse" ToRole="FFPSet" />
+          <Property Name="Dispatched" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="FFPSet">
           <Key>
@@ -497,6 +499,7 @@
           <EntitySetMapping Name="WDSResponses">
             <EntityTypeMapping TypeName="PSTPlatformModel.WDSResponse">
               <MappingFragment StoreEntitySet="WDSResponse">
+                <ScalarProperty Name="Dispatched" ColumnName="Dispatched" />
                 <ScalarProperty Name="Seq" ColumnName="Seq" />
                 <ScalarProperty Name="FFPSetId" ColumnName="FFPSetId" />
                 <ScalarProperty Name="KeyBoard_FP" ColumnName="KeyBoard FP" />

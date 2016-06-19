@@ -160,6 +160,7 @@ namespace PST.Data
         public string KeyBoard_FP { get; set; }
         public int FFPSetId { get; set; }
         public int Seq { get; set; }
+        public bool Dispatched { get; set; }
     
         public virtual FFPSet FFPSet { get; set; }
     }

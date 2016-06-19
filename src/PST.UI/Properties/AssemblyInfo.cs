@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyFileVersion("1.0.186.6014")]
+[assembly: AssemblyFileVersion("1.0.198.6014")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]

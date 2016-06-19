@@ -13,6 +13,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Zeexone.Framework.Core.Excels;
 
 namespace PST.Plugins.WDSDispatcher.Excels
@@ -20,7 +21,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
     public static class ExcelHelper
     {
         private const string CONNECT_STRING_TEMPLATE =
-            "Provider=Microsoft.{0}.OLEDB.{1};Data Source={2};Extended Properties=\"Excel {3};HDR=YES\"";
+            "Provider=Microsoft.{0}.OLEDB.{1};Data Source={2};Extended Properties=\"Excel {3};HDR={4}\"";
 
         private const string ANALYZE_MSG = "文件： {0}\r\n工作簿： {1}\r\n记录总数： {2}";
 
@@ -32,17 +33,28 @@ namespace PST.Plugins.WDSDispatcher.Excels
         /// <exception cref="ExcelException">Excel file format is not supported.</exception>
         public static string GetConnectString(string filePath)
         {
+            return GetConnectString(filePath, true);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="hdr">true： First row as column name.</param>
+        /// <returns></returns>
+        private static string GetConnectString(string filePath, bool hdr)
+        {
             string extension = Path.GetExtension(filePath);
             if (string.IsNullOrWhiteSpace(extension))
                 throw new ExcelException("Invalid excel file: file with no extension is not supported.");
+            string hdrStr = hdr ? "YES" : "NO";
             if (extension.Equals(".xls", StringComparison.OrdinalIgnoreCase))
             {
-                return string.Format(CONNECT_STRING_TEMPLATE, "Ace", "12.0", filePath, "8.0");
+                return string.Format(CONNECT_STRING_TEMPLATE, "Ace", "12.0", filePath, "8.0", hdrStr);
             }
             if (extension.Equals(".xlsx", StringComparison.OrdinalIgnoreCase) ||
                 extension.Equals(".xlsb", StringComparison.OrdinalIgnoreCase))
             {
-                return string.Format(CONNECT_STRING_TEMPLATE, "Ace", "12.0", filePath, "12.0 XML");
+                return string.Format(CONNECT_STRING_TEMPLATE, "Ace", "12.0", filePath, "12.0 XML", hdrStr);
             }
             throw new ExcelException(string.Format("Invalid excel file: file with extension \"{0}\" is not supported.",
                 extension));
@@ -63,6 +75,32 @@ namespace PST.Plugins.WDSDispatcher.Excels
                         .Select(dr => dr["TABLE_NAME"].ToString())
                         .Where(sheetName => sheetName.Contains("$")));
                 return list;
+            }
+        }
+
+        public static string ReadColumnNames(string filePath, string sheetName)
+        {
+            var connectionString = GetConnectString(filePath);
+            using (var conn = new OleDbConnection(connectionString))
+            {
+                var cmd = new OleDbCommand("select top 1 * from [" + sheetName + "]", conn);
+                conn.Open();
+                OleDbDataReader reader = cmd.ExecuteReader();
+                if (reader == null)
+                    return string.Empty;
+                StringBuilder cols = new StringBuilder();
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        cols.Append(string.Format("[{0}],", reader.GetName(i)));
+                    }
+                    break;
+                }
+
+                if (cols.Length == 0)
+                    return string.Empty;
+                return cols.ToString(0, cols.Length - 1);
             }
         }
 

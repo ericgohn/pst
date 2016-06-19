@@ -15,17 +15,17 @@ namespace PST.Plugins.WDSDispatcher.Excels
 {
     public abstract class ExcelImporter
     {
-        private const string INSERT_SQL = "INSERT INTO dbo.[{0}] VALUES ";
+        private const string INSERT_SQL = "INSERT INTO dbo.[{0}] ({1}) VALUES ";
         private const string SELECT_SQL = "select * from [{0}]";
         private readonly string _filePath;
-        private readonly string _insertSql;
         private readonly string _sheetName;
+        private readonly string _tableName;
 
         protected ExcelImporter(string filePath, string sheetName, string tableName)
         {
             _filePath = filePath;
             _sheetName = sheetName;
-            _insertSql = string.Format(INSERT_SQL, tableName);
+            _tableName = tableName;
         }
 
         public event EventHandler<string> InProcess;
@@ -39,7 +39,10 @@ namespace PST.Plugins.WDSDispatcher.Excels
                 RemoveExists(setId);
                 OnInProcess("已有数据清除完毕。");
             }
-                
+
+            var colNames = ExcelHelper.ReadColumnNames(_filePath, _sheetName);
+            var insertSql = string.Format(INSERT_SQL, _tableName, ColNamesPrefix + colNames);
+
             var connectionString = ExcelHelper.GetConnectString(_filePath);
             using (var conn = new OleDbConnection(connectionString))
             {
@@ -56,12 +59,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
                 {
                     if (reader.FieldCount == 0)
                         continue;
-                    var row = new StringBuilder("('").Append(Guid.NewGuid())
-                        .Append("',")
-                        .Append(setId)
-                        .Append(",")
-                        .Append(seq)
-                        .Append(",");
+                    var row = GetRowPrefix(setId, seq);
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
                         if (reader.IsDBNull(i))
@@ -84,29 +82,29 @@ namespace PST.Plugins.WDSDispatcher.Excels
                     {
                         if (sb.Length != 0)
                         {
-                            lastIndex = ProcessData(sb, index, lastIndex);
+                            lastIndex = ProcessData(insertSql, sb, index, lastIndex);
                         }
                     }
                 }
                 reader.Close();
-                ProcessData(sb, index, lastIndex);
+                ProcessData(insertSql, sb, index, lastIndex);
                 OnPostProcess("导入完成");
             }
         }
 
         #region Private Methods
 
-        private int ProcessData(StringBuilder sbDataSql, int index, int lastIndex)
+        private int ProcessData(string insertSql, StringBuilder sbDataSql, int index, int lastIndex)
         {
             var msg = string.Format("正在导入第{0} - {1}条数据...", lastIndex + 1, index);
             OnInProcess(msg);
-            string sql = GenerateSql(sbDataSql);
+            string sql = GenerateSql(insertSql, sbDataSql);
             if (!string.IsNullOrEmpty(sql))
                 DoProcessData(sql);
             return index;
         }
 
-        private string GenerateSql(StringBuilder stringBuilder)
+        private string GenerateSql(string insertSql, StringBuilder stringBuilder)
         {
             if (stringBuilder.Length == 0)
             {
@@ -114,14 +112,18 @@ namespace PST.Plugins.WDSDispatcher.Excels
             }
             var dataSql = stringBuilder.ToString(0, stringBuilder.Length - 1);
             stringBuilder.Clear();
-            return _insertSql + dataSql;
+            return insertSql + dataSql;
         }
 
         #endregion
 
         #region Protected Methods
 
+        protected abstract string ColNamesPrefix { get; }
+
         protected abstract void DoProcessData(string sql);
+
+        protected abstract StringBuilder GetRowPrefix(int setId, int seq);
 
         protected virtual void RemoveExists(int setId)
         {
