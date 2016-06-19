@@ -18,3 +18,4 @@
 /src/PST.UI/*.user
 /src/PST.UI.Common/Properties/DataSources
 /src/Npoi.Mapper-master
+/src/PST.Service/log
