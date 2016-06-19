@@ -77,7 +77,7 @@
           <Property Name="HQ Original Previous" Type="float" />
           <Property Name="HQ Original Current(g)" Type="float" />
           <Property Name="HQ Forecast Previous" Type="float" />
-          <Property Name="PSI(0506)(b)" Type="float" />
+          <Property Name="PSI" Type="float" />
           <Property Name="CP Simulation Previous" Type="float" />
           <Property Name="CP Simulation Current" Type="float" />
           <Property Name="HQ Simulation Previous" Type="float" />
@@ -87,7 +87,7 @@
           <Property Name="Pullin Response Previous" Type="float" />
           <Property Name="Pullin Response Current" Type="float" />
           <Property Name="MFG Response Previous(c)" Type="float" />
-          <Property Name="WDS Response(0509)(d)" Type="float" />
+          <Property Name="WDS Response" Type="float" />
           <Property Name="d-a" Type="float" />
           <Property Name="d-b" Type="float" />
           <Property Name="d-c" Type="float" />
@@ -309,7 +309,6 @@
           <Property Name="HQ_Original_Previous" Type="Double" />
           <Property Name="HQ_Original_Current_g_" Type="Double" />
           <Property Name="HQ_Forecast_Previous" Type="Double" />
-          <Property Name="PSI_0506__b_" Type="Double" />
           <Property Name="CP_Simulation_Previous" Type="Double" />
           <Property Name="CP_Simulation_Current" Type="Double" />
           <Property Name="HQ_Simulation_Previous" Type="Double" />
@@ -319,7 +318,6 @@
           <Property Name="Pullin_Response_Previous" Type="Double" />
           <Property Name="Pullin_Response_Current" Type="Double" />
           <Property Name="MFG_Response_Previous_c_" Type="Double" />
-          <Property Name="WDS_Response_0509__d_" Type="Double" />
           <Property Name="d_a" Type="Double" />
           <Property Name="d_b" Type="Double" />
           <Property Name="d_c" Type="Double" />
@@ -427,6 +425,8 @@
           <Property Name="Seq" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FFPSet" Relationship="PSTPlatformModel.FK_WDSResponse_FFPSet" FromRole="WDSResponse" ToRole="FFPSet" />
           <Property Name="Dispatched" Type="Boolean" Nullable="false" />
+          <Property Name="PSI" Type="Double" />
+          <Property Name="WDS_Response" Type="Double" />
         </EntityType>
         <EntityType Name="FFPSet">
           <Key>
@@ -499,6 +499,8 @@
           <EntitySetMapping Name="WDSResponses">
             <EntityTypeMapping TypeName="PSTPlatformModel.WDSResponse">
               <MappingFragment StoreEntitySet="WDSResponse">
+                <ScalarProperty Name="WDS_Response" ColumnName="WDS Response" />
+                <ScalarProperty Name="PSI" ColumnName="PSI" />
                 <ScalarProperty Name="Dispatched" ColumnName="Dispatched" />
                 <ScalarProperty Name="Seq" ColumnName="Seq" />
                 <ScalarProperty Name="FFPSetId" ColumnName="FFPSetId" />
@@ -605,7 +607,6 @@
                 <ScalarProperty Name="d_c" ColumnName="d-c" />
                 <ScalarProperty Name="d_b" ColumnName="d-b" />
                 <ScalarProperty Name="d_a" ColumnName="d-a" />
-                <ScalarProperty Name="WDS_Response_0509__d_" ColumnName="WDS Response(0509)(d)" />
                 <ScalarProperty Name="MFG_Response_Previous_c_" ColumnName="MFG Response Previous(c)" />
                 <ScalarProperty Name="Pullin_Response_Current" ColumnName="Pullin Response Current" />
                 <ScalarProperty Name="Pullin_Response_Previous" ColumnName="Pullin Response Previous" />
@@ -615,7 +616,6 @@
                 <ScalarProperty Name="HQ_Simulation_Previous" ColumnName="HQ Simulation Previous" />
                 <ScalarProperty Name="CP_Simulation_Current" ColumnName="CP Simulation Current" />
                 <ScalarProperty Name="CP_Simulation_Previous" ColumnName="CP Simulation Previous" />
-                <ScalarProperty Name="PSI_0506__b_" ColumnName="PSI(0506)(b)" />
                 <ScalarProperty Name="HQ_Forecast_Previous" ColumnName="HQ Forecast Previous" />
                 <ScalarProperty Name="HQ_Original_Current_g_" ColumnName="HQ Original Current(g)" />
                 <ScalarProperty Name="HQ_Original_Previous" ColumnName="HQ Original Previous" />

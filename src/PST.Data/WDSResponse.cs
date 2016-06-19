@@ -44,7 +44,6 @@ namespace PST.Data
         public Nullable<double> HQ_Original_Previous { get; set; }
         public Nullable<double> HQ_Original_Current_g_ { get; set; }
         public Nullable<double> HQ_Forecast_Previous { get; set; }
-        public Nullable<double> PSI_0506__b_ { get; set; }
         public Nullable<double> CP_Simulation_Previous { get; set; }
         public Nullable<double> CP_Simulation_Current { get; set; }
         public Nullable<double> HQ_Simulation_Previous { get; set; }
@@ -54,7 +53,6 @@ namespace PST.Data
         public Nullable<double> Pullin_Response_Previous { get; set; }
         public Nullable<double> Pullin_Response_Current { get; set; }
         public Nullable<double> MFG_Response_Previous_c_ { get; set; }
-        public Nullable<double> WDS_Response_0509__d_ { get; set; }
         public Nullable<double> d_a { get; set; }
         public Nullable<double> d_b { get; set; }
         public Nullable<double> d_c { get; set; }
@@ -161,6 +159,8 @@ namespace PST.Data
         public int FFPSetId { get; set; }
         public int Seq { get; set; }
         public bool Dispatched { get; set; }
+        public Nullable<double> PSI { get; set; }
+        public Nullable<double> WDS_Response { get; set; }
     
         public virtual FFPSet FFPSet { get; set; }
     }

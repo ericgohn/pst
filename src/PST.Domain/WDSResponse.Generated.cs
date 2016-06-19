@@ -106,9 +106,6 @@ namespace PST.Domain
         public double? HQ_Forecast_Previous { get; set; }
     
         [DataMember]
-        public double? PSI_0506__b_ { get; set; }
-    
-        [DataMember]
         public double? CP_Simulation_Previous { get; set; }
     
         [DataMember]
@@ -134,9 +131,6 @@ namespace PST.Domain
     
         [DataMember]
         public double? MFG_Response_Previous_c_ { get; set; }
-    
-        [DataMember]
-        public double? WDS_Response_0509__d_ { get; set; }
     
         [DataMember]
         public double? d_a { get; set; }
@@ -455,6 +449,12 @@ namespace PST.Domain
     
         [DataMember]
         public bool Dispatched { get; set; }
+    
+        [DataMember]
+        public double? PSI { get; set; }
+    
+        [DataMember]
+        public double? WDS_Response { get; set; }
     
     }
 }
