@@ -48,11 +48,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Zeexone.Framework.Core">
-      <HintPath>..\..\..\ExternalDlls\Zeexone.Framework.Core.dll</HintPath>
+    <Reference Include="Zeexone.Framework.Core, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExternalDlls\Zeexone.Framework.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Zeexone.Framework.Windows">
-      <HintPath>..\..\..\ExternalDlls\Zeexone.Framework.Windows.dll</HintPath>
+    <Reference Include="Zeexone.Framework.Windows, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExternalDlls\Zeexone.Framework.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

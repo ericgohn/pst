@@ -47,7 +47,7 @@
             this.Controls.Add(this.wdsResponseDispatcherControl1);
             this.Name = "MainForm";
             this.Text = "WDS Response Dispatcher";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+//            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }

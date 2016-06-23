@@ -57,7 +57,7 @@ namespace PST.UI
             ((IPluginWindow) form).PluginContext.User = AppContext.S.User;
             ((IPluginWindow) form).BackgroundRunning += PluginForm_BackgroundRunning;
             ((IPluginWindow) form).Argument = ribbonControl1;
-            form.WindowState = FormWindowState.Maximized;
+//            form.WindowState = FormWindowState.Maximized;
             SuperTabItem tabItem = stcMain.CreateTab(form.Text);
             tabItem.Name = plugin.Key;
             tabItem.AttachedControl.Controls.Add(form);
