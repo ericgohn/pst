@@ -12,6 +12,8 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="FFPSetId" Type="int" Nullable="false" />
           <Property Name="Seq" Type="int" Nullable="false" />
+          <Property Name="Dispatched" Type="bit" Nullable="false" />
+          <Property Name="ResAmount" Type="float" Nullable="false" />
           <Property Name="Series" Type="nvarchar" MaxLength="255" />
           <Property Name="Model Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Business No" Type="nvarchar" MaxLength="255" />
@@ -274,6 +276,8 @@
           <Property Name="FFPSetId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FFPSet" Relationship="PSTPlatformModel.FK_FFP_FFPSet" FromRole="FFP" ToRole="FFPSet" />
           <Property Name="Seq" Type="Int32" Nullable="false" />
+          <Property Name="Dispatched" Type="Boolean" Nullable="false" />
+          <Property Name="ResAmount" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="WDSResponse">
           <Key>
@@ -470,6 +474,8 @@
           <EntitySetMapping Name="FFPs">
             <EntityTypeMapping TypeName="PSTPlatformModel.FFP">
               <MappingFragment StoreEntitySet="FFP">
+                <ScalarProperty Name="ResAmount" ColumnName="ResAmount" />
+                <ScalarProperty Name="Dispatched" ColumnName="Dispatched" />
                 <ScalarProperty Name="Seq" ColumnName="Seq" />
                 <ScalarProperty Name="FFPSetId" ColumnName="FFPSetId" />
                 <ScalarProperty Name="CIC_Name" ColumnName="CIC Name" />

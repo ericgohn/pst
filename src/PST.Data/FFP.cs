@@ -37,6 +37,8 @@ namespace PST.Data
         public string CIC_Name { get; set; }
         public int FFPSetId { get; set; }
         public int Seq { get; set; }
+        public bool Dispatched { get; set; }
+        public double ResAmount { get; set; }
     
         public virtual FFPSet FFPSet { get; set; }
     }

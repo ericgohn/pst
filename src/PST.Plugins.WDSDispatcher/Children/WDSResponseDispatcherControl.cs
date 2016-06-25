@@ -350,5 +350,37 @@ namespace PST.Plugins.WDSDispatcher.Children
         }
 
         #endregion
+
+        private void buttonX5_Click(object sender, EventArgs e)
+        {
+            var init = 10;
+            int amount = 10/2;
+            int pa = amount;
+            int ga = amount;
+            int pr = 0;
+            int gr = 0;
+
+            int ca = 0;
+            while (true)
+            {
+                ca += pa / 2;
+                ca+= ga / 4;
+
+                pr = pa % 2;
+                gr = ga % 4;
+
+                pa = ca + pr;
+                ga = ca + gr;
+
+                amount += ca;
+                ca = 0;
+
+                if (pa <2 && ga <4 )
+                    break;
+
+            }
+
+            MessageBox.Show(amount.ToString());
+        }
     }
 }

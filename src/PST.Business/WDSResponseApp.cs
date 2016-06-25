@@ -49,6 +49,48 @@ namespace PST.Business
             }
         }
 
+        public void Dispatch(string pno)
+        {
+            using (var context = new Entities())
+            using (var uow = new UnitOfWork(context))
+            {
+                var wdsList = uow.WDSResponseRepository.Get(o => o.PNO == pno, q => q.OrderBy(o => o.Date));
+                foreach (var wds in wdsList)
+                {
+                    double amount = wds.WDS_Response ?? 0;
+                    if (amount == 0)
+                        continue;
+                    var ffpList =
+                        uow.FFPRepository.Get(o => o.F_FP_PNO == pno && o.Shipped_Month >= wds.Date && !o.Dispatched, q=>q.OrderBy(o=>o.Shipped_Month));
+                    foreach (var f in ffpList)
+                    {
+                        var needs = f.Shipped_QTY - f.ResAmount;
+                        if (amount > needs)
+                        {
+                            f.ResAmount = (double) f.Shipped_QTY;
+                            f.Dispatched = true;
+                            wds.WDS_Response = amount - needs;
+                        }
+                        else if (amount == f.Shipped_QTY)
+                        {
+                            f.ResAmount = (double) f.Shipped_QTY;
+                            f.Dispatched = true;
+                            wds.Dispatched = true;
+                            break;
+                        }
+                        else
+                        {
+                            f.ResAmount = amount;
+                            wds.Dispatched = true;
+                            break;
+                        }
+                    }
+                }
+
+                uow.Commit();
+            }
+        }
+
         #endregion
 
         #region Private Methods
