@@ -46,7 +46,7 @@ namespace PST.UI.Common
             return service;
         }
 
-        public IWDResponseService GetWDResponseService()
+        public WDResponseServiceClient GetWDResponseService()
         {
             var endPoint = GetServerEndPoint("WDResponseService.svc");
             var service = endPoint == null

@@ -7,6 +7,7 @@
 //     
 //  ==============================================================
 
+using System.Collections.Generic;
 using PST.Business;
 using PST.Domain;
 using Zeexone.Framework.Core.WCF;
@@ -31,6 +32,16 @@ namespace PST.Service
         public Response RemoveBySetName(string name)
         {
             return _app.RemoveBySetName(name);
+        }
+
+        public Response<List<string>> GetPNOs(int ffpSetId)
+        {
+            return _app.GetPNOs(ffpSetId);
+        }
+
+        public Response Dispatch(int ffpSetId, string pno)
+        {
+            return _app.Dispatch(ffpSetId, pno);
         }
     }
 }

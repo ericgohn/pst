@@ -16,22 +16,38 @@ namespace PST.UI.Common.WDResponseService {
     public interface IWDResponseService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/AddItems", ReplyAction="http://tempuri.org/IWDResponseService/AddItemsResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         PST.Domain.Response AddItems(string sql);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/AddItems", ReplyAction="http://tempuri.org/IWDResponseService/AddItemsResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> AddItemsAsync(string sql);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/RemoveBySetId", ReplyAction="http://tempuri.org/IWDResponseService/RemoveBySetIdResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         PST.Domain.Response RemoveBySetId(int setId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/RemoveBySetId", ReplyAction="http://tempuri.org/IWDResponseService/RemoveBySetIdResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetIdAsync(int setId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/RemoveBySetName", ReplyAction="http://tempuri.org/IWDResponseService/RemoveBySetNameResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         PST.Domain.Response RemoveBySetName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/RemoveBySetName", ReplyAction="http://tempuri.org/IWDResponseService/RemoveBySetNameResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetNameAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/GetPNOs", ReplyAction="http://tempuri.org/IWDResponseService/GetPNOsResponse")]
+        PST.Domain.Response<string[]> GetPNOs(int ffpSetId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/GetPNOs", ReplyAction="http://tempuri.org/IWDResponseService/GetPNOsResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<string[]>> GetPNOsAsync(int ffpSetId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/Dispatch", ReplyAction="http://tempuri.org/IWDResponseService/DispatchResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
+        PST.Domain.Response Dispatch(int ffpSetId, string pno);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWDResponseService/Dispatch", ReplyAction="http://tempuri.org/IWDResponseService/DispatchResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response> DispatchAsync(int ffpSetId, string pno);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +99,22 @@ namespace PST.UI.Common.WDResponseService {
         
         public System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetNameAsync(string name) {
             return base.Channel.RemoveBySetNameAsync(name);
+        }
+        
+        public PST.Domain.Response<string[]> GetPNOs(int ffpSetId) {
+            return base.Channel.GetPNOs(ffpSetId);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response<string[]>> GetPNOsAsync(int ffpSetId) {
+            return base.Channel.GetPNOsAsync(ffpSetId);
+        }
+        
+        public PST.Domain.Response Dispatch(int ffpSetId, string pno) {
+            return base.Channel.Dispatch(ffpSetId, pno);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response> DispatchAsync(int ffpSetId, string pno) {
+            return base.Channel.DispatchAsync(ffpSetId, pno);
         }
     }
 }

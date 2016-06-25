@@ -7,6 +7,7 @@
 //     
 //  ==============================================================
 
+using System.Collections.Generic;
 using System.Linq;
 using PST.Data;
 using PST.Domain;
@@ -49,29 +50,35 @@ namespace PST.Business
             }
         }
 
-        public void Dispatch(string pno)
+        public Response Dispatch(int ffpSetId, string pno)
         {
             using (var context = new Entities())
             using (var uow = new UnitOfWork(context))
             {
-                var wdsList = uow.WDSResponseRepository.Get(o => o.PNO == pno, q => q.OrderBy(o => o.Date));
+                var wdsList = uow.WDSResponseRepository.Get(
+                    o => o.FFPSetId == ffpSetId && o.PNO == pno && !o.Dispatched,
+                    q => q.OrderBy(o => o.Date).ThenBy(o => o.Seq));
+                var ffpList =
+                    uow.FFPRepository.Get(o => o.FFPSetId == ffpSetId && o.F_FP_PNO == pno && !o.Dispatched,
+                        q => q.OrderBy(o => o.Shipped_Month).ThenBy(o => o.Seq));
                 foreach (var wds in wdsList)
                 {
-                    double amount = wds.WDS_Response ?? 0;
-                    if (amount == 0)
-                        continue;
-                    var ffpList =
-                        uow.FFPRepository.Get(o => o.F_FP_PNO == pno && o.Shipped_Month >= wds.Date && !o.Dispatched, q=>q.OrderBy(o=>o.Shipped_Month));
                     foreach (var f in ffpList)
                     {
+                        if (f.Dispatched)
+                            continue;
+                        if (f.Shipped_QTY == 0)
+                            continue;
+                        if (f.Shipped_Month < wds.Date)
+                            continue;
                         var needs = f.Shipped_QTY - f.ResAmount;
-                        if (amount > needs)
+                        if (wds.WDS_Response > needs)
                         {
                             f.ResAmount = (double) f.Shipped_QTY;
                             f.Dispatched = true;
-                            wds.WDS_Response = amount - needs;
+                            wds.WDS_Response -= needs;
                         }
-                        else if (amount == f.Shipped_QTY)
+                        else if (wds.WDS_Response == f.Shipped_QTY)
                         {
                             f.ResAmount = (double) f.Shipped_QTY;
                             f.Dispatched = true;
@@ -80,7 +87,7 @@ namespace PST.Business
                         }
                         else
                         {
-                            f.ResAmount = amount;
+                            f.ResAmount = (double) wds.WDS_Response;
                             wds.Dispatched = true;
                             break;
                         }
@@ -88,6 +95,18 @@ namespace PST.Business
                 }
 
                 uow.Commit();
+                return Response.Succeed();
+            }
+        }
+
+        public Response<List<string>> GetPNOs(int ffpSetId)
+        {
+            using (var context = new Entities())
+            {
+                var query =
+                    context.Database.SqlQuery<string>(
+                        "SELECT DISTINCT [PNO] FROM [dbo].[WDSResponse] WHERE [FFPSetId] = @p0", ffpSetId);
+                return Response<List<string>>.Succeed(query.ToList());
             }
         }
 

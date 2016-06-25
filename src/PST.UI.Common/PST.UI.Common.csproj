@@ -121,6 +121,9 @@
     <None Include="Service References\WDResponseService\WDResponseService11.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WDResponseService\WDResponseService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PST.Domain\PST.Domain.csproj">

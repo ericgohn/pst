@@ -24,54 +24,49 @@ namespace PST.Plugins.WDSDispatcher.Children
             InitializeComponent();
         }
 
+        private async void cmdGetPNO_Executed(object sender, EventArgs e)
+        {
+            SetRunningStatus(true, "正在获取FFP Set数据...");
+            var ffpSetService = ServiceFactory.S.GetFFPSetService();
+            string setName = tbSetName.Text.Trim();
+            var ffpSetRes = await ffpSetService.UpsertAsync(setName);
+            if (!ffpSetRes.Success)
+            {
+                DialogHelper.ShowLoadError(ffpSetRes.Message);
+                SetRunningStatus(false);
+                return;
+            }
+            var ffpSetId = ffpSetRes.Arg;
+            SetRunningStatus(true, "正在获取PNO数据...");
+            var service = ServiceFactory.S.GetWDResponseService();
+            service.InnerChannel.OperationTimeout = TimeSpan.FromMinutes(10);
+            var pnoRes = await service.GetPNOsAsync(ffpSetId);
+            if (!pnoRes.Success)
+            {
+                SetRunningStatus(false);
+                DialogHelper.ShowLoadError(ffpSetRes.Message);
+                return;
+            }
+
+            foreach (var pno in pnoRes.Arg)
+            {
+                if (string.IsNullOrWhiteSpace(pno))
+                    continue;
+                SetRunningStatus(true, string.Format("正在分配PNO:{0}...", pno));
+                var dispatchRes = await service.DispatchAsync(ffpSetId, pno);
+                if (!dispatchRes.Success)
+                {
+                    DialogHelper.ShowUpdateError(dispatchRes.Message);
+                    break;
+                }
+            }
+            SetRunningStatus(false);
+        }
+
         #region Commands
 
         private async void cmdDispatch_Executed(object sender, EventArgs e)
         {
-            bool isValid = importFFPExcelControl.ValidateInput();
-            isValid = isValid && importWDSExcelControl.ValidateInput();
-            isValid = isValid && superValidator.Validate();
-            if (!isValid)
-                return;
-            var ffpFilPath = importFFPExcelControl.FilePath;
-            var ffpSheetName = importFFPExcelControl.SheetName;
-            var wdsFilePath = importWDSExcelControl.FilePath;
-            var wdsSheetName = importWDSExcelControl.SheetName;
-            var setName = tbSetName.Text.Trim().ToUpper();
-            var confirmMsg = string.Format("您确定要导入工作簿\"{0}\"及\"{1}\"中的所有数据吗？", ffpSheetName, wdsSheetName);
-            if (DialogHelper.ShowConfirm("数据导入", confirmMsg) != eTaskDialogResult.Yes)
-                return;
-
-            var setService = ServiceFactory.S.GetFFPSetService();
-            var res = await setService.HasDataAsync(setName);
-
-            bool dataExist = res.Arg;
-            if (dataExist)
-            {
-                if (DialogHelper.ShowConfirm("期次下已存在数据", "您输入的期次下已存在数据， 继续导入将覆盖这些数据，是否继续？") != eTaskDialogResult.Yes)
-                    return;
-            }
-
-            var setIdRes = await setService.UpsertAsync(setName);
-            if (!res.Success)
-            {
-                DialogHelper.ShowAddError(res.Message);
-                return;
-            }
-            var setId = setIdRes.Arg;
-            SetRunningStatus(true, "正在准备导入...");
-
-            var ffpImporter = new FFPExcelImporter(ffpFilPath, ffpSheetName);
-            ffpImporter.InProcess += ffpImporter_InProcess;
-            ffpImporter.PostProcess += ffpImporter_PostProcess;
-            await Task.Run(() => { ffpImporter.Process(setId, dataExist); });
-
-            var wdsImporter = new WDSExcelImporter(wdsFilePath, wdsSheetName);
-            wdsImporter.InProcess += wdsImporter_InProcess;
-            wdsImporter.PostProcess += wdsImporter_PostProcess;
-            await Task.Run(() => { wdsImporter.Process(setId, dataExist); });
-
-            SetRunningStatus(false);
         }
 
         private async void cmdImport_Executed(object sender, EventArgs e)
@@ -350,37 +345,5 @@ namespace PST.Plugins.WDSDispatcher.Children
         }
 
         #endregion
-
-        private void buttonX5_Click(object sender, EventArgs e)
-        {
-            var init = 10;
-            int amount = 10/2;
-            int pa = amount;
-            int ga = amount;
-            int pr = 0;
-            int gr = 0;
-
-            int ca = 0;
-            while (true)
-            {
-                ca += pa / 2;
-                ca+= ga / 4;
-
-                pr = pa % 2;
-                gr = ga % 4;
-
-                pa = ca + pr;
-                ga = ca + gr;
-
-                amount += ca;
-                ca = 0;
-
-                if (pa <2 && ga <4 )
-                    break;
-
-            }
-
-            MessageBox.Show(amount.ToString());
-        }
     }
 }

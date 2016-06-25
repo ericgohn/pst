@@ -43,4 +43,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetPNOs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ffpSetId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPNOsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/PST.Domain" minOccurs="0" name="GetPNOsResult" nillable="true" type="q4:ResponseOfArrayOfstringuHEDJ7Dj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Dispatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ffpSetId" type="xs:int" />
+        <xs:element minOccurs="0" name="pno" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DispatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/PST.Domain" minOccurs="0" name="DispatchResult" nillable="true" type="q5:Response" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

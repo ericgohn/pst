@@ -7,6 +7,7 @@
 //     
 //  ==============================================================
 
+using System.Collections.Generic;
 using System.ServiceModel;
 using PST.Domain;
 
@@ -23,5 +24,11 @@ namespace PST.Service
 
         [OperationContract]
         Response RemoveBySetName(string name);
+
+        [OperationContract]
+        Response<List<string>> GetPNOs(int ffpSetId);
+
+        [OperationContract]
+        Response Dispatch(int ffpSetId, string pno);
     }
 }

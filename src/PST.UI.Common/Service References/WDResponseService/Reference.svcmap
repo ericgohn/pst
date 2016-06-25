@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:2764/WDResponseService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WDResponseService.disco" MetadataType="Disco" ID="6c276af0-6280-4469-a46b-9c05fb1988cc" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?disco" />
-    <MetadataFile FileName="WDResponseService1.xsd" MetadataType="Schema" ID="e522b276-0f35-4d33-8637-8f2e7eb234c5" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WDResponseService2.xsd" MetadataType="Schema" ID="60ae514d-0f90-4c04-afb6-ff3a728bc7d0" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd3" />
     <MetadataFile FileName="WDResponseService11.xsd" MetadataType="Schema" ID="0de121be-1516-4c90-85e7-d2defe2cf421" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd1" />
-    <MetadataFile FileName="WDResponseService.wsdl" MetadataType="Wsdl" ID="89e9234a-8bc7-451e-ae12-734f358aaeaa" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?wsdl" />
     <MetadataFile FileName="WDResponseService.xsd" MetadataType="Schema" ID="0e96a5d4-a84e-4525-a061-215ddaba4b5a" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WDResponseService1.xsd" MetadataType="Schema" ID="e522b276-0f35-4d33-8637-8f2e7eb234c5" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WDResponseService.wsdl" MetadataType="Wsdl" ID="89e9234a-8bc7-451e-ae12-734f358aaeaa" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?wsdl" />
+    <MetadataFile FileName="WDResponseService.disco" MetadataType="Disco" ID="6c276af0-6280-4469-a46b-9c05fb1988cc" SourceId="1" SourceUrl="http://localhost:2764/WDResponseService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
