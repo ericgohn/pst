@@ -99,6 +99,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Excels\ExcelImporter.cs" />
+    <Compile Include="Excels\ExcelWriter.cs" />
     <Compile Include="Excels\FFPExcelImporter.cs" />
     <Compile Include="Excels\WDSExcelImporter.cs" />
     <Compile Include="MainForm.cs">

@@ -43,4 +43,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetSqlData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="currentPage" type="xs:int" />
+        <xs:element minOccurs="0" name="itemsPerPage" type="xs:int" />
+        <xs:element minOccurs="0" name="ffpSetId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSqlDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/PST.Domain" minOccurs="0" name="GetSqlDataResult" nillable="true" type="q4:ResponseOfArrayOfstringuHEDJ7Dj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

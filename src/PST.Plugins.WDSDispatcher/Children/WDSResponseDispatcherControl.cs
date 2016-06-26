@@ -8,11 +8,13 @@
 //  ==============================================================
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using PST.Plugins.WDSDispatcher.Excels;
 using PST.UI.Common;
+using PST.UI.Common.FFPService;
 using PST.UI.Common.Helpers;
 
 namespace PST.Plugins.WDSDispatcher.Children
@@ -26,17 +28,7 @@ namespace PST.Plugins.WDSDispatcher.Children
 
         private async void cmdGetPNO_Executed(object sender, EventArgs e)
         {
-            SetRunningStatus(true, "正在获取FFP Set数据...");
-            var ffpSetService = ServiceFactory.S.GetFFPSetService();
-            string setName = tbSetName.Text.Trim();
-            var ffpSetRes = await ffpSetService.UpsertAsync(setName);
-            if (!ffpSetRes.Success)
-            {
-                DialogHelper.ShowLoadError(ffpSetRes.Message);
-                SetRunningStatus(false);
-                return;
-            }
-            var ffpSetId = ffpSetRes.Arg;
+            var ffpSetId = await GetFFPSetIdAsync();
             SetRunningStatus(true, "正在获取PNO数据...");
             var service = ServiceFactory.S.GetWDResponseService();
             service.InnerChannel.OperationTimeout = TimeSpan.FromMinutes(10);
@@ -44,7 +36,7 @@ namespace PST.Plugins.WDSDispatcher.Children
             if (!pnoRes.Success)
             {
                 SetRunningStatus(false);
-                DialogHelper.ShowLoadError(ffpSetRes.Message);
+                DialogHelper.ShowLoadError(pnoRes.Message);
                 return;
             }
 
@@ -306,6 +298,21 @@ namespace PST.Plugins.WDSDispatcher.Children
             SetRunningStatus(false);
         }
 
+        private async Task<int> GetFFPSetIdAsync()
+        {
+            SetRunningStatus(true, "正在获取FFP Set数据...");
+            var ffpSetService = ServiceFactory.S.GetFFPSetService();
+            string setName = tbSetName.Text.Trim();
+            var ffpSetRes = await ffpSetService.UpsertAsync(setName);
+            if (!ffpSetRes.Success)
+            {
+                DialogHelper.ShowLoadError(ffpSetRes.Message);
+                SetRunningStatus(false);
+                return -1;
+            }
+            return ffpSetRes.Arg;
+        }
+
         #endregion
 
         #region Control Events
@@ -345,5 +352,64 @@ namespace PST.Plugins.WDSDispatcher.Children
         }
 
         #endregion
+
+        private async void cmdExport_Executed(object sender, EventArgs e)
+        {
+            var str = @"CREATE TABLE [FFP](
+	[Seq] int,
+	[Dispatched] bit,
+	[ResAmount] float,
+	[Series] nvarchar(255),
+	[Model Name] nvarchar(255),
+	[Business No] nvarchar(255),
+	[Sales Route] nvarchar(255),
+	[PNO] nvarchar(255),
+	[Sales PNO] nvarchar(255),
+	[Sub Information] float,
+	[Customer Name] nvarchar(255),
+	[Rank] nvarchar(255),
+	[Rate] float,
+	[ACC Code] nvarchar(255),
+	[Sales Staff] nvarchar(255),
+	[Order Division] float,
+	[Shipped Month] datetime,
+	[Shipped QTY] float,
+	[Shipped Qty2] float,
+	[F/FP PNO] nvarchar(255),
+	[F/FP Type] nvarchar(255),
+	[CIG Name] nvarchar(255),
+	[CIC Name] nvarchar(255)
+)";
+            var writer = new ExcelWriter(@"D:\test.xlsx");
+            writer.CreateSheet(str);
+
+            var ffpSetId = await GetFFPSetIdAsync();
+
+            var service = ServiceFactory.S.GetFFPService();
+            int currentPage = 1;
+            int itemsPerPage = 100;
+            while (true)
+            {
+                int start = (currentPage - 1)*itemsPerPage+1;
+                int end = start + itemsPerPage;
+                SetRunningStatus(true, string.Format("正在导出第{0}-{1}条数据...", start,end));
+                var res = await service.GetSqlDataAsync(currentPage, itemsPerPage, ffpSetId);
+                if (res.Arg.Length == 0)
+                {
+                    SetRunningStatus(false);
+                    break;
+                }
+                List<string> list = new List<string>();
+                foreach (var sql in res.Arg)
+                {
+                    string insertSql = string.Format("INSERT INTO [FFP] VALUES {0};", sql);
+                    list.Add(insertSql);
+                }
+                writer.Insert(list);
+                currentPage++;
+            }
+            
+        }
+
     }
 }

@@ -7,6 +7,7 @@
 //     
 //  ==============================================================
 
+using System.Collections.Generic;
 using System.ServiceModel;
 using PST.Domain;
 
@@ -23,5 +24,8 @@ namespace PST.Service
 
         [OperationContract]
         Response RemoveBySetName(string name);
+
+        [OperationContract]
+        Response<List<string>> GetSqlData(int currentPage, int itemsPerPage, int ffpSetId);
     }
 }

@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:2764/FFPService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FFPService.disco" MetadataType="Disco" ID="f934502c-f2f1-4a69-8b4a-cce1bc7a8c80" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?disco" />
-    <MetadataFile FileName="FFPService.xsd" MetadataType="Schema" ID="defa939a-8b6c-462e-a09d-1b0b45f3d4e2" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?xsd=xsd0" />
     <MetadataFile FileName="FFPService1.xsd" MetadataType="Schema" ID="55be8ed1-78c5-43ec-8ab4-7550b16b43c7" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?xsd=xsd1" />
-    <MetadataFile FileName="FFPService.wsdl" MetadataType="Wsdl" ID="98e24a32-738b-4f61-904a-55221b3307fc" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?wsdl" />
+    <MetadataFile FileName="FFPService.xsd" MetadataType="Schema" ID="defa939a-8b6c-462e-a09d-1b0b45f3d4e2" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?xsd=xsd0" />
+    <MetadataFile FileName="FFPService3.xsd" MetadataType="Schema" ID="a922911f-bd2d-4d1d-827f-a56fc7923d02" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?xsd=xsd3" />
     <MetadataFile FileName="FFPService2.xsd" MetadataType="Schema" ID="9426d087-41d6-40ef-88e6-d4c78e20a243" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?xsd=xsd2" />
+    <MetadataFile FileName="FFPService.wsdl" MetadataType="Wsdl" ID="98e24a32-738b-4f61-904a-55221b3307fc" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?wsdl" />
+    <MetadataFile FileName="FFPService.disco" MetadataType="Disco" ID="f934502c-f2f1-4a69-8b4a-cce1bc7a8c80" SourceId="1" SourceUrl="http://localhost:2764/FFPService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -34,6 +34,10 @@
             this.importWDSExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
             this.importFFPExcelControl = new PST.Plugins.WDSDispatcher.Controls.ImportExcelControl();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.buttonX6 = new DevComponents.DotNetBar.ButtonX();
+            this.cmdExport = new DevComponents.DotNetBar.Command(this.components);
+            this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
+            this.cmdGetPNO = new DevComponents.DotNetBar.Command(this.components);
             this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
             this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
             this.cmdRemove = new DevComponents.DotNetBar.Command(this.components);
@@ -55,8 +59,6 @@
             this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入期次");
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.highlighter = new DevComponents.DotNetBar.Validator.Highlighter();
-            this.cmdGetPNO = new DevComponents.DotNetBar.Command(this.components);
-            this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -106,6 +108,7 @@
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.buttonX6);
             this.panelEx1.Controls.Add(this.buttonX5);
             this.panelEx1.Controls.Add(this.buttonX4);
             this.panelEx1.Controls.Add(this.buttonX3);
@@ -126,6 +129,40 @@
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 3;
+            // 
+            // buttonX6
+            // 
+            this.buttonX6.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX6.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX6.Command = this.cmdExport;
+            this.buttonX6.Location = new System.Drawing.Point(580, 67);
+            this.buttonX6.Name = "buttonX6";
+            this.buttonX6.Size = new System.Drawing.Size(75, 23);
+            this.buttonX6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX6.TabIndex = 8;
+            this.buttonX6.Text = "buttonX6";
+            // 
+            // cmdExport
+            // 
+            this.cmdExport.Name = "cmdExport";
+            this.cmdExport.Executed += new System.EventHandler(this.cmdExport_Executed);
+            // 
+            // buttonX5
+            // 
+            this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX5.Command = this.cmdGetPNO;
+            this.buttonX5.Location = new System.Drawing.Point(459, 68);
+            this.buttonX5.Name = "buttonX5";
+            this.buttonX5.Size = new System.Drawing.Size(75, 23);
+            this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX5.TabIndex = 7;
+            this.buttonX5.Text = "buttonX5";
+            // 
+            // cmdGetPNO
+            // 
+            this.cmdGetPNO.Name = "cmdGetPNO";
+            this.cmdGetPNO.Executed += new System.EventHandler(this.cmdGetPNO_Executed);
             // 
             // buttonX4
             // 
@@ -316,23 +353,6 @@
             // 
             this.highlighter.ContainerControl = this;
             // 
-            // cmdGetPNO
-            // 
-            this.cmdGetPNO.Name = "cmdGetPNO";
-            this.cmdGetPNO.Executed += new System.EventHandler(this.cmdGetPNO_Executed);
-            // 
-            // buttonX5
-            // 
-            this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX5.Command = this.cmdGetPNO;
-            this.buttonX5.Location = new System.Drawing.Point(459, 68);
-            this.buttonX5.Name = "buttonX5";
-            this.buttonX5.Size = new System.Drawing.Size(75, 23);
-            this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX5.TabIndex = 7;
-            this.buttonX5.Text = "buttonX5";
-            // 
             // WDSResponseDispatcherControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -378,5 +398,7 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem5;
         private DevComponents.DotNetBar.ButtonItem buttonItem6;
         private DevComponents.DotNetBar.ButtonX buttonX5;
+        private DevComponents.DotNetBar.ButtonX buttonX6;
+        private DevComponents.DotNetBar.Command cmdExport;
     }
 }

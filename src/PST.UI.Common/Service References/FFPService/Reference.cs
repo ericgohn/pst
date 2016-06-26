@@ -16,22 +16,31 @@ namespace PST.UI.Common.FFPService {
     public interface IFFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         PST.Domain.Response AddItems(string sql);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> AddItemsAsync(string sql);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetId", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetIdResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         PST.Domain.Response RemoveBySetId(int setId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetId", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetIdResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetIdAsync(int setId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         PST.Domain.Response RemoveBySetName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetNameAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/GetSqlData", ReplyAction="http://tempuri.org/IFFPService/GetSqlDataResponse")]
+        PST.Domain.Response<string[]> GetSqlData(int currentPage, int itemsPerPage, int ffpSetId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/GetSqlData", ReplyAction="http://tempuri.org/IFFPService/GetSqlDataResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<string[]>> GetSqlDataAsync(int currentPage, int itemsPerPage, int ffpSetId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +92,14 @@ namespace PST.UI.Common.FFPService {
         
         public System.Threading.Tasks.Task<PST.Domain.Response> RemoveBySetNameAsync(string name) {
             return base.Channel.RemoveBySetNameAsync(name);
+        }
+        
+        public PST.Domain.Response<string[]> GetSqlData(int currentPage, int itemsPerPage, int ffpSetId) {
+            return base.Channel.GetSqlData(currentPage, itemsPerPage, ffpSetId);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response<string[]>> GetSqlDataAsync(int currentPage, int itemsPerPage, int ffpSetId) {
+            return base.Channel.GetSqlDataAsync(currentPage, itemsPerPage, ffpSetId);
         }
     }
 }

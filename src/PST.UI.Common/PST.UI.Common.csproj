@@ -101,6 +101,9 @@
     <None Include="Service References\FFPService\FFPService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\FFPService\FFPService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\FFPSetService\FFPSetService.wsdl" />
     <None Include="Service References\FFPSetService\FFPSetService.xsd">
       <SubType>Designer</SubType>
