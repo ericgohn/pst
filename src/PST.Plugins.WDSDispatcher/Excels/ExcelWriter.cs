@@ -12,6 +12,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PST.Plugins.WDSDispatcher.Excels
 {
@@ -59,6 +60,24 @@ namespace PST.Plugins.WDSDispatcher.Excels
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public Task InsertAsync(List<string> insertSqls)
+        {
+            return Task.Run(() =>
+            {
+                using (OleDbConnection conn = new OleDbConnection(_connectionString))
+                using (OleDbCommand command = new OleDbCommand())
+                {
+                    conn.Open();
+                    command.Connection = conn;
+                    foreach (var sql in insertSqls)
+                    {
+                        command.CommandText = sql;
+                        command.ExecuteNonQuery();
+                    }
+                }
+            });
         }
     }
 

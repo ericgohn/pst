@@ -36,8 +36,6 @@
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.buttonX6 = new DevComponents.DotNetBar.ButtonX();
             this.cmdExport = new DevComponents.DotNetBar.Command(this.components);
-            this.buttonX5 = new DevComponents.DotNetBar.ButtonX();
-            this.cmdGetPNO = new DevComponents.DotNetBar.Command(this.components);
             this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
             this.buttonItem4 = new DevComponents.DotNetBar.ButtonItem();
             this.cmdRemove = new DevComponents.DotNetBar.Command(this.components);
@@ -109,7 +107,6 @@
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.panelEx1.Controls.Add(this.buttonX6);
-            this.panelEx1.Controls.Add(this.buttonX5);
             this.panelEx1.Controls.Add(this.buttonX4);
             this.panelEx1.Controls.Add(this.buttonX3);
             this.panelEx1.Controls.Add(this.lblMessage);
@@ -135,34 +132,17 @@
             this.buttonX6.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX6.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX6.Command = this.cmdExport;
-            this.buttonX6.Location = new System.Drawing.Point(580, 67);
+            this.buttonX6.Location = new System.Drawing.Point(447, 17);
             this.buttonX6.Name = "buttonX6";
             this.buttonX6.Size = new System.Drawing.Size(75, 23);
             this.buttonX6.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX6.TabIndex = 8;
-            this.buttonX6.Text = "buttonX6";
+            this.buttonX6.Text = "导出";
             // 
             // cmdExport
             // 
             this.cmdExport.Name = "cmdExport";
             this.cmdExport.Executed += new System.EventHandler(this.cmdExport_Executed);
-            // 
-            // buttonX5
-            // 
-            this.buttonX5.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX5.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX5.Command = this.cmdGetPNO;
-            this.buttonX5.Location = new System.Drawing.Point(459, 68);
-            this.buttonX5.Name = "buttonX5";
-            this.buttonX5.Size = new System.Drawing.Size(75, 23);
-            this.buttonX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX5.TabIndex = 7;
-            this.buttonX5.Text = "buttonX5";
-            // 
-            // cmdGetPNO
-            // 
-            this.cmdGetPNO.Name = "cmdGetPNO";
-            this.cmdGetPNO.Executed += new System.EventHandler(this.cmdGetPNO_Executed);
             // 
             // buttonX4
             // 
@@ -261,7 +241,7 @@
             // 
             // 
             this.lblMessage.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblMessage.Location = new System.Drawing.Point(143, 55);
+            this.lblMessage.Location = new System.Drawing.Point(61, 47);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(75, 19);
             this.lblMessage.TabIndex = 4;
@@ -275,7 +255,7 @@
             // 
             this.circularProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.circularProgress.FocusCuesEnabled = false;
-            this.circularProgress.Location = new System.Drawing.Point(97, 53);
+            this.circularProgress.Location = new System.Drawing.Point(15, 45);
             this.circularProgress.Name = "circularProgress";
             this.circularProgress.Size = new System.Drawing.Size(39, 23);
             this.circularProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
@@ -286,12 +266,12 @@
             this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX2.Command = this.cmdDispatch;
-            this.buttonX2.Location = new System.Drawing.Point(15, 54);
+            this.buttonX2.Location = new System.Drawing.Point(366, 17);
             this.buttonX2.Name = "buttonX2";
             this.buttonX2.Size = new System.Drawing.Size(75, 23);
             this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX2.TabIndex = 2;
-            this.buttonX2.Text = "Dispatch";
+            this.buttonX2.Text = "自动分配";
             // 
             // cmdDispatch
             // 
@@ -308,7 +288,7 @@
             this.buttonX1.Size = new System.Drawing.Size(75, 23);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 1;
-            this.buttonX1.Text = "生成";
+            this.buttonX1.Text = "自动生成";
             // 
             // cmdGenerateIdentity
             // 
@@ -392,12 +372,10 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem3;
         private DevComponents.DotNetBar.Command cmdImport;
         private DevComponents.DotNetBar.Command cmdRemove;
-        private DevComponents.DotNetBar.Command cmdGetPNO;
         private DevComponents.DotNetBar.ButtonX buttonX4;
         private DevComponents.DotNetBar.ButtonItem buttonItem4;
         private DevComponents.DotNetBar.ButtonItem buttonItem5;
         private DevComponents.DotNetBar.ButtonItem buttonItem6;
-        private DevComponents.DotNetBar.ButtonX buttonX5;
         private DevComponents.DotNetBar.ButtonX buttonX6;
         private DevComponents.DotNetBar.Command cmdExport;
     }
