@@ -7,53 +7,66 @@
 //     
 //  ==============================================================
 
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PST.Plugins.WDSDispatcher.Excels
 {
-    public class ExcelWriter
+    public class ExcelWriter : IDisposable
     {
-        private readonly string _connectionString;
         private readonly string _filePath;
+        private OleDbCommand _command;
+        private OleDbConnection _connection;
+        private bool _disposed;
 
         public ExcelWriter(string filePath)
         {
             _filePath = filePath;
-            _connectionString = ExcelHelper.GetConnectString(filePath);
+            var connectionString = ExcelHelper.GetConnectString(filePath);
+            _connection = new OleDbConnection(connectionString);
+            _command = new OleDbCommand {Connection = _connection};
+        }
+
+        /// <summary>
+        ///     执行与释放或重置非托管资源相关的应用程序定义的任务。
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public void CreateSheet(string createSql)
         {
-            using (OleDbConnection conn = new OleDbConnection(_connectionString))
-            using(OleDbCommand command = new OleDbCommand(createSql,conn))
+            using (OleDbCommand command = new OleDbCommand(createSql, _connection))
             {
-                conn.Open();
+                if (_connection.State != ConnectionState.Open)
+                    _connection.Open();
                 command.ExecuteNonQuery();
             }
         }
 
         public void Insert(string insertSql)
         {
-            using (OleDbConnection conn = new OleDbConnection(_connectionString))
-            using (OleDbCommand command = new OleDbCommand(insertSql, conn))
+            using (OleDbCommand command = new OleDbCommand(insertSql, _connection))
             {
-                conn.Open();
+                if (_connection.State != ConnectionState.Open)
+                    _connection.Open();
                 command.ExecuteNonQuery();
             }
         }
 
         public void Insert(List<string> insertSqls)
         {
-            using (OleDbConnection conn = new OleDbConnection(_connectionString))
             using (OleDbCommand command = new OleDbCommand())
             {
-                conn.Open();
-                command.Connection = conn;
+                if (_connection.State != ConnectionState.Open)
+                    _connection.Open();
+                command.Connection = _connection;
                 foreach (var sql in insertSqls)
                 {
                     command.CommandText = sql;
@@ -66,50 +79,102 @@ namespace PST.Plugins.WDSDispatcher.Excels
         {
             return Task.Run(() =>
             {
-                using (OleDbConnection conn = new OleDbConnection(_connectionString))
-                using (OleDbCommand command = new OleDbCommand())
+                if (_connection.State != ConnectionState.Open)
+                    _connection.Open();
+                foreach (var sql in insertSqls)
                 {
-                    conn.Open();
-                    command.Connection = conn;
-                    foreach (var sql in insertSqls)
-                    {
-                        command.CommandText = sql;
-                        command.ExecuteNonQuery();
-                    }
+                    _command.CommandText = sql;
+                    _command.ExecuteNonQuery();
                 }
             });
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    if (_command != null)
+                    {
+                        _command.Dispose();
+                        _command = null;
+                    }
+                    if (_connection != null)
+                    {
+                        _connection.Dispose();
+                        _connection = null;
+                    }
+                }
+                _disposed = true;
+            }
+        }
     }
 
-    public class ExcelReader
+    public class ExcelReader : IDisposable
     {
+        private const string SELECT_SQL = "SELECT * FROM [{0}]";
         private readonly string _filePath;
-        private readonly string _connectionString;
+        private OleDbConnection _connection;
+        private bool _disposed;
 
         public ExcelReader(string filePath)
         {
             _filePath = filePath;
-            _connectionString = ExcelHelper.GetConnectString(filePath);
+            var connectionString = ExcelHelper.GetConnectString(filePath);
+            _connection = new OleDbConnection(connectionString);
         }
 
         /// <summary>
-        /// 获取工作簿名称
+        ///     执行与释放或重置非托管资源相关的应用程序定义的任务。
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        ///     获取工作簿名称
         /// </summary>
         /// <returns></returns>
         public List<string> GetSheets()
         {
             List<string> list = new List<string>();
-            using (var conn = new OleDbConnection(_connectionString))
-            {
-                conn.Open();
-                var table = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                if (table == null)
-                    return list;
-                list.AddRange(
-                    table.Rows.Cast<DataRow>()
-                        .Select(dr => dr["TABLE_NAME"].ToString())
-                        .Where(sheetName => sheetName.Contains("$")));
+            if (_connection.State != ConnectionState.Open)
+                _connection.Open();
+            var table = _connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+            if (table == null)
                 return list;
+            list.AddRange(
+                table.Rows.Cast<DataRow>()
+                    .Select(dr => dr["TABLE_NAME"].ToString())
+                    .Where(sheetName => sheetName.Contains("$")));
+            return list;
+        }
+
+        public OleDbDataReader Read(string sheetName)
+        {
+            var sql = string.Format(SELECT_SQL, sheetName);
+            var command = new OleDbCommand(sql, _connection);
+            if (_connection.State != ConnectionState.Open)
+                _connection.Open();
+            return command.ExecuteReader();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    if (_connection != null)
+                    {
+                        _connection.Dispose();
+                        _connection = null;
+                    }
+                }
+                _disposed = true;
             }
         }
     }

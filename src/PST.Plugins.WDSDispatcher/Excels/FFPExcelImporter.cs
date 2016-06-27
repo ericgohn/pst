@@ -16,8 +16,8 @@ namespace PST.Plugins.WDSDispatcher.Excels
 {
     public class FFPExcelImporter : ExcelImporter
     {
-        private const string PREFIX = "('{0}',{1},{2},";
-        private const string COL_PREFIX = "[Id],[FFPSetId],[Seq],";
+        private const string PREFIX = "('{0}',{1},{2},{3},{4},";
+        private const string COL_PREFIX = "[Id],[FFPSetId],[Seq],[Dispatched],";
         private readonly IFFPService _service;
 
         public FFPExcelImporter(string filePath, string sheetName) : base(filePath, sheetName, "FFP")
@@ -37,7 +37,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
 
         protected override StringBuilder GetRowPrefix(int setId, int seq)
         {
-            return new StringBuilder(string.Format(PREFIX, Guid.NewGuid(), setId, seq));
+            return new StringBuilder(string.Format(PREFIX, Guid.NewGuid(), setId, seq, 0, 0));
         }
 
         protected override void RemoveExists(int setId)

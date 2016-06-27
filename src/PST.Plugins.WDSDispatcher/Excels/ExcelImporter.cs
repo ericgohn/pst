@@ -8,15 +8,13 @@
 //  ==============================================================
 
 using System;
-using System.Data.OleDb;
 using System.Text;
 
 namespace PST.Plugins.WDSDispatcher.Excels
 {
     public abstract class ExcelImporter
     {
-        private const string INSERT_SQL = "INSERT INTO dbo.[{0}] ({1}) VALUES ";
-        private const string SELECT_SQL = "select * from [{0}]";
+        private const string INSERT_SQL = "INSERT INTO dbo.[{0}] VALUES ";
         private readonly string _filePath;
         private readonly string _sheetName;
         private readonly string _tableName;
@@ -40,15 +38,11 @@ namespace PST.Plugins.WDSDispatcher.Excels
                 OnInProcess("已有数据清除完毕。");
             }
 
-            var colNames = ExcelHelper.ReadColumnNames(_filePath, _sheetName);
-            var insertSql = string.Format(INSERT_SQL, _tableName, ColNamesPrefix + colNames);
+            var insertSql = string.Format(INSERT_SQL, _tableName);
 
-            var connectionString = ExcelHelper.GetConnectString(_filePath);
-            using (var conn = new OleDbConnection(connectionString))
+            using (var excelReader = new ExcelReader(_filePath))
             {
-                var cmd = new OleDbCommand(string.Format(SELECT_SQL, _sheetName), conn);
-                conn.Open();
-                OleDbDataReader reader = cmd.ExecuteReader();
+                var reader = excelReader.Read(_sheetName);
                 if (reader == null)
                     return;
                 var sb = new StringBuilder();

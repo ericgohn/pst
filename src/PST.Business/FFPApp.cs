@@ -62,9 +62,9 @@ namespace PST.Business
                 foreach (var item in items)
                 {
                     var row = new StringBuilder();
-                    row.Append("('").Append(item.Seq).Append("'");
-                    row.Append(",'").Append(item.Dispatched).Append("'");
-                    row.Append(",'").Append(item.ResAmount).Append("'");
+                    row.Append("(").Append(item.Seq);
+                    row.Append(",").Append(item.Dispatched?1:0);
+                    row.Append(",").Append(item.ResAmount);
                     row.Append(",'").Append(item.Series).Append("'");
                     row.Append(",'").Append(item.Model_Name).Append("'");
                     row.Append(",'").Append(item.Business_No).Append("'");
@@ -79,8 +79,8 @@ namespace PST.Business
                     row.Append(",'").Append(item.Sales_Staff).Append("'");
                     row.Append(",'").Append(item.Order_Division).Append("'");
                     row.Append(",'").Append(item.Shipped_Month).Append("'");
-                    row.Append(",'").Append(item.Shipped_QTY).Append("'");
-                    row.Append(",'").Append(item.Shipped_Qty2).Append("'");
+                    row.Append(",").Append(item.Shipped_QTY);
+                    row.Append(",").Append(item.Shipped_Qty2);
                     row.Append(",'").Append(item.F_FP_PNO).Append("'");
                     row.Append(",'").Append(item.F_FP_Type).Append("'");
                     row.Append(",'").Append(item.CIG_Name).Append("'");

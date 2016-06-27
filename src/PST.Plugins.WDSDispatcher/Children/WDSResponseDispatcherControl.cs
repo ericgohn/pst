@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -56,28 +57,40 @@ namespace PST.Plugins.WDSDispatcher.Children
 
         private async void cmdExport_Executed(object sender, EventArgs e)
         {
-            var writer = new ExcelWriter(@"D:\test.xlsx");
-            writer.CreateSheet(FFP_SCHEMA);
-
-            var ffpSetId = await GetFFPSetIdAsync();
-
-            var service = ServiceFactory.S.GetFFPService();
-            int currentPage = 1;
-            int itemsPerPage = 100;
-            while (true)
+            if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
+                return;
+            var folder = folderBrowserDialog.SelectedPath;
+            string fileName = string.Format("FFP{0}.xlsx", DateTime.Now.ToString("yyyyMMdd"));
+            string filePath = Path.Combine(folder, fileName);
+            if (File.Exists(filePath))
             {
-                int start = (currentPage - 1)*itemsPerPage + 1;
-                int end = start + itemsPerPage;
-                SetRunningStatus(true, string.Format("正在导出第{0}-{1}条数据...", start, end));
-                var res = await service.GetSqlDataAsync(currentPage, itemsPerPage, ffpSetId);
-                if (res.Arg.Length == 0)
+                File.Delete(filePath);
+            }
+            var ffpSetId = await GetFFPSetIdAsync();
+            var service = ServiceFactory.S.GetFFPService();
+
+            using (var writer = new ExcelWriter(filePath))
+            {
+                writer.CreateSheet(FFP_SCHEMA);
+
+                int currentPage = 1;
+                int itemsPerPage = 100;
+                while (true)
                 {
-                    SetRunningStatus(false);
-                    break;
+                    int start = (currentPage - 1)*itemsPerPage + 1;
+                    int end = start + itemsPerPage;
+                    SetRunningStatus(true, string.Format("正在导出第{0}-{1}条数据...", start, end));
+                    var res = await service.GetSqlDataAsync(currentPage, itemsPerPage, ffpSetId);
+                    if (res.Arg.Length == 0)
+                    {
+                        SetRunningStatus(false);
+                        break;
+                    }
+                    List<string> list =
+                        res.Arg.Select(sql => string.Format("INSERT INTO [FFP] VALUES {0};", sql)).ToList();
+                    await writer.InsertAsync(list);
+                    currentPage++;
                 }
-                List<string> list = res.Arg.Select(sql => string.Format("INSERT INTO [FFP] VALUES {0};", sql)).ToList();
-                await writer.InsertAsync(list);
-                currentPage++;
             }
         }
 

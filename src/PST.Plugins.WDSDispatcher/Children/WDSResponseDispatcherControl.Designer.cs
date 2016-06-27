@@ -57,6 +57,7 @@
             this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("请输入期次");
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.highlighter = new DevComponents.DotNetBar.Validator.Highlighter();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -378,5 +379,6 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem6;
         private DevComponents.DotNetBar.ButtonX buttonX6;
         private DevComponents.DotNetBar.Command cmdExport;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }

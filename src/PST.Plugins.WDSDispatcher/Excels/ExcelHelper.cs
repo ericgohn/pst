@@ -85,7 +85,7 @@ namespace PST.Plugins.WDSDispatcher.Excels
             {
                 var cmd = new OleDbCommand("select top 1 * from [" + sheetName + "]", conn);
                 conn.Open();
-                OleDbDataReader reader = cmd.ExecuteReader();
+                OleDbDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
                 if (reader == null)
                     return string.Empty;
                 StringBuilder cols = new StringBuilder();
@@ -126,35 +126,5 @@ namespace PST.Plugins.WDSDispatcher.Excels
             }
         }
 
-        /*public static string GetCreateSql(string filePath, string sheetName)
-        {
-            var connectionString = GetConnectString(filePath);
-            using (var conn = new OleDbConnection(connectionString))
-            using(var command = new OleDbCommand())
-            {
-                command.CommandText = "select top 1 * from [" + sheetName + "]";
-                command.Connection = conn;
-                conn.Open();
-                OleDbDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow);
-                if (reader == null)
-                    return string.Empty;
-                var sb = new StringBuilder();
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        var n = reader.GetName(i);
-                        var isNull = reader.IsDBNull(i);
-                        var t = reader.GetFieldType(i);
-                        var tn = reader.GetDataTypeName(i);
-                        
-                        sb.Append(string.Format("[{0}],", reader.GetName(i)));
-                    }
-                    break;
-                }
-
-            }
-            return string.Empty;
-        }*/
     }
 }
