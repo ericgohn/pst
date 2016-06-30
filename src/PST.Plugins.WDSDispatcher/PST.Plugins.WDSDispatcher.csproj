@@ -82,6 +82,12 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Children\ReallocateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Children\ReallocateControl.Designer.cs">
+      <DependentUpon>ReallocateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Children\WDSResponseDispatcherControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Children\ReallocateControl.resx">
+      <DependentUpon>ReallocateControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Children\WDSResponseDispatcherControl.resx">
       <DependentUpon>WDSResponseDispatcherControl.cs</DependentUpon>
     </EmbeddedResource>

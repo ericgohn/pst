@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PST.Domain" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PST.Domain" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/PST.Domain" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PST.Domain" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:2764/FFPService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:2764/FFPService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="Response">
     <xs:sequence>
       <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
@@ -25,4 +26,57 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="ResponseOfArrayOfstringuHEDJ7Dj" nillable="true" type="tns:ResponseOfArrayOfstringuHEDJ7Dj" />
+  <xs:complexType name="ResponseOfArrayOfFFP787Z_PsiL">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/PST.Domain" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfFFP" Namespace="http://schemas.datacontract.org/2004/07/PST.Domain" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Arg" nillable="true" type="tns:ArrayOfFFP" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseOfArrayOfFFP787Z_PsiL" nillable="true" type="tns:ResponseOfArrayOfFFP787Z_PsiL" />
+  <xs:complexType name="ArrayOfFFP">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FFP" nillable="true" type="tns:FFP" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFFP" nillable="true" type="tns:ArrayOfFFP" />
+  <xs:complexType name="FFP">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACC_Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Business_No" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CIC_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CIG_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Customer_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Dispatched" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FFPSetId" type="xs:int" />
+      <xs:element minOccurs="0" name="F_FP_PNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="F_FP_Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Model_Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Order_Division" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="PNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rank" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rate" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="ResAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="Sales_PNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sales_Route" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sales_Staff" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seq" type="xs:int" />
+      <xs:element minOccurs="0" name="Series" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Shipped_Month" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Shipped_QTY" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Shipped_Qty2" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Sub_Information" nillable="true" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FFP" nillable="true" type="tns:FFP" />
 </xs:schema>

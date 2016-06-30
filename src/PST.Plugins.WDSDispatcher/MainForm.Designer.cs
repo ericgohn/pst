@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wdsResponseDispatcherControl1 = new PST.Plugins.WDSDispatcher.Children.WDSResponseDispatcherControl();
+            this.reallocateControl1 = new PST.Plugins.WDSDispatcher.Children.ReallocateControl();
             this.SuspendLayout();
             // 
-            // wdsResponseDispatcherControl1
+            // reallocateControl1
             // 
-            this.wdsResponseDispatcherControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wdsResponseDispatcherControl1.Location = new System.Drawing.Point(0, 0);
-            this.wdsResponseDispatcherControl1.Name = "wdsResponseDispatcherControl1";
-            this.wdsResponseDispatcherControl1.Size = new System.Drawing.Size(844, 414);
-            this.wdsResponseDispatcherControl1.TabIndex = 0;
+            this.reallocateControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reallocateControl1.Location = new System.Drawing.Point(0, 0);
+            this.reallocateControl1.Name = "reallocateControl1";
+            this.reallocateControl1.Size = new System.Drawing.Size(844, 414);
+            this.reallocateControl1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 414);
-            this.Controls.Add(this.wdsResponseDispatcherControl1);
+            this.Controls.Add(this.reallocateControl1);
             this.Name = "MainForm";
             this.Text = "WDS Response Dispatcher";
-//            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Children.WDSResponseDispatcherControl wdsResponseDispatcherControl1;
+        private Children.ReallocateControl reallocateControl1;
+
     }
 }
 

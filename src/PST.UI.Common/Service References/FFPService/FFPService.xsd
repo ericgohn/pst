@@ -59,4 +59,46 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="FindFfpPnoByCicName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cicName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindFfpPnoByCicNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/PST.Domain" minOccurs="0" name="FindFfpPnoByCicNameResult" nillable="true" type="q5:ResponseOfArrayOfstringuHEDJ7Dj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindSeriesByFfpPno">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ffpPno" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindSeriesByFfpPnoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/PST.Domain" minOccurs="0" name="FindSeriesByFfpPnoResult" nillable="true" type="q6:ResponseOfArrayOfstringuHEDJ7Dj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindBySeries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="series" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindBySeriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/PST.Domain" minOccurs="0" name="FindBySeriesResult" nillable="true" type="q7:ResponseOfArrayOfFFP787Z_PsiL" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

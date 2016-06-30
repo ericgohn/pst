@@ -18,6 +18,39 @@ namespace PST.Business
 {
     public partial class FFPApp
     {
+        public Response<List<string>> FindFfpPnoByCicName(string cicName)
+        {
+            using (var context = new Entities())
+            {
+                var query =
+                    context.Database.SqlQuery<string>(
+                        "SELECT DISTINCT [F/FP PNO] FROM [dbo].[FFP] WHERE [CIC Name] LIKE @p0+'%'", cicName);
+                return Response<List<string>>.Succeed(query.ToList());
+            }
+        }
+
+        public Response<List<string>> FindSeriesByFfpPno(string ffpPno)
+        {
+            using (var context = new Entities())
+            {
+                var query =
+                    context.Database.SqlQuery<string>(
+                        "SELECT DISTINCT [Series] FROM [dbo].[FFP] WHERE [F/FP PNO]= @p0", ffpPno);
+                return Response<List<string>>.Succeed(query.ToList());
+            }
+        }
+
+        public Response<List<FFP>> FindBySeries(string series)
+        {
+            using (var context = new Entities())
+            using (var uow = new UnitOfWork(context))
+            {
+                var items = uow.FFPRepository.Get(o => o.Series == series, q => q.OrderBy(o => o.Seq));
+                var list = AutoMapperBootstrap.M.Map<List<FFP>>(items);
+                return Response<List<FFP>>.Succeed(list);
+            }
+        }
+
         #region public Methods
 
         public Response Import(string sql)
@@ -63,7 +96,7 @@ namespace PST.Business
                 {
                     var row = new StringBuilder();
                     row.Append("(").Append(item.Seq);
-                    row.Append(",").Append(item.Dispatched?1:0);
+                    row.Append(",").Append(item.Dispatched ? 1 : 0);
                     row.Append(",").Append(item.ResAmount);
                     row.Append(",'").Append(item.Series).Append("'");
                     row.Append(",'").Append(item.Model_Name).Append("'");

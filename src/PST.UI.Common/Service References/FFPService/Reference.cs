@@ -17,6 +17,7 @@ namespace PST.UI.Common.FFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.FFP[]>))]
         PST.Domain.Response AddItems(string sql);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
@@ -24,6 +25,7 @@ namespace PST.UI.Common.FFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetId", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetIdResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.FFP[]>))]
         PST.Domain.Response RemoveBySetId(int setId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetId", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetIdResponse")]
@@ -31,6 +33,7 @@ namespace PST.UI.Common.FFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.FFP[]>))]
         PST.Domain.Response RemoveBySetName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
@@ -41,6 +44,24 @@ namespace PST.UI.Common.FFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/GetSqlData", ReplyAction="http://tempuri.org/IFFPService/GetSqlDataResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response<string[]>> GetSqlDataAsync(int currentPage, int itemsPerPage, int ffpSetId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindFfpPnoByCicName", ReplyAction="http://tempuri.org/IFFPService/FindFfpPnoByCicNameResponse")]
+        PST.Domain.Response<string[]> FindFfpPnoByCicName(string cicName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindFfpPnoByCicName", ReplyAction="http://tempuri.org/IFFPService/FindFfpPnoByCicNameResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<string[]>> FindFfpPnoByCicNameAsync(string cicName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindSeriesByFfpPno", ReplyAction="http://tempuri.org/IFFPService/FindSeriesByFfpPnoResponse")]
+        PST.Domain.Response<string[]> FindSeriesByFfpPno(string ffpPno);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindSeriesByFfpPno", ReplyAction="http://tempuri.org/IFFPService/FindSeriesByFfpPnoResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<string[]>> FindSeriesByFfpPnoAsync(string ffpPno);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindBySeries", ReplyAction="http://tempuri.org/IFFPService/FindBySeriesResponse")]
+        PST.Domain.Response<PST.Domain.FFP[]> FindBySeries(string series);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindBySeries", ReplyAction="http://tempuri.org/IFFPService/FindBySeriesResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<PST.Domain.FFP[]>> FindBySeriesAsync(string series);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -100,6 +121,30 @@ namespace PST.UI.Common.FFPService {
         
         public System.Threading.Tasks.Task<PST.Domain.Response<string[]>> GetSqlDataAsync(int currentPage, int itemsPerPage, int ffpSetId) {
             return base.Channel.GetSqlDataAsync(currentPage, itemsPerPage, ffpSetId);
+        }
+        
+        public PST.Domain.Response<string[]> FindFfpPnoByCicName(string cicName) {
+            return base.Channel.FindFfpPnoByCicName(cicName);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response<string[]>> FindFfpPnoByCicNameAsync(string cicName) {
+            return base.Channel.FindFfpPnoByCicNameAsync(cicName);
+        }
+        
+        public PST.Domain.Response<string[]> FindSeriesByFfpPno(string ffpPno) {
+            return base.Channel.FindSeriesByFfpPno(ffpPno);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response<string[]>> FindSeriesByFfpPnoAsync(string ffpPno) {
+            return base.Channel.FindSeriesByFfpPnoAsync(ffpPno);
+        }
+        
+        public PST.Domain.Response<PST.Domain.FFP[]> FindBySeries(string series) {
+            return base.Channel.FindBySeries(series);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response<PST.Domain.FFP[]>> FindBySeriesAsync(string series) {
+            return base.Channel.FindBySeriesAsync(series);
         }
     }
 }

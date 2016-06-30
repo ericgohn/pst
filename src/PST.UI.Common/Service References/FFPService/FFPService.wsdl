@@ -32,6 +32,24 @@
   <wsdl:message name="IFFPService_GetSqlData_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSqlDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IFFPService_FindFfpPnoByCicName_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindFfpPnoByCicName" />
+  </wsdl:message>
+  <wsdl:message name="IFFPService_FindFfpPnoByCicName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindFfpPnoByCicNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFFPService_FindSeriesByFfpPno_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindSeriesByFfpPno" />
+  </wsdl:message>
+  <wsdl:message name="IFFPService_FindSeriesByFfpPno_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindSeriesByFfpPnoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFFPService_FindBySeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindBySeries" />
+  </wsdl:message>
+  <wsdl:message name="IFFPService_FindBySeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindBySeriesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IFFPService">
     <wsdl:operation name="AddItems">
       <wsdl:input wsaw:Action="http://tempuri.org/IFFPService/AddItems" message="tns:IFFPService_AddItems_InputMessage" />
@@ -48,6 +66,18 @@
     <wsdl:operation name="GetSqlData">
       <wsdl:input wsaw:Action="http://tempuri.org/IFFPService/GetSqlData" message="tns:IFFPService_GetSqlData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFFPService/GetSqlDataResponse" message="tns:IFFPService_GetSqlData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindFfpPnoByCicName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFPService/FindFfpPnoByCicName" message="tns:IFFPService_FindFfpPnoByCicName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFPService/FindFfpPnoByCicNameResponse" message="tns:IFFPService_FindFfpPnoByCicName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindSeriesByFfpPno">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFPService/FindSeriesByFfpPno" message="tns:IFFPService_FindSeriesByFfpPno_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFPService/FindSeriesByFfpPnoResponse" message="tns:IFFPService_FindSeriesByFfpPno_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindBySeries">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFFPService/FindBySeries" message="tns:IFFPService_FindBySeries_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFFPService/FindBySeriesResponse" message="tns:IFFPService_FindBySeries_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="FFPService" type="tns:IFFPService">
@@ -81,6 +111,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetSqlData">
       <soap:operation soapAction="http://tempuri.org/IFFPService/GetSqlData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindFfpPnoByCicName">
+      <soap:operation soapAction="http://tempuri.org/IFFPService/FindFfpPnoByCicName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindSeriesByFfpPno">
+      <soap:operation soapAction="http://tempuri.org/IFFPService/FindSeriesByFfpPno" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindBySeries">
+      <soap:operation soapAction="http://tempuri.org/IFFPService/FindBySeries" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

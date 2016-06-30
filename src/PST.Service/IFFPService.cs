@@ -27,5 +27,14 @@ namespace PST.Service
 
         [OperationContract]
         Response<List<string>> GetSqlData(int currentPage, int itemsPerPage, int ffpSetId);
+
+        [OperationContract]
+        Response<List<string>> FindFfpPnoByCicName(string cicName);
+
+        [OperationContract]
+        Response<List<string>> FindSeriesByFfpPno(string ffpPno);
+
+        [OperationContract]
+        Response<List<FFP>> FindBySeries(string series);
     }
 }

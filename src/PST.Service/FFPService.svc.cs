@@ -38,5 +38,20 @@ namespace PST.Service
         {
             return _app.GetSqlData(currentPage, itemsPerPage, ffpSetId);
         }
+
+        public Response<List<string>> FindFfpPnoByCicName(string cicName)
+        {
+            return _app.FindFfpPnoByCicName(cicName);
+        }
+
+        public Response<List<string>> FindSeriesByFfpPno(string ffpPno)
+        {
+            return _app.FindSeriesByFfpPno(ffpPno);
+        }
+
+        public Response<List<FFP>> FindBySeries(string series)
+        {
+            return _app.FindBySeries(series);
+        }
     }
 }
