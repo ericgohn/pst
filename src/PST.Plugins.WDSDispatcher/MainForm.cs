@@ -7,15 +7,6 @@
 //     
 //  ==============================================================
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Zeexone.Framework.Windows.Framework;
 
 namespace PST.Plugins.WDSDispatcher
@@ -25,6 +16,7 @@ namespace PST.Plugins.WDSDispatcher
         public MainForm()
         {
             InitializeComponent();
+            AutoMapperBootstrap.InitializeMap();
             PluginContext = WDSDispatcherPluginContext.S;
         }
     }

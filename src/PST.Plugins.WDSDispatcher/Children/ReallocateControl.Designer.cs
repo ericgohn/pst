@@ -31,16 +31,20 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.tbCicName = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.cmdSearchFfpPno = new DevComponents.DotNetBar.Command(this.components);
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.lbFfpPno = new DevComponents.DotNetBar.ListBoxAdv();
             this.lbSeries = new DevComponents.DotNetBar.ListBoxAdv();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.lbFfpPno = new DevComponents.DotNetBar.ListBoxAdv();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.cmdSearchFfpPno = new DevComponents.DotNetBar.Command(this.components);
+            this.tbCicName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
             this.dgvList = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.SuspendLayout();
@@ -70,81 +74,6 @@
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 0;
             // 
-            // labelX1
-            // 
-            this.labelX1.AutoSize = true;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(4, 4);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(80, 19);
-            this.labelX1.TabIndex = 0;
-            this.labelX1.Text = "CIC Name: ";
-            // 
-            // tbCicName
-            // 
-            // 
-            // 
-            // 
-            this.tbCicName.Border.Class = "TextBoxBorder";
-            this.tbCicName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbCicName.Location = new System.Drawing.Point(4, 33);
-            this.tbCicName.Name = "tbCicName";
-            this.tbCicName.PreventEnterBeep = true;
-            this.tbCicName.Size = new System.Drawing.Size(200, 22);
-            this.tbCicName.TabIndex = 1;
-            this.tbCicName.Text = "45W19V-2pin(DOE)";
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Command = this.cmdSearchFfpPno;
-            this.buttonX1.Location = new System.Drawing.Point(4, 61);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(75, 23);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 2;
-            this.buttonX1.Text = "Search";
-            // 
-            // cmdSearchFfpPno
-            // 
-            this.cmdSearchFfpPno.Name = "cmdSearchFfpPno";
-            this.cmdSearchFfpPno.Executed += new System.EventHandler(this.cmdSearchFfpPno_Executed);
-            // 
-            // labelX2
-            // 
-            this.labelX2.AutoSize = true;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(210, 3);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(68, 19);
-            this.labelX2.TabIndex = 3;
-            this.labelX2.Text = "FFP PNO:";
-            // 
-            // lbFfpPno
-            // 
-            this.lbFfpPno.AutoScroll = true;
-            // 
-            // 
-            // 
-            this.lbFfpPno.BackgroundStyle.Class = "ListBoxAdv";
-            this.lbFfpPno.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbFfpPno.CheckStateMember = null;
-            this.lbFfpPno.ContainerControlProcessDialogKey = true;
-            this.lbFfpPno.DragDropSupport = true;
-            this.lbFfpPno.Location = new System.Drawing.Point(210, 33);
-            this.lbFfpPno.Name = "lbFfpPno";
-            this.lbFfpPno.Size = new System.Drawing.Size(200, 94);
-            this.lbFfpPno.TabIndex = 4;
-            this.lbFfpPno.Text = "listBoxAdv1";
-            this.lbFfpPno.ItemDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbFfpPno_ItemDoubleClick);
-            // 
             // lbSeries
             // 
             this.lbSeries.AutoScroll = true;
@@ -153,6 +82,7 @@
             // 
             this.lbSeries.BackgroundStyle.Class = "ListBoxAdv";
             this.lbSeries.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbSeries.CheckStateMember = null;
             this.lbSeries.ContainerControlProcessDialogKey = true;
             this.lbSeries.DragDropSupport = true;
             this.lbSeries.Location = new System.Drawing.Point(424, 34);
@@ -174,6 +104,80 @@
             this.labelX3.Size = new System.Drawing.Size(49, 19);
             this.labelX3.TabIndex = 5;
             this.labelX3.Text = "Series:";
+            // 
+            // lbFfpPno
+            // 
+            this.lbFfpPno.AutoScroll = true;
+            // 
+            // 
+            // 
+            this.lbFfpPno.BackgroundStyle.Class = "ListBoxAdv";
+            this.lbFfpPno.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbFfpPno.ContainerControlProcessDialogKey = true;
+            this.lbFfpPno.DragDropSupport = true;
+            this.lbFfpPno.Location = new System.Drawing.Point(210, 33);
+            this.lbFfpPno.Name = "lbFfpPno";
+            this.lbFfpPno.Size = new System.Drawing.Size(200, 94);
+            this.lbFfpPno.TabIndex = 4;
+            this.lbFfpPno.Text = "listBoxAdv1";
+            this.lbFfpPno.ItemDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbFfpPno_ItemDoubleClick);
+            // 
+            // labelX2
+            // 
+            this.labelX2.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(210, 3);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(68, 19);
+            this.labelX2.TabIndex = 3;
+            this.labelX2.Text = "FFP PNO:";
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Command = this.cmdSearchFfpPno;
+            this.buttonX1.Location = new System.Drawing.Point(4, 61);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(75, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX1.TabIndex = 2;
+            this.buttonX1.Text = "Search";
+            // 
+            // cmdSearchFfpPno
+            // 
+            this.cmdSearchFfpPno.Name = "cmdSearchFfpPno";
+            this.cmdSearchFfpPno.Executed += new System.EventHandler(this.cmdSearchFfpPno_Executed);
+            // 
+            // tbCicName
+            // 
+            // 
+            // 
+            // 
+            this.tbCicName.Border.Class = "TextBoxBorder";
+            this.tbCicName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbCicName.Location = new System.Drawing.Point(4, 33);
+            this.tbCicName.Name = "tbCicName";
+            this.tbCicName.PreventEnterBeep = true;
+            this.tbCicName.Size = new System.Drawing.Size(200, 22);
+            this.tbCicName.TabIndex = 1;
+            this.tbCicName.Text = "45W19V-2pin(DOE)";
+            // 
+            // labelX1
+            // 
+            this.labelX1.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(4, 4);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(80, 19);
+            this.labelX1.TabIndex = 0;
+            this.labelX1.Text = "CIC Name: ";
             // 
             // panelEx2
             // 
@@ -197,6 +201,11 @@
             // dgvList
             // 
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column4,
+            this.Column3});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -212,6 +221,41 @@
             this.dgvList.RowTemplate.Height = 24;
             this.dgvList.Size = new System.Drawing.Size(1037, 282);
             this.dgvList.TabIndex = 8;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "PNO";
+            this.Column1.HeaderText = "PNO";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ShippedQty";
+            this.Column2.HeaderText = "Shipped Qty";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            // 
+            // 
+            // 
+            this.Column4.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.Column4.BackgroundStyle.Class = "DataGridViewNumericBorder";
+            this.Column4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.Column4.BackgroundStyle.TextColor = System.Drawing.SystemColors.ControlText;
+            this.Column4.DataPropertyName = "RevisedQty";
+            this.Column4.HeaderText = "Revised Qty";
+            this.Column4.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left;
+            this.Column4.Name = "Column4";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "ShippedMonth";
+            this.Column3.HeaderText = "Shipped Month";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // ReallocateControl
             // 
@@ -242,5 +286,9 @@
         private DevComponents.DotNetBar.LabelX labelX3;
         private DevComponents.DotNetBar.PanelEx panelEx2;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgvList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private DevComponents.DotNetBar.Controls.DataGridViewIntegerInputColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

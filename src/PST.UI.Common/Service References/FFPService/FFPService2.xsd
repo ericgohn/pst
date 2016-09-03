@@ -79,4 +79,37 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FFP" nillable="true" type="tns:FFP" />
+  <xs:complexType name="ResponseOfArrayOfSummarizedFFP787Z_PsiL">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/PST.Domain" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfSummarizedFFP" Namespace="http://schemas.datacontract.org/2004/07/PST.Domain" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Arg" nillable="true" type="tns:ArrayOfSummarizedFFP" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseOfArrayOfSummarizedFFP787Z_PsiL" nillable="true" type="tns:ResponseOfArrayOfSummarizedFFP787Z_PsiL" />
+  <xs:complexType name="ArrayOfSummarizedFFP">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SummarizedFFP" nillable="true" type="tns:SummarizedFFP" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSummarizedFFP" nillable="true" type="tns:ArrayOfSummarizedFFP" />
+  <xs:complexType name="SummarizedFFP">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Factor" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemCount" type="xs:int" />
+      <xs:element minOccurs="0" name="PNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippedMonth" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ShippedQty" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SummarizedFFP" nillable="true" type="tns:SummarizedFFP" />
 </xs:schema>

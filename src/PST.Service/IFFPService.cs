@@ -36,5 +36,8 @@ namespace PST.Service
 
         [OperationContract]
         Response<List<FFP>> FindBySeries(string series);
+
+        [OperationContract]
+        Response<List<SummarizedFFP>> FindSummarizedFfpBySeries(string series);
     }
 }

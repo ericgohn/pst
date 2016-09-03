@@ -18,6 +18,7 @@ namespace PST.UI.Common.FFPService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.FFP[]>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.SummarizedFFP[]>))]
         PST.Domain.Response AddItems(string sql);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/AddItems", ReplyAction="http://tempuri.org/IFFPService/AddItemsResponse")]
@@ -26,6 +27,7 @@ namespace PST.UI.Common.FFPService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetId", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetIdResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.FFP[]>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.SummarizedFFP[]>))]
         PST.Domain.Response RemoveBySetId(int setId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetId", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetIdResponse")]
@@ -34,6 +36,7 @@ namespace PST.UI.Common.FFPService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<string[]>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.FFP[]>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(PST.Domain.Response<PST.Domain.SummarizedFFP[]>))]
         PST.Domain.Response RemoveBySetName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/RemoveBySetName", ReplyAction="http://tempuri.org/IFFPService/RemoveBySetNameResponse")]
@@ -62,6 +65,12 @@ namespace PST.UI.Common.FFPService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindBySeries", ReplyAction="http://tempuri.org/IFFPService/FindBySeriesResponse")]
         System.Threading.Tasks.Task<PST.Domain.Response<PST.Domain.FFP[]>> FindBySeriesAsync(string series);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindSummarizedFfpBySeries", ReplyAction="http://tempuri.org/IFFPService/FindSummarizedFfpBySeriesResponse")]
+        PST.Domain.Response<PST.Domain.SummarizedFFP[]> FindSummarizedFfpBySeries(string series);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFFPService/FindSummarizedFfpBySeries", ReplyAction="http://tempuri.org/IFFPService/FindSummarizedFfpBySeriesResponse")]
+        System.Threading.Tasks.Task<PST.Domain.Response<PST.Domain.SummarizedFFP[]>> FindSummarizedFfpBySeriesAsync(string series);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -145,6 +154,14 @@ namespace PST.UI.Common.FFPService {
         
         public System.Threading.Tasks.Task<PST.Domain.Response<PST.Domain.FFP[]>> FindBySeriesAsync(string series) {
             return base.Channel.FindBySeriesAsync(series);
+        }
+        
+        public PST.Domain.Response<PST.Domain.SummarizedFFP[]> FindSummarizedFfpBySeries(string series) {
+            return base.Channel.FindSummarizedFfpBySeries(series);
+        }
+        
+        public System.Threading.Tasks.Task<PST.Domain.Response<PST.Domain.SummarizedFFP[]>> FindSummarizedFfpBySeriesAsync(string series) {
+            return base.Channel.FindSummarizedFfpBySeriesAsync(series);
         }
     }
 }

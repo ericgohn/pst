@@ -92,6 +92,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\PST.Domain.FFP.datasource" />
     <None Include="Properties\DataSources\PST.Domain.Response.datasource" />
+    <None Include="Properties\DataSources\PST.Domain.SummarizedFFP.datasource" />
     <None Include="Service References\FFPService\FFPService.wsdl" />
     <None Include="Service References\FFPService\FFPService.xsd">
       <SubType>Designer</SubType>

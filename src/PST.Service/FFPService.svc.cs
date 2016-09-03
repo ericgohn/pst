@@ -53,5 +53,10 @@ namespace PST.Service
         {
             return _app.FindBySeries(series);
         }
+
+        public Response<List<SummarizedFFP>> FindSummarizedFfpBySeries(string series)
+        {
+            return _app.FindSummarizedFfpBySeries(series);
+        }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="FFP.Generated.cs">
       <DependentUpon>FFP.cs</DependentUpon>
     </Compile>
+    <Compile Include="SummarizedFFP.cs" />
     <Compile Include="WDSResponse.cs" />
     <Compile Include="WDSResponse.Generated.cs">
       <DependentUpon>WDSResponse.cs</DependentUpon>

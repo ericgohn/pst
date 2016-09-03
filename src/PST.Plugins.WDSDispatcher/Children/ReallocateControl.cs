@@ -8,8 +8,11 @@
 //  ==============================================================
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using PST.Plugins.WDSDispatcher.ViewModels;
 using PST.UI.Common;
+using PST.UI.Common.Helpers;
 
 namespace PST.Plugins.WDSDispatcher.Children
 {
@@ -52,8 +55,20 @@ namespace PST.Plugins.WDSDispatcher.Children
             if (string.IsNullOrEmpty(series))
                 return;
             var service = ServiceFactory.S.GetFFPService();
-            var res = await service.FindBySeriesAsync(series);
-            dgvList.DataSource = res.Arg;
+//            var res = await service.FindBySeriesAsync(series);
+            var res = await service.FindSummarizedFfpBySeriesAsync(series);
+            if (!res.Success)
+            {
+                DialogHelper.ShowLoadError(res.Message);
+                return;
+            }
+            var items = AutoMapperBootstrap.M.Map<List<SummarizedFFPVm>>(res.Arg);
+            foreach (var item in items)
+            {
+                item.ShippedQty = item.ShippedQty/(item.ItemCount/item.Factor);
+                item.RevisedQty = item.ShippedQty;
+            }
+            dgvList.DataSource = items;
         }
     }
 }

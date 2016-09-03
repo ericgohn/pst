@@ -51,6 +51,27 @@ namespace PST.Business
             }
         }
 
+        public Response<List<SummarizedFFP>> FindSummarizedFfpBySeries(string series)
+        {
+            using (var context = new Entities())
+            {
+                var query = context.Database.SqlQuery<SummarizedFFP>(
+                    "select sum([Shipped QTY]) as [ShippedQty],count(*) as ItemCount,[PNO],[Shipped Month] as ShippedMonth from dbo.FFP where Series = @p0 group by [PNO],[Shipped Month] order by [Shipped Month]",
+                    series);
+                var items = query.ToList();
+                foreach (var item in items)
+                {
+                    var factorQuery =
+                        context.Database.SqlQuery<int>(
+                            "select count(*) from dbo.FFP where PNO=@p0 group by [CIG Name],[Shipped Month]",
+                            item.PNO);
+                    var result = factorQuery.ToList();
+                    item.Factor = result.Count == 0 ? 1 : result.First();
+                }
+                return Response<List<SummarizedFFP>>.Succeed(items);
+            }
+        }
+
         #region public Methods
 
         public Response Import(string sql)
